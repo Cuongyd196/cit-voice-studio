@@ -111,12 +111,6 @@ Máy không chạy được mô hình đó. Di chuột vào sẽ thấy lý do.
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
 
-Mình tạo nhóm này cho các bạn trao đổi về Làm Video với AI nhé.
-Với các repo mình công khai, có vướng mắc mình sẽ giải đáp cho các bạn.
-
-- 👥 Nhóm trên Facebook: [facebook.com/groups/1010029065373486](https://www.facebook.com/groups/1010029065373486/)
-- 👥 Nhóm trên Zalo: [zalo.me/g/8bfeotyh5ewtkzxmp5gt](https://zalo.me/g/8bfeotyh5ewtkzxmp5gt)
-
 Nếu hữu ích với các bạn thì cho mình 1 star GitHub nhé 🌟
 
 Nếu muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/4959449](https://buymeacoffee.com/cuongit96/gallery/4959449)
@@ -127,7 +121,7 @@ Nếu muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
 
-Toàn bộ mô hình trí tuệ nhân tạo và thuật toán tổng hợp giọng nói là công trình nghiên cứu của tác giả VieNeu-TTS. Phần đóng góp của Cường IT là giao diện người dùng, đóng gói và phân phối.
+Phần cập nhật của Cường IT là giao diện người dùng và đóng gói thành app cit-voice-studio.
 
 | | |
 |---|---|
@@ -139,8 +133,4 @@ Toàn bộ mô hình trí tuệ nhân tạo và thuật toán tổng hợp giọ
 
 ## Giấy phép
 
-Apache License 2.0. Xem toàn văn trong file [LICENSE](LICENSE) và phần ghi công trong [NOTICE](NOTICE).
-
-Bạn được tự do sử dụng cho mục đích cá nhân, học tập, nghiên cứu và thương mại; được sửa đổi và phân phối lại. Điều kiện là giữ nguyên thông báo bản quyền của tác giả.
-
-Phần mềm được cung cấp theo nguyên trạng, không kèm bảo đảm dưới bất kỳ hình thức nào.
+Apache License 2.0
