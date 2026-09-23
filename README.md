@@ -3,10 +3,13 @@
 Chuyển văn bản tiếng Việt thành giọng nói, chạy hoàn toàn trên máy bạn.
 
 Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ liệu nào gửi đi khỏi máy.
+<<<<<<< HEAD
 
 <p align="center">
   <img src="assets/tts-studio.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
+=======
+>>>>>>> a13765e4108b914792ad040f37e10d559b1d050e
 
 ---
 
