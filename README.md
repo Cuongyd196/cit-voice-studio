@@ -3,13 +3,10 @@
 Chuyển văn bản tiếng Việt thành giọng nói, chạy hoàn toàn trên máy bạn.
 
 Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ liệu nào gửi đi khỏi máy.
-<<<<<<< HEAD
 
 <p align="center">
   <img src="assets/tts-studio.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
-=======
->>>>>>> a13765e4108b914792ad040f37e10d559b1d050e
 
 ---
 
@@ -102,6 +99,27 @@ Máy không chạy được mô hình đó. Di chuột vào sẽ thấy lý do.
 
 **Báo lỗi cổng 8001 đang bị chiếm**
 Đóng hẳn ứng dụng rồi mở lại. Vẫn lỗi thì khởi động lại máy.
+
+---
+
+## Xem các mẫu tạo video có thể tích hợp TTS tại:
+
+- Link repo tạo video so sánh 2 khái niệm: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
+- Link repo tạo video từ 1 đường Link/Bài viết: 🔗 [github.com/Cuongyd196/auto-video-gen](https://github.com/Cuongyd196/auto-video-gen)
+- Link repo tạo video từ 1 chủ đề sử dụng Remotion: 🔗 [github.com/Cuongyd196/remotion-cuongit-template](https://github.com/Cuongyd196/remotion-cuongit-template)
+- Link các video mẫu mình đã làm, các bạn có thể xem trong Reels hoặc TikTok:
+  - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
+  - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
+
+Mình tạo nhóm này cho các bạn trao đổi về Làm Video với AI nhé.
+Với các repo mình công khai, có vướng mắc mình sẽ giải đáp cho các bạn.
+
+- 👥 Nhóm trên Facebook: [facebook.com/groups/1010029065373486](https://www.facebook.com/groups/1010029065373486/)
+- 👥 Nhóm trên Zalo: [zalo.me/g/8bfeotyh5ewtkzxmp5gt](https://zalo.me/g/8bfeotyh5ewtkzxmp5gt)
+
+Nếu hữu ích với các bạn thì cho mình 1 star GitHub nhé 🌟
+
+Nếu muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/4959449](https://buymeacoffee.com/cuongit96/gallery/4959449)
 
 ---
 
