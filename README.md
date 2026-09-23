@@ -2,7 +2,7 @@
 
 Chuyển văn bản tiếng Việt thành giọng nói, chạy hoàn toàn trên máy bạn.
 
-Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ liệu nào rời khỏi máy.
+Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ liệu nào gửi đi khỏi máy.
 
 ---
 
@@ -17,15 +17,15 @@ Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ l
 | Yêu cầu | Windows 10/11 64-bit |
 | Internet | chỉ cần để tải file này |
 
-Mô hình giọng nói đã nằm sẵn trong bộ cài. Cài xong dùng được ngay, không phải tải thêm.
+Mô hình giọng nói đã nằm sẵn trong bộ cài. Cài xong dùng được ngay, không phải tải thêm, cấu hình mô hình khác tại cài đặt.
 
 ### Cách cài
 
 1. Tải file `CIT-Voice-Studio-Setup.exe`
-2. Bấm đúp, làm theo hướng dẫn
+2. Bấm đúp, làm theo hướng dẫn và cài đặt
 
 
-Cài vào thư mục riêng của tài khoản bạn nên **không hiện cảnh báo đòi quyền quản trị**. Xong sẽ có biểu tượng ngoài Desktop và trong Start Menu.
+Cài xong sẽ có biểu tượng ngoài Desktop và trong Start Menu.
 
 **Gỡ ra:** Settings → Apps → CIT Voice Studio → Uninstall.
 
@@ -41,8 +41,6 @@ Cài vào thư mục riêng của tài khoản bạn nên **không hiện cảnh
 - **Đọc tiếng Anh xen tiếng Việt** — tự nhận ra và đọc đúng
 - Chỉnh tốc độ đọc 0.75x – 1.50x
 - Xuất **WAV** hoặc **MP3**, chất lượng 48 kHz
-- Nghe ngay trong lúc đang tạo, không phải chờ xong mới nghe được
-
 ---
 
 ## Máy yếu có chạy được không?
@@ -50,32 +48,11 @@ Cài vào thư mục riêng của tài khoản bạn nên **không hiện cảnh
 Được. Phần mềm chạy bằng CPU, không cần card đồ hoạ.
 
 Đo trên laptop Intel i7-8650U đời 2017: đọc một đoạn dài 1 phút mất khoảng 30 giây. Máy mới hơn nhanh hơn.
-
-Máy có card NVIDIA cũng không cần làm gì thêm — bản CPU đã đủ nhanh cho hầu hết nhu cầu.
-
 ---
 
 ## Kết nối từ phần mềm khác
 
 Khi ứng dụng đang chạy, nó mở sẵn một máy chủ API ở `http://127.0.0.1:8001`. Phần mềm khác **trên cùng máy** gọi vào được để tạo giọng nói tự động.
-
-```python
-import json, urllib.request
-
-body = json.dumps({
-    "text": "Xin chào từ ứng dụng khác",
-    "voice_id": "Minh Đức",
-    "speed": 1.0,
-}).encode()
-
-req = urllib.request.Request(
-    "http://127.0.0.1:8001/api/tts/generate",
-    data=body,
-    headers={"Content-Type": "application/json"},
-)
-with urllib.request.urlopen(req) as r:
-    open("giong-noi.wav", "wb").write(r.read())
-```
 
 Các đường dẫn chính:
 
