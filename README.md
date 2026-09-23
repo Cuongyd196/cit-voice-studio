@@ -119,9 +119,6 @@ Máy không chạy được mô hình đó. Di chuột vào sẽ thấy lý do.
 **Báo lỗi cổng 8001 đang bị chiếm**
 Đóng hẳn ứng dụng rồi mở lại. Vẫn lỗi thì khởi động lại máy.
 
-**Gặp lỗi khác**
-Trong thư mục cài đặt có sẵn `chan-doan.bat`. Bấm đúp vào đó, nó tạo file `chan-doan.txt` ghi lại cấu hình máy và nhật ký lần chạy gần nhất. Gửi file đó kèm mô tả lỗi.
-
 ---
 
 ## Nguồn gốc
