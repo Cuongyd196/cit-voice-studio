@@ -12,7 +12,7 @@ Không cần tài khoản. Không cần Internet sau khi cài. Không có dữ l
 
 | | |
 |---|---|
-| Dung lượng tải | ~347 MB |
+| Dung lượng tải | ~350 MB |
 | Sau khi cài | ~763 MB |
 | Yêu cầu | Windows 10/11 64-bit |
 | Internet | chỉ cần để tải file này |
