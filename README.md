@@ -102,21 +102,6 @@ Máy không chạy được mô hình đó. Di chuột vào sẽ thấy lý do.
 
 ---
 
-## Xem các mẫu tạo video có thể tích hợp TTS tại:
-
-- Link repo tạo video so sánh 2 khái niệm: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
-- Link repo tạo video từ 1 đường Link/Bài viết: 🔗 [github.com/Cuongyd196/auto-video-gen](https://github.com/Cuongyd196/auto-video-gen)
-- Link repo tạo video từ 1 chủ đề sử dụng Remotion: 🔗 [github.com/Cuongyd196/remotion-cuongit-template](https://github.com/Cuongyd196/remotion-cuongit-template)
-- Link các video mẫu mình đã làm, các bạn có thể xem trong Reels hoặc TikTok:
-  - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
-  - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
-
-Nếu hữu ích với các bạn thì cho mình 1 star GitHub nhé 🌟
-
-Nếu muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/4959449](https://buymeacoffee.com/cuongit96/gallery/4959449)
-
----
-
 ## Nguồn gốc
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
@@ -128,7 +113,7 @@ Phần cập nhật của Cường IT là giao diện người dùng và đóng 
 | Mô hình gốc | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
 | Mô hình trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
 | Tác giả bản này | [me.cuongit.net](https://me.cuongit.net) |
-
+| Liên hệ | [Facebook](https://www.facebook.com/cuongit96) |
 ---
 
 ## Giấy phép
