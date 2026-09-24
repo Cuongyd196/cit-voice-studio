@@ -96,6 +96,12 @@ Hiện CIT Voice Studio chỉ có bản cho Windows. Trên Linux và macOS, hãy
 
 Đo trên laptop Intel Core i7-8650U (2017): một đoạn đọc dài 1 phút mất khoảng 30 giây để tạo. Máy mới hơn sẽ nhanh hơn.
 
+Máy yếu thì đổi sang mô hình **VieNeu-TTS v3 Nano** để tạo nhanh hơn, đổi lại chất lượng kém hơn:
+
+1. Mở **Cài đặt**, bấm mục **Quản lý & Chọn Mô hình AI (Backbone)**.
+2. Ở dòng **VieNeu-TTS v3 Nano**, bấm **Tải về & Áp dụng** (tải ~400 MB, cần Internet lần đầu).
+3. Muốn quay lại chất lượng tốt hơn thì chọn lại **VieNeu-TTS v3 Turbo (INT8 CPU)**, là mô hình mặc định.
+
 ---
 
 ## Kết nối từ phần mềm khác (API)
