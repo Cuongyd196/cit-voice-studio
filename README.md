@@ -7,7 +7,7 @@ Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và gi
 > **Hiện chỉ hỗ trợ Windows 10/11.** Dùng Linux hoặc macOS? Xem mục [Linux và macOS](#linux-và-macos).
 
 <p align="center">
-  <img src="assets/tts-studio.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
@@ -202,7 +202,6 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
 
 ---
 
-<<<<<<< HEAD
 ## Dự án tạo video có thể dùng kèm
 
 - Tạo video so sánh 2 khái niệm: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
@@ -218,8 +217,6 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/49594
 
 ---
 
-=======
->>>>>>> 053b113c3ad2ed457ef10d668231aebfc4e80f99
 ## Nguồn gốc
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
@@ -232,12 +229,9 @@ Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng d
 | Mô hình trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
 | Tác giả bản này | [me.cuongit.net](https://me.cuongit.net) |
 | Liên hệ | [Facebook](https://www.facebook.com/cuongit96) |
+
 ---
 
 ## Giấy phép
 
-<<<<<<< HEAD
-Apache License 2.0. Xem [LICENSE](LICENSE) và [NOTICE](NOTICE).
-=======
 Apache License 2.0
->>>>>>> 053b113c3ad2ed457ef10d668231aebfc4e80f99
