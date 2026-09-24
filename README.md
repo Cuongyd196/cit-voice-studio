@@ -202,6 +202,7 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
 
 ---
 
+<<<<<<< HEAD
 ## Dự án tạo video có thể dùng kèm
 
 - Tạo video so sánh 2 khái niệm: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
@@ -217,6 +218,8 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/49594
 
 ---
 
+=======
+>>>>>>> 053b113c3ad2ed457ef10d668231aebfc4e80f99
 ## Nguồn gốc
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
@@ -228,9 +231,13 @@ Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng d
 | Mô hình gốc | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
 | Mô hình trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
 | Tác giả bản này | [me.cuongit.net](https://me.cuongit.net) |
-
+| Liên hệ | [Facebook](https://www.facebook.com/cuongit96) |
 ---
 
 ## Giấy phép
 
+<<<<<<< HEAD
 Apache License 2.0. Xem [LICENSE](LICENSE) và [NOTICE](NOTICE).
+=======
+Apache License 2.0
+>>>>>>> 053b113c3ad2ed457ef10d668231aebfc4e80f99
