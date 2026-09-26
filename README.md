@@ -4,41 +4,49 @@ Phần mềm chuyển văn bản tiếng Việt thành giọng nói, chạy hoà
 
 Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và giọng nói của bạn không bị gửi đi đâu cả.
 
-> **Hiện chỉ hỗ trợ Windows 10/11.** Dùng Linux hoặc macOS? Xem mục [Linux và macOS](#linux-và-macos).
+Chạy trên **Windows** và **Linux**.
 
 <p align="center">
-  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
 
 ## Tải về
 
-**[⬇ Tải bộ cài CIT-Voice-Studio-Setup-v1.0.0.exe](../../releases/latest)** — một file, bấm đúp là cài.
+**[⬇ Trang tải về (Releases)](../../releases/latest)** — chọn đúng file cho máy của bạn:
 
-| | |
-|---|---|
-| Dung lượng tải | ~350 MB |
-| Sau khi cài | ~770 MB |
-| Hệ điều hành | Windows 10/11 64-bit |
-| Card đồ hoạ | Không cần |
-| Internet | Chỉ cần để tải bộ cài |
+| Máy của bạn | File tải | Dung lượng |
+|---|---|---|
+| Windows 10/11 64-bit | `CIT-Voice-Studio-win-x86_64-v1.0.0.exe` | ~365 MB |
+| Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` | ~460 MB |
+| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` | ~460 MB |
 
-Mô hình giọng nói đã nằm sẵn trong bộ cài: cài xong dùng được ngay, không phải tải thêm gì.
+Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, không cần card đồ hoạ, không cần cài Python.
 
-### Cài đặt
+### Windows
 
-1. Tải file `CIT-Voice-Studio-Setup-v1.0.0.exe`.
+1. Tải file `CIT-Voice-Studio-win-x86_64-v1.0.0.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
 **Gỡ cài đặt:** Settings → Apps → CIT Voice Studio → Uninstall.
 
----
+### Linux
 
-## Linux và macOS
+**Bản .deb** (Ubuntu, Debian, Linux Mint…):
 
-Hiện CIT Voice Studio chỉ có bản cho Windows. Trên Linux và macOS, hãy build từ mã nguồn gốc của tác giả: [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS). Hướng dẫn cài nằm trong README của repo đó.
+```bash
+sudo apt install ./cit-voice-studio_1.0.0_amd64.deb
+```
+
+Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
+
+**Bản .tar.gz** (mọi bản Linux, không cần sudo): giải nén, rồi trong thư mục vừa giải nén chạy `./CIT-Voice-Studio`.
+
+Trên Linux, ứng dụng chạy trong một cửa sổ Terminal và mở giao diện bằng trình duyệt tại `http://127.0.0.1:8001`. Giữ Terminal mở trong lúc dùng; đóng Terminal hoặc bấm `Ctrl+C` để tắt.
+
+Bản Linux có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
 
 ---
 
@@ -46,6 +54,7 @@ Hiện CIT Voice Studio chỉ có bản cho Windows. Trên Linux và macOS, hãy
 
 ### Tạo giọng nói
 - **20 giọng có sẵn**: nam và nữ, giọng Bắc, Trung, Nam, nhiều phong cách (tin tức, kể chuyện, đọc truyện, tự nhiên…). Danh sách chọn giọng ghi rõ giới tính, vùng miền và phong cách.
+- **Nghe thử từng giọng** ngay trong danh sách trước khi chọn.
 - **Đọc tiếng Anh xen tiếng Việt**: tự nhận ra từ tiếng Anh và đọc đúng.
 - Chỉnh tốc độ đọc từ 0.75x đến 1.50x.
 - Xuất **WAV** (48 kHz) hoặc **MP3**.
@@ -90,17 +99,21 @@ Hiện CIT Voice Studio chỉ có bản cho Windows. Trên Linux và macOS, hãy
 
 ---
 
-## Máy yếu có chạy được không?
+## Chọn mô hình theo máy
 
-Được. Ứng dụng chạy bằng CPU, không cần card đồ hoạ.
+Đổi mô hình trong **Cài đặt → Quản lý & Chọn Mô hình AI**. Mô hình nào máy không chạy được sẽ bị làm mờ, di chuột vào để xem lý do.
 
-Đo trên laptop Intel Core i7-8650U (2017): một đoạn đọc dài 1 phút mất khoảng 30 giây để tạo. Máy mới hơn sẽ nhanh hơn.
+| Máy của bạn | Nên dùng | Ghi chú |
+|---|---|---|
+| Máy thường, laptop văn phòng, **máy yếu** | **v3 Turbo INT8** (mặc định) | Có sẵn trong bộ cài. Nhanh nhất khi chạy bằng CPU, âm thanh 48 kHz |
+| Máy có **card NVIDIA** (Windows, Linux) | **v3 Turbo GPU NVIDIA** | Bấm **Cài hỗ trợ GPU** ngay tại mô hình đó |
+| Muốn thử mô hình nhỏ | v3 Nano (thử nghiệm) | Tải thêm ~400 MB, âm thanh 24 kHz, đọc tiếng Anh kém hơn |
 
-Máy yếu thì đổi sang mô hình **VieNeu-TTS v3 Nano** để tạo nhanh hơn, đổi lại chất lượng kém hơn:
+**Máy yếu có chạy được không?** Được. Ứng dụng chạy bằng CPU, không cần card đồ hoạ. Đo trên laptop Intel Core i7-8650U (2017, 4 nhân) với mô hình mặc định: đoạn đọc dài 1 phút mất khoảng 30 giây để tạo. Máy mới hơn sẽ nhanh hơn.
 
-1. Mở **Cài đặt**, bấm mục **Quản lý & Chọn Mô hình AI (Backbone)**.
-2. Ở dòng **VieNeu-TTS v3 Nano**, bấm **Tải về & Áp dụng** (tải ~400 MB, cần Internet lần đầu).
-3. Muốn quay lại chất lượng tốt hơn thì chọn lại **VieNeu-TTS v3 Turbo (INT8 CPU)**, là mô hình mặc định.
+Máy yếu cứ giữ **Turbo INT8**. Nano nhỏ hơn nhưng **không nhanh hơn**: trên cùng laptop đó, Nano ở cài đặt mặc định chậm gần gấp đôi Turbo INT8.
+
+**Máy có card NVIDIA:** không có bộ cài riêng cho GPU, vẫn dùng bộ cài như trên. Trong ứng dụng, vào **Cài đặt → Quản lý & Chọn Mô hình AI**, bấm **Cài hỗ trợ GPU** ở mô hình GPU NVIDIA. Ứng dụng tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống, chỉ tải một lần). Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh `nvidia-smi`). Lợi rõ nhất là khi tạo **hội thoại/podcast nhiều người nói**: GPU tạo cả kịch bản cùng lúc thay vì từng câu.
 
 ---
 
@@ -136,6 +149,7 @@ open("giong-noi.wav", "wb").write(r.content)
 - `http://127.0.0.1:8001/docs`: bấm thử từng API ngay trong trình duyệt.
 - `http://127.0.0.1:8001/cit-voice-studio.md`: hướng dẫn tích hợp dạng Markdown, nạp thẳng cho Cursor, Claude, ChatGPT…
 - `http://127.0.0.1:8001/openapi.json`: nhập vào Postman.
+- [docs/postman/CIT-Voice-Studio.postman_collection.json](docs/postman/CIT-Voice-Studio.postman_collection.json): bộ request Postman dựng sẵn, sửa biến `baseUrl` và `apiKey` là dùng.
 
 ### Gọi từ máy khác trong mạng LAN
 
@@ -143,7 +157,7 @@ Mặc định chỉ phần mềm **trên cùng máy** gọi được API, và kh
 
 Muốn máy khác gọi vào:
 1. Mở **Cài đặt → Cho máy khác truy cập API**, tích bật.
-2. Bấm **Khởi động lại ngay**. Lần đầu, Windows hỏi quyền tường lửa: chọn **Cho phép** với mạng **Riêng tư**.
+2. Bấm **Khởi động lại ngay**. Lần đầu, Windows hỏi quyền tường lửa: chọn **Cho phép** với mạng **Riêng tư**. Trên Linux có bật tường lửa thì chạy `sudo ufw allow 8001/tcp`.
 3. Lấy địa chỉ (dạng `http://192.168.x.x:8001`) và **khoá API** hiện ngay trong Cài đặt.
 4. Máy khác gửi khoá qua header `X-API-Key`:
 
@@ -159,7 +173,14 @@ Máy khác chỉ gọi được các API tạo giọng ở bảng trên; không 
 
 ## Dữ liệu được lưu ở đâu
 
-Mọi thứ nằm trên máy bạn, trong `%LOCALAPPDATA%\CitVoiceStudio\`:
+Mọi thứ nằm trên máy bạn:
+
+| Hệ điều hành | Thư mục |
+|---|---|
+| Windows | `%LOCALAPPDATA%\CitVoiceStudio\` |
+| Linux | `~/CitVoiceStudio/` |
+
+Trong đó:
 
 | Thư mục / file | Nội dung |
 |---|---|
@@ -168,7 +189,7 @@ Mọi thứ nằm trên máy bạn, trong `%LOCALAPPDATA%\CitVoiceStudio\`:
 | `remote-access.json` | Cài đặt truy cập từ máy khác và khoá API |
 | `server-settings.json` | Cổng máy chủ |
 
-Giọng nhân bản đã lưu nằm trong thư mục `models\` cạnh file `.exe`.
+Trên Windows và bản Linux `.tar.gz`, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Bản Linux `.deb` để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
 
 ---
 
@@ -182,7 +203,10 @@ Bộ cài chưa được ký số (code signing), nên Windows có thể cảnh 
 - *"Smart App Control blocked an app that may be unsafe"* (Windows 11): Smart App Control chặn mọi ứng dụng chưa ký số và **không cho mở riêng từng ứng dụng**, nên Unblock hay Run anyway đều không có tác dụng. Cách duy nhất là tắt tính năng này: **Windows Security → App & browser control → Smart App Control settings → Off**.
   > ⚠️ Tắt Smart App Control làm giảm một lớp bảo vệ của Windows, và trên nhiều bản Windows **không bật lại được** nếu không cài lại Windows. Chỉ tắt khi bạn tin nguồn tải về (trang Release chính thức của repo này). Không muốn tắt thì hãy cài trên máy khác.
 
-**Ứng dụng mở bằng trình duyệt thay vì cửa sổ riêng**
+**Linux: giao diện không tự mở**
+Mở trình duyệt và vào `http://127.0.0.1:8001`. Giữ cửa sổ Terminal của ứng dụng đang mở.
+
+**Windows: ứng dụng mở bằng trình duyệt thay vì cửa sổ riêng**
 Không phải lỗi, mọi tính năng vẫn dùng được. Máy thiếu **Microsoft Edge WebView2 Runtime** nên ứng dụng tự chuyển sang trình duyệt. Muốn có cửa sổ riêng thì cài WebView2 Runtime (miễn phí, của Microsoft):
 <https://go.microsoft.com/fwlink/p/?LinkId=2124703>
 
@@ -227,17 +251,16 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/49594
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
 
-Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, các tính năng ở trên và bộ cài cho Windows.
+Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, các tính năng ở trên và bộ cài cho Windows và Linux.
 
 | | |
 |---|---|
 | Mô hình gốc | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
 | Mô hình trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
 | Tác giả bản này | [me.cuongit.net](https://me.cuongit.net) |
-| Liên hệ | [Facebook](https://www.facebook.com/cuongit96) |
 
 ---
 
 ## Giấy phép
 
-Apache License 2.0
+Apache License 2.0. Xem [LICENSE](LICENSE) và [NOTICE](NOTICE).
