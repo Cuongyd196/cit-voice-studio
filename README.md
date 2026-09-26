@@ -7,7 +7,7 @@ Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và gi
 Chạy trên **Windows** và **Linux**.
 
 <p align="center">
-  <img src="assets/tts-studio-v1.0.0" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
@@ -18,15 +18,15 @@ Chạy trên **Windows** và **Linux**.
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-win-x86_64-v1.0.0.exe` | ~365 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.0-win-x86_64.exe` | ~365 MB |
 | Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` | ~460 MB |
 | Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` | ~460 MB |
 
-Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, không cần card đồ hoạ, không cần cài Python.
+Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-win-x86_64-v1.0.0.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.0-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
