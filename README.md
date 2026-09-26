@@ -7,7 +7,7 @@ Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và gi
 Chạy trên **Windows** và **Linux**.
 
 <p align="center">
-  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio-v1.0.0" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
@@ -113,7 +113,7 @@ Bản Linux có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
 
 Máy yếu cứ giữ **Turbo INT8**. Nano nhỏ hơn nhưng **không nhanh hơn**: trên cùng laptop đó, Nano ở cài đặt mặc định chậm gần gấp đôi Turbo INT8.
 
-**Máy có card NVIDIA:** không có bộ cài riêng cho GPU, vẫn dùng bộ cài như trên. Trong ứng dụng, vào **Cài đặt → Quản lý & Chọn Mô hình AI**, bấm **Cài hỗ trợ GPU** ở mô hình GPU NVIDIA. Ứng dụng tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống, chỉ tải một lần). Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh `nvidia-smi`). Lợi rõ nhất là khi tạo **hội thoại/podcast nhiều người nói**: GPU tạo cả kịch bản cùng lúc thay vì từng câu.
+**Máy có card NVIDIA:** không có bộ cài riêng cho GPU, vẫn dùng bộ cài như trên. Trong ứng dụng, vào **Cài đặt → Quản lý & Chọn Mô hình AI**, bấm **Cài hỗ trợ GPU** ở mô hình GPU NVIDIA. Ứng dụng tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống, chỉ tải một lần). Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh `nvidia-smi`). Lợi rõ nhất là khi tạo một đoạn dài sẽ thấy sự khác biệt.
 
 ---
 
