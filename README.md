@@ -4,7 +4,7 @@ Phần mềm chuyển văn bản tiếng Việt thành giọng nói, chạy hoà
 
 Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và giọng nói của bạn không bị gửi đi đâu cả.
 
-Chạy trên **Windows** và **Linux**.
+Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 
 <p align="center">
   <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
@@ -21,6 +21,7 @@ Chạy trên **Windows** và **Linux**.
 | Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.0-win-x86_64.exe` | ~365 MB |
 | Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` | ~460 MB |
 | Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` | ~460 MB |
+| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.0-macos-arm64.dmg` | ~410 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -46,7 +47,15 @@ Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-
 
 Trên Linux, ứng dụng chạy trong một cửa sổ Terminal và mở giao diện bằng trình duyệt tại `http://127.0.0.1:8001`. Giữ Terminal mở trong lúc dùng; đóng Terminal hoặc bấm `Ctrl+C` để tắt.
 
-Bản Linux có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
+### macOS (Mac chip Apple)
+
+1. Mở file `.dmg`, kéo **CIT Voice Studio** vào thư mục **Applications**.
+2. Lần đầu mở, macOS chặn vì ứng dụng chưa được Apple chứng thực: vào **System Settings → Privacy & Security**, kéo xuống cuối, bấm **Open Anyway**.
+3. Ứng dụng có cửa sổ riêng; tắt bằng `Cmd+Q`.
+
+Chưa có bản cho Mac chip Intel.
+
+Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
 
 ---
 
@@ -113,7 +122,7 @@ Bản Linux có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
 
 Máy yếu cứ giữ **Turbo INT8**. Nano nhỏ hơn nhưng **không nhanh hơn**: trên cùng laptop đó, Nano ở cài đặt mặc định chậm gần gấp đôi Turbo INT8.
 
-**Máy có card NVIDIA:** không có bộ cài riêng cho GPU, vẫn dùng bộ cài như trên. Trong ứng dụng, vào **Cài đặt → Quản lý & Chọn Mô hình AI**, bấm **Cài hỗ trợ GPU** ở mô hình GPU NVIDIA. Ứng dụng tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống, chỉ tải một lần). Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh `nvidia-smi`). Lợi rõ nhất là khi tạo một đoạn dài sẽ thấy sự khác biệt.
+**Máy có card NVIDIA:** không có bộ cài riêng cho GPU, vẫn dùng bộ cài như trên. Trong ứng dụng, vào **Cài đặt → Quản lý & Chọn Mô hình AI**, bấm **Cài hỗ trợ GPU** ở mô hình GPU NVIDIA. Ứng dụng tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống, chỉ tải một lần). Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh `nvidia-smi`). Lợi rõ nhất là khi tạo một đoạn dài sẽ thấy sự khác biệt. macOS chỉ chạy CPU.
 
 ---
 
@@ -179,6 +188,7 @@ Mọi thứ nằm trên máy bạn:
 |---|---|
 | Windows | `%LOCALAPPDATA%\CitVoiceStudio\` |
 | Linux | `~/CitVoiceStudio/` |
+| macOS | `~/Library/Application Support/CIT Voice Studio/` |
 
 Trong đó:
 
@@ -189,7 +199,7 @@ Trong đó:
 | `remote-access.json` | Cài đặt truy cập từ máy khác và khoá API |
 | `server-settings.json` | Cổng máy chủ |
 
-Trên Windows và bản Linux `.tar.gz`, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Bản Linux `.deb` để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
+Trên Windows và bản Linux `.tar.gz`, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Bản Linux `.deb` và macOS để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
 
 ---
 
@@ -202,6 +212,16 @@ Bộ cài chưa được ký số (code signing), nên Windows có thể cảnh 
 - File bị đánh dấu tải từ Internet: chuột phải vào file `.exe` → Properties → tích **Unblock** → OK.
 - *"Smart App Control blocked an app that may be unsafe"* (Windows 11): Smart App Control chặn mọi ứng dụng chưa ký số và **không cho mở riêng từng ứng dụng**, nên Unblock hay Run anyway đều không có tác dụng. Cách duy nhất là tắt tính năng này: **Windows Security → App & browser control → Smart App Control settings → Off**.
   > ⚠️ Tắt Smart App Control làm giảm một lớp bảo vệ của Windows, và trên nhiều bản Windows **không bật lại được** nếu không cài lại Windows. Chỉ tắt khi bạn tin nguồn tải về (trang Release chính thức của repo này). Không muốn tắt thì hãy cài trên máy khác.
+
+**macOS: "không thể mở vì không xác minh được nhà phát triển"**
+Vào **System Settings → Privacy & Security**, bấm **Open Anyway**. Hoặc chạy trong Terminal:
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/CIT Voice Studio.app"
+```
+
+**macOS: ứng dụng không mở trên máy cũ**
+Cần macOS 14 Sonoma trở lên.
 
 **Linux: giao diện không tự mở**
 Mở trình duyệt và vào `http://127.0.0.1:8001`. Giữ cửa sổ Terminal của ứng dụng đang mở.
@@ -251,7 +271,7 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/49594
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
 
-Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, các tính năng ở trên và bộ cài cho Windows và Linux.
+Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, các tính năng ở trên và bộ cài cho Windows, Linux và macOS.
 
 | | |
 |---|---|
