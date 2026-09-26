@@ -74,7 +74,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 - **Từ điển phát âm**: tự đặt cách đọc cho từ viết tắt hay tên riêng mà máy đọc sai, ví dụ `KTX` → "ký túc xá", `SGK` → "sách giáo khoa". Mở bằng nút **Từ điển** trên khung soạn thảo; từ điển được lưu lại và dùng cho mọi lần tạo giọng.
 
 ### Nhân bản giọng nói
-- Tạo giọng mới từ một đoạn ghi âm mẫu dài 3–8 giây.
+- Tạo giọng mới từ một đoạn ghi âm mẫu dài 5–8 giây.
 - Lưu giọng đã nhân bản để dùng lại, và xoá khi không cần nữa.
 
 ### Hội thoại / Podcast
@@ -158,7 +158,6 @@ open("giong-noi.wav", "wb").write(r.content)
 - `http://127.0.0.1:8001/docs`: bấm thử từng API ngay trong trình duyệt.
 - `http://127.0.0.1:8001/cit-voice-studio.md`: hướng dẫn tích hợp dạng Markdown, nạp thẳng cho Cursor, Claude, ChatGPT…
 - `http://127.0.0.1:8001/openapi.json`: nhập vào Postman.
-- [docs/postman/CIT-Voice-Studio.postman_collection.json](docs/postman/CIT-Voice-Studio.postman_collection.json): bộ request Postman dựng sẵn, sửa biến `baseUrl` và `apiKey` là dùng.
 
 ### Gọi từ máy khác trong mạng LAN
 
@@ -283,4 +282,4 @@ Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng d
 
 ## Giấy phép
 
-Apache License 2.0. Xem [LICENSE](LICENSE) và [NOTICE](NOTICE).
+Apache License 2.0. File `LICENSE` và `NOTICE` đi kèm trong mọi bản cài.
