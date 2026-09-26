@@ -7,7 +7,7 @@ Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và gi
 Chạy trên **Windows** và **Linux**.
 
 <p align="center">
-  <img src="assets/tts-studio.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
