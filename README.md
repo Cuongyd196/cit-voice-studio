@@ -14,7 +14,7 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 
 ## Tải về
 
-**[⬇ Trang tải về (Releases)](../../releases/latest)** — chọn đúng file cho máy của bạn:
+**[⬇ Trang tải về (Releases)](../../releases/latest)** hoặc **[⬇ Google Drive](https://drive.google.com/drive/folders/1vzFJcLetAI16NjlX6-kxjrHzzd4Fq2Q-?usp=sharing)** (khi GitHub tải chậm) — chọn đúng file cho máy của bạn:
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
