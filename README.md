@@ -25,6 +25,28 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
+### Cấu hình máy
+
+| | Tối thiểu | Khuyến nghị |
+|---|---|---|
+| Hệ điều hành | Windows 10/11 64-bit, Ubuntu/Debian 64-bit, macOS 14 (chip Apple) | như bên trái |
+| CPU | 4 nhân | 6 nhân trở lên |
+| RAM | 8 GB | 16 GB trở lên |
+| Ổ đĩa trống | 3 GB | 5 GB |
+| Card đồ hoạ | Không cần | Card NVIDIA nếu hay tạo bài dài (xem [Chọn mô hình theo máy](#chọn-mô-hình-theo-máy)) |
+
+Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 phút audio mất khoảng 5 phút.
+
+**Mỗi lần tạo nên bao nhiêu ký tự?** Ứng dụng không giới hạn cứng, nhưng phiên bản app hiện tại, nếu đưa văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Nên tuỳ cấu hình máy, có thể tham khảo:
+
+| RAM | Mỗi lần tạo, khoảng | Tương đương audio |
+|---|---|---|
+| 8 GB | 15.000 ký tự | ~20 phút |
+| 16 GB | 40.000 ký tự | ~1 giờ |
+| 32 GB trở lên | 60.000 ký tự | ~1 giờ 30 phút |
+
+Đây là mức ước tính an toàn, nên thấp hơn nữa nếu đang mở nhiều ứng dụng khác. Bài dài hơn thì chia thành nhiều phần, hoặc dùng tab **Tạo hàng loạt** để mỗi phần thành một file riêng. 
+
 ### Windows
 
 1. Tải file `CIT-Voice-Studio-v1.0.0-win-x86_64.exe`.
@@ -270,7 +292,9 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/49594
 
 CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
 
-Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, các tính năng ở trên và bộ cài cho Windows, Linux và macOS.
+Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, bổ sung một số tính năng và bộ cài cho Windows, Linux và macOS.
+
+Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS — nền tảng của CIT Voice Studio.
 
 | | |
 |---|---|
@@ -282,4 +306,8 @@ Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng d
 
 ## Giấy phép
 
-Apache License 2.0. File `LICENSE` và `NOTICE` đi kèm trong mọi bản cài.
+Apache License 2.0 — © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn Ngọc Bảo.
+
+- Miễn phí, dùng được cho cả cá nhân lẫn mục đích thương mại (lồng tiếng video, làm nội dung, dạy học…).
+- Mã nguồn ứng dụng không công khai; chỉ phát hành bộ cài.
+- Audio bạn tạo ra thuộc về bạn. Bạn tự chịu trách nhiệm về nội dung, và chỉ nhân bản giọng của người đã đồng ý.
