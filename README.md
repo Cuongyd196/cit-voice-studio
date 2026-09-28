@@ -307,10 +307,23 @@ Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia 
 
 ---
 
+## Sử dụng có trách nhiệm
+
+- **Chỉ nhân bản giọng khi có sự đồng ý** của chính chủ giọng nói đó.
+- **Không giả mạo giọng người khác** (người thân, người nổi tiếng, cán bộ, cơ quan, doanh nghiệp…) để lừa đảo, vay mượn tiền, bôi nhọ, xúc phạm hay gây hiểu lầm.
+- **Tôn trọng bản quyền:** văn bản (sách, truyện, báo) và audio mẫu phải là của bạn hoặc đã được phép sử dụng.
+- Khi đăng tải công khai nội dung mô phỏng giọng người thật, **phải ghi rõ "giọng đọc được tạo bằng AI"**.
+
+Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio và VieNeu-TTS không chịu trách nhiệm với việc sử dụng sai mục đích.
+
+CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm chính thức của VieNeu-TTS**.
+
+---
+
 ## Giấy phép
 
 Apache License 2.0 — © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn Ngọc Bảo.
 
 - Miễn phí, dùng được cho cả cá nhân lẫn mục đích thương mại (lồng tiếng video, làm nội dung, dạy học…).
 - Mã nguồn ứng dụng không công khai; chỉ phát hành bộ cài.
-- Audio bạn tạo ra thuộc về bạn. Bạn tự chịu trách nhiệm về nội dung, và chỉ nhân bản giọng của người đã đồng ý.
+- Audio bạn tạo ra thuộc về bạn. Bạn tự chịu trách nhiệm về nội dung (xem [Sử dụng có trách nhiệm](#sử-dụng-có-trách-nhiệm)).
