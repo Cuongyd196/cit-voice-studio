@@ -41,7 +41,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 
 **Mỗi lần tạo nên bao nhiêu ký tự?**
 
-- **Windows, bản 1.0.1 trở lên:** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB.
+- **Windows, bản 1.0.1 trở lên:** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB. Bài vài giờ vẫn nên chia theo chương và tạo từng phần một: lỡ gián đoạn (tắt máy, mất điện) không phải làm lại từ đầu, đọc sai chỗ nào chỉ tạo lại phần đó.
 - **Linux, macOS (bản 1.0.0):** văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Tuỳ cấu hình máy, có thể tham khảo:
 
 | RAM | Mỗi lần tạo, khoảng | Tương đương audio |
