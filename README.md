@@ -39,7 +39,10 @@ Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được n
 
 Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 phút audio mất khoảng 5 phút.
 
-**Mỗi lần tạo nên bao nhiêu ký tự?** Ứng dụng không giới hạn cứng, nhưng phiên bản app hiện tại, nếu đưa văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Nên tuỳ cấu hình máy, có thể tham khảo:
+**Mỗi lần tạo nên bao nhiêu ký tự?**
+
+- **Windows, bản 1.0.1 trở lên:** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB.
+- **Linux, macOS (bản 1.0.0):** văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Tuỳ cấu hình máy, có thể tham khảo:
 
 | RAM | Mỗi lần tạo, khoảng | Tương đương audio |
 |---|---|---|
