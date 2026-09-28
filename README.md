@@ -18,10 +18,12 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.0-win-x86_64.exe` | ~365 MB |
-| Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` | ~460 MB |
-| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` | ~460 MB |
-| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.0-macos-arm64.dmg` | ~410 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.1-win-x86_64.exe` | ~365 MB |
+| Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~460 MB |
+| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~460 MB |
+| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.0-macos-arm64.dmg` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~410 MB |
+
+> Bản **1.0.1** hiện có cho Windows. Linux và macOS dùng bản 1.0.0 (link trong bảng) cho tới bản sau.
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -49,7 +51,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.0-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.1-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
@@ -84,7 +86,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 ## Tính năng
 
 ### Tạo giọng nói
-- **20 giọng có sẵn**: nam và nữ, giọng Bắc, Trung, Nam, nhiều phong cách (tin tức, kể chuyện, đọc truyện, tự nhiên…). Danh sách chọn giọng ghi rõ giới tính, vùng miền và phong cách.
+- **25 giọng có sẵn**: nam và nữ, giọng Bắc, Trung, Nam, nhiều phong cách (tin tức, kể chuyện, đọc truyện, tự nhiên…). Danh sách chọn giọng ghi rõ giới tính, vùng miền và phong cách.
 - **Nghe thử từng giọng** ngay trong danh sách trước khi chọn.
 - **Đọc tiếng Anh xen tiếng Việt**: tự nhận ra từ tiếng Anh và đọc đúng.
 - Chỉnh tốc độ đọc từ 0.75x đến 1.50x.
