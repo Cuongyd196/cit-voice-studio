@@ -19,11 +19,9 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
 | Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.1-win-x86_64.exe` | ~365 MB |
-| Ubuntu, Debian, Linux Mint… | `cit-voice-studio_1.0.0_amd64.deb` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~460 MB |
-| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.0-linux-x86_64.tar.gz` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~460 MB |
-| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.0-macos-arm64.dmg` ([bản 1.0.0](../../releases/tag/1.0.0)) | ~410 MB |
-
-> Bản **1.0.1** hiện có cho Windows. Linux và macOS dùng bản 1.0.0 (link trong bảng) cho tới bản sau.
+| Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.1-amd64.deb` | ~465 MB |
+| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.1-linux-x86_64.tar.gz` | ~465 MB |
+| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.1-macos-arm64.dmg` | ~425 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -41,8 +39,8 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 
 **Mỗi lần tạo nên bao nhiêu ký tự?**
 
-- **Windows, bản 1.0.1 trở lên:** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB. Bài vài giờ nên chia theo chương, tạo từng chương hoặc sử dụng tab **Tạo hàng loạt**, để lỡ gián đoạn không phải làm lại từ đầu, và dễ sửa từng phần.
-- **Linux, macOS (bản 1.0.0):** văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Tuỳ cấu hình máy, có thể tham khảo:
+- **Bản 1.0.1 trở lên (Windows, Linux, macOS):** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB. Bài vài giờ nên chia theo chương, tạo từng chương hoặc sử dụng tab **Tạo hàng loạt**, để lỡ gián đoạn không phải làm lại từ đầu, và dễ sửa từng phần.
+- **Bản 1.0.0:** văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Tuỳ cấu hình máy, có thể tham khảo:
 
 | RAM | Mỗi lần tạo, khoảng | Tương đương audio |
 |---|---|---|
@@ -65,7 +63,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 **Bản .deb** (Ubuntu, Debian, Linux Mint…):
 
 ```bash
-sudo apt install ./cit-voice-studio_1.0.0_amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.1-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
