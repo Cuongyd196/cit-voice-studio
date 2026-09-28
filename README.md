@@ -326,4 +326,5 @@ Apache License 2.0 — © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn
 
 - Miễn phí, dùng được cho cả cá nhân lẫn mục đích thương mại (lồng tiếng video, làm nội dung, dạy học…).
 - Mã nguồn ứng dụng không công khai; chỉ phát hành bộ cài.
+- Giấy phép các thư viện đi kèm: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Quyền riêng tư: [PRIVACY.md](PRIVACY.md) — ứng dụng không thu thập dữ liệu.
 - Audio bạn tạo ra thuộc về bạn. Bạn tự chịu trách nhiệm về nội dung (xem [Sử dụng có trách nhiệm](#sử-dụng-có-trách-nhiệm)).
