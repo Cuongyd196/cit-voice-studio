@@ -106,6 +106,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 
 ### Đọc file
 - Lấy văn bản từ **PDF, Word (.docx) và TXT**.
+- Thả file phụ đề **.srt** vào để lồng tiếng theo mốc thời gian (xem mục dưới).
 - Nút **Làm sạch** bỏ khoảng trắng thừa, gạch đầu dòng và chỗ xuống dòng giữa câu, nhưng giữ nguyên công thức như `1 + 1`.
 
 ### Tạo hàng loạt
@@ -115,11 +116,22 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 
 ### Phụ đề cho video
 - Tạo audio kèm **phụ đề .srt**, mốc thời gian khớp theo từng câu. Dùng thẳng trong CapCut, Premiere, DaVinci Resolve…
-- **Lồng tiếng theo phụ đề có sẵn:** thả file `.srt` vào tab Đọc file, ứng dụng đọc từng câu đúng mốc thời gian và xuất một file audio dài khớp video. Câu dài được đọc nhanh hơn cho vừa (tối đa 1,5 lần), không cắt chữ; kèm phụ đề đã chỉnh mốc nếu có câu bị lùi.
+
+### Lồng tiếng theo phụ đề (mới ở 1.0.2)
+Đã có sẵn file phụ đề của video (tự gõ, xuất từ CapCut/Premiere, hoặc dịch từ phụ đề tiếng nước ngoài)? Ứng dụng đọc từng câu **đúng mốc thời gian** và ra một file audio để ghép thẳng vào video.
+
+1. Mở tab **Đọc file**, thả file `.srt` (hoặc `.vtt`) vào. Ứng dụng hiện danh sách câu kèm mốc thời gian.
+2. Chọn giọng (giọng có sẵn hoặc giọng bạn đã nhân bản) và tốc độ đọc, bấm **Lồng tiếng**.
+3. Xong: nghe thử, tải **WAV/MP3**. File audio dài đúng bằng video, câu nào nằm đúng mốc câu đó. Bản lồng tiếng được lưu vào **Lịch sử**.
+
+- Câu dài hơn khoảng thời gian của nó được **đọc nhanh hơn cho vừa** (tối đa 1,5 lần). Vẫn chưa vừa thì lấn sang khoảng lặng phía sau, hoặc đẩy câu sau lùi lại một chút. **Không bao giờ cắt chữ.**
+- Khi có câu bị lùi, ứng dụng kèm **file phụ đề đã chỉnh mốc** để chữ trên video khớp với giọng đọc.
+- Tự bỏ thẻ định dạng trong phụ đề (`<i>`, `{\an8}`…) và áp dụng từ điển phát âm.
+- Mẹo: câu bị đọc nhanh hoặc bị lùi nhiều thì giảm tốc độ đọc, hoặc rút gọn câu trong file phụ đề.
 
 ### Lịch sử
 - Các bản đã tạo được lưu trên máy và **còn nguyên sau khi tắt ứng dụng**: nghe lại, tải lại WAV/MP3/SRT, mở thư mục chứa file.
-- Tự dọn bản cũ nhất khi vượt 300 bản hoặc 1 GB.
+- Không tự xoá bản nào. Tab Lịch sử hiện số bản, dung lượng và nhắc dọn bớt khi chiếm nhiều ổ đĩa.
 
 ---
 
@@ -284,9 +296,8 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
 
-Nếu thấy hữu ích, cho mình 1 star GitHub nhé 🌟
 
-Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96/gallery/4959449](https://buymeacoffee.com/cuongit96/gallery/4959449)
+Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96](https://buymeacoffee.com/cuongit96)
 
 ---
 
