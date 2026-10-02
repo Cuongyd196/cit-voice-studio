@@ -1,4 +1,4 @@
-# Quyền riêng tư — CIT Voice Studio
+# Quyền riêng tư - CIT Voice Studio
 
 **CIT Voice Studio không thu thập dữ liệu của bạn.** Không cần tài khoản, không có
 quảng cáo, không gửi thống kê sử dụng hay báo lỗi về cho tác giả.
@@ -7,9 +7,10 @@ quảng cáo, không gửi thống kê sử dụng hay báo lỗi về cho tác 
 
 Mọi thứ bạn nhập và tạo ra chỉ nằm trên máy của bạn:
 
-- văn bản, audio và phụ đề đã tạo (tab Lịch sử);
-- giọng đã nhân bản và file giọng mẫu bạn đưa vào;
-- từ điển phát âm và các cài đặt.
+- Văn bản, audio và phụ đề đã tạo (tab Lịch sử);
+- Giọng đã nhân bản;
+- Từ điển phát âm và các cài đặt;
+- Dấu đã đồng ý điều khoản (chỉ ghi số phiên bản điều khoản).
 
 Vị trí thư mục dữ liệu ghi trong README, mục "Dữ liệu được lưu ở đâu". Gỡ ứng dụng hoặc xoá
 các thư mục đó là xoá hết.
@@ -23,12 +24,18 @@ trong các trường hợp sau, và chỉ tải xuống, không gửi nội dung
 |---|---|---|
 | Kiểm tra bản mới (bạn bật trong Cài đặt, hoặc bấm "Kiểm tra cập nhật") | GitHub, tối đa một lần mỗi ngày | **Tắt** |
 | Bạn bấm Tải về một mô hình không kèm sẵn | Hugging Face | Chỉ khi bạn bấm |
+| Bạn tạo giọng nhân bản lần đầu (tải bộ kiểm tra giọng đọc, ~77 MB) | Hugging Face | Chỉ khi bạn bấm |
 | Bạn bấm "Cài hỗ trợ GPU" | PyPI, download.pytorch.org, GitHub / releases.astral.sh | Chỉ khi bạn bấm |
 | Bạn bấm một đường link trong ứng dụng | Trang web đó, mở bằng trình duyệt | Chỉ khi bạn bấm |
 
 Như mọi kết nối Internet, các máy chủ trên thấy địa chỉ IP của bạn và tên phần mềm
 (`CIT-Voice-Studio/<phiên bản>`). Ứng dụng không gửi kèm văn bản, audio hay thông tin cá
 nhân nào.
+
+## Đoạn thu khi tạo giọng nhân bản
+
+Đoạn bạn đọc câu đồng ý được nhận dạng ngay trên máy để kiểm tra, rồi dùng để tạo
+giọng. Ứng dụng không gửi đoạn thu hay chữ nhận dạng được đi đâu.
 
 ## Cho máy khác truy cập (API)
 

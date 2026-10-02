@@ -7,21 +7,21 @@ Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và gi
 Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 
 <p align="center">
-  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio — chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
+  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio - chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
 </p>
 
 ---
 
 ## Tải về
 
-**[⬇ Trang tải về (Releases)](../../releases/latest)** hoặc **[⬇ Google Drive](https://drive.google.com/drive/folders/1vzFJcLetAI16NjlX6-kxjrHzzd4Fq2Q-?usp=sharing)** (khi GitHub tải chậm) — chọn đúng file cho máy của bạn:
+**[⬇ Trang tải về (Releases)](../../releases/latest)** hoặc **[⬇ Google Drive](https://drive.google.com/drive/folders/1vzFJcLetAI16NjlX6-kxjrHzzd4Fq2Q-?usp=sharing)** (khi GitHub tải chậm) - chọn đúng file cho máy của bạn:
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.1-win-x86_64.exe` | ~365 MB |
-| Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.1-amd64.deb` | ~465 MB |
-| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.1-linux-x86_64.tar.gz` | ~465 MB |
-| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.1-macos-arm64.dmg` | ~425 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.2-win-x86_64.exe` | ~363 MB |
+| Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.2-amd64.deb` | ~465 MB |
+| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.2-linux-x86_64.tar.gz` | ~465 MB |
+| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~425 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -35,11 +35,11 @@ Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được n
 | Ổ đĩa trống | 3 GB | 5 GB |
 | Card đồ hoạ | Không cần | Card NVIDIA nếu hay tạo bài dài (xem [Chọn mô hình theo máy](#chọn-mô-hình-theo-máy)) |
 
-Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 phút audio mất khoảng 5 phút.
+Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút audio mất khoảng 5 phút.
 
 **Mỗi lần tạo nên bao nhiêu ký tự?**
 
-- **Bản 1.0.1 trở lên (Windows, Linux, macOS):** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM — đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB. Bài vài giờ nên chia theo chương, tạo từng chương hoặc sử dụng tab **Tạo hàng loạt**, để lỡ gián đoạn không phải làm lại từ đầu, và dễ sửa từng phần.
+- **Bản 1.0.1 trở lên (Windows, Linux, macOS):** không giới hạn. Ứng dụng ghi audio dần ra ổ đĩa nên bài dài không tốn thêm RAM - đã thử văn bản ~84.000 ký tự (~2 giờ audio), ứng dụng chỉ dùng khoảng 1 GB RAM. Chỉ cần đủ thời gian và ổ đĩa trống: mỗi giờ audio WAV khoảng 330 MB. Bài vài giờ nên chia theo chương, tạo từng chương hoặc sử dụng tab **Tạo hàng loạt**, để lỡ gián đoạn không phải làm lại từ đầu, và dễ sửa từng phần.
 - **Bản 1.0.0:** văn bản quá dài có thể làm ứng dụng báo lỗi bộ nhớ hoặc trắng màn hình. Tuỳ cấu hình máy, có thể tham khảo:
 
 | RAM | Mỗi lần tạo, khoảng | Tương đương audio |
@@ -52,7 +52,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.1-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.2-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
@@ -63,7 +63,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) — 10 ph�
 **Bản .deb** (Ubuntu, Debian, Linux Mint…):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.1-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.2-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
@@ -99,7 +99,8 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 - **Từ điển phát âm**: tự đặt cách đọc cho từ viết tắt hay tên riêng mà máy đọc sai, ví dụ `KTX` → "ký túc xá", `SGK` → "sách giáo khoa". Mở bằng nút **Từ điển** trên khung soạn thảo; từ điển được lưu lại và dùng cho mọi lần tạo giọng.
 
 ### Nhân bản giọng nói
-- Tạo giọng mới từ một đoạn ghi âm mẫu dài 5–8 giây.
+- Tạo giọng mới bằng cách thu âm trực tiếp bằng micro và đọc câu đồng ý (khoảng 8 giây); chỉ nhân bản được giọng của chính bạn.
+- **Không nhân bản từ file ghi âm có sẵn** (WAV, MP3…). Nếu bạn cần tính năng đó, hãy tự cài từ mã nguồn của dự án gốc [VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) và tự chịu trách nhiệm về giọng mình nhân bản.
 - Lưu giọng đã nhân bản để dùng lại, và xoá khi không cần nữa.
 
 ### Hội thoại / Podcast
@@ -116,6 +117,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 
 ### Phụ đề cho video
 - Tạo audio kèm **phụ đề .srt**, mốc thời gian khớp theo từng câu. Dùng thẳng trong CapCut, Premiere, DaVinci Resolve…
+- **Lồng tiếng theo phụ đề có sẵn:** thả file `.srt` vào tab Đọc file, ứng dụng đọc từng câu đúng mốc thời gian và xuất một file audio dài khớp video. Câu dài được đọc nhanh hơn cho vừa (tối đa 1,5 lần), không cắt chữ; kèm phụ đề đã chỉnh mốc nếu có câu bị lùi.
 
 ### Lịch sử
 - Các bản đã tạo được lưu trên máy và **còn nguyên sau khi tắt ứng dụng**: nghe lại, tải lại WAV/MP3/SRT, mở thư mục chứa file.
@@ -162,7 +164,6 @@ Khi ứng dụng đang mở, nó chạy sẵn một máy chủ API ở `http://1
 | `GET` `POST` | `/stream` | Đọc theo thời gian thực |
 | `POST` | `/api/tts/generate` | Văn bản thành WAV/MP3 |
 | `POST` | `/api/tts/generate-with-subtitles` | Audio kèm phụ đề .srt |
-| `POST` | `/api/tts/clone` | Nhân bản giọng từ mẫu |
 | `POST` | `/api/tts/conversation` | Hội thoại nhiều người nói |
 
 Thẻ cảm xúc, thẻ nghỉ và từ điển phát âm đều dùng được qua API.
@@ -297,7 +298,7 @@ CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** c�
 
 Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, bổ sung một số tính năng và bộ cài cho Windows, Linux và macOS.
 
-Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS — nền tảng của CIT Voice Studio.
+Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS - nền tảng của CIT Voice Studio.
 
 | | |
 |---|---|
@@ -309,12 +310,12 @@ Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia 
 
 ## Sử dụng có trách nhiệm
 
-- **Chỉ nhân bản giọng khi có sự đồng ý** của chính chủ giọng nói đó.
+- **Chỉ nhân bản giọng của chính bạn.** Từ bản 1.0.2, muốn tạo giọng mới bạn phải tự thu âm và đọc câu đồng ý hiện trên màn hình; ứng dụng nghe kiểm tra (ngay trên máy) rồi mới lưu giọng.
 - **Không giả mạo giọng người khác** (người thân, người nổi tiếng, cán bộ, cơ quan, doanh nghiệp…) để lừa đảo, vay mượn tiền, bôi nhọ, xúc phạm hay gây hiểu lầm.
-- **Tôn trọng bản quyền:** văn bản (sách, truyện, báo) và audio mẫu phải là của bạn hoặc đã được phép sử dụng.
+- **Tôn trọng bản quyền:** văn bản (sách, truyện, báo) phải là của bạn hoặc đã được phép sử dụng.
 - Khi đăng tải công khai nội dung mô phỏng giọng người thật, **phải ghi rõ "giọng đọc được tạo bằng AI"**.
 
-Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio và VieNeu-TTS không chịu trách nhiệm với việc sử dụng sai mục đích.
+Khi cài và mở ứng dụng lần đầu, bạn cần đồng ý [Điều khoản sử dụng](DIEU-KHOAN.md). Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio và VieNeu-TTS không chịu trách nhiệm với việc sử dụng sai mục đích.
 
 CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm chính thức của VieNeu-TTS**.
 
@@ -322,9 +323,9 @@ CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm ch�
 
 ## Giấy phép
 
-Apache License 2.0 — © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn Ngọc Bảo.
+Apache License 2.0 - © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn Ngọc Bảo.
 
 - Miễn phí, dùng được cho cả cá nhân lẫn mục đích thương mại (lồng tiếng video, làm nội dung, dạy học…).
 - Mã nguồn ứng dụng không công khai; chỉ phát hành bộ cài.
-- Giấy phép các thư viện đi kèm: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Quyền riêng tư: [PRIVACY.md](PRIVACY.md) — ứng dụng không thu thập dữ liệu.
+- Giấy phép các thư viện đi kèm: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Quyền riêng tư: [PRIVACY.md](PRIVACY.md) - ứng dụng không thu thập dữ liệu.
 - Audio bạn tạo ra thuộc về bạn. Bạn tự chịu trách nhiệm về nội dung (xem [Sử dụng có trách nhiệm](#sử-dụng-có-trách-nhiệm)).

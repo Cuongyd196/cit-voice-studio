@@ -1,4 +1,4 @@
-# Thông báo phần mềm bên thứ ba — CIT Voice Studio
+# Thông báo phần mềm bên thứ ba - CIT Voice Studio
 
 CIT Voice Studio dùng các thành phần mã nguồn mở dưới đây. Mỗi thành phần giữ nguyên
 bản quyền và giấy phép của tác giả. Ghi công cho VieNeu-TTS, và các thành phần chỉ tải
@@ -25,6 +25,12 @@ Toàn văn LGPL-2.1 có trong thư mục cài đặt, file `_internal/_soundfile
 |---|---|---|
 | VieNeu-TTS v3 Turbo (ONNX int8) và bộ giọng có sẵn | Apache-2.0 | https://huggingface.co/pnnbao-ump/VieNeu-TTS-v3-Turbo |
 | MOSS Audio Tokenizer Nano (ONNX) | Apache-2.0 | https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX |
+
+## Mô hình tải thêm khi dùng
+
+| Mô hình | Giấy phép | Nguồn |
+|---|---|---|
+| Zipformer ASR tiếng Việt - kiểm tra câu đồng ý khi tạo giọng nhân bản, tải lần đầu tạo giọng | Apache-2.0 | https://huggingface.co/csukuangfj/sherpa-onnx-zipformer-vi-int8-2025-04-20 (gốc: https://huggingface.co/zzasdf/viet_iter3_pseudo_label) |
 
 ## Các thư viện khác
 
