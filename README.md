@@ -19,9 +19,8 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
 | Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.2-win-x86_64.exe` | ~363 MB |
-| Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.2-amd64.deb` | ~465 MB |
-| Linux khác (64-bit) | `CIT-Voice-Studio-v1.0.2-linux-x86_64.tar.gz` | ~465 MB |
-| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~425 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.2-amd64.deb` | ~460 MB |
+| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~412 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -60,15 +59,13 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 
 ### Linux
 
-**Bản .deb** (Ubuntu, Debian, Linux Mint…):
+Cài file `.deb` (Ubuntu, Debian, Linux Mint và các bản dựa trên Debian):
 
 ```bash
 sudo apt install ./CIT-Voice-Studio-v1.0.2-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
-
-**Bản .tar.gz** (mọi bản Linux, không cần sudo): giải nén, rồi trong thư mục vừa giải nén chạy `./CIT-Voice-Studio`.
 
 Trên Linux, ứng dụng chạy trong một cửa sổ Terminal và mở giao diện bằng trình duyệt tại `http://127.0.0.1:8001`. Giữ Terminal mở trong lúc dùng; đóng Terminal hoặc bấm `Ctrl+C` để tắt.
 
@@ -224,7 +221,7 @@ Trong đó:
 | `remote-access.json` | Cài đặt truy cập từ máy khác và khoá API |
 | `server-settings.json` | Cổng máy chủ |
 
-Trên Windows và bản Linux `.tar.gz`, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Bản Linux `.deb` và macOS để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
+Trên Windows, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Linux và macOS để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
 
 ---
 
