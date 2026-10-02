@@ -4,7 +4,7 @@ Phần mềm chuyển văn bản tiếng Việt thành giọng nói, chạy hoà
 
 Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và giọng nói của bạn không bị gửi đi đâu cả.
 
-Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
+Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple và chip Intel).
 
 <p align="center">
   <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio - chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
@@ -20,7 +20,8 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple).
 |---|---|---|
 | Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.2-win-x86_64.exe` | ~363 MB |
 | Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.2-amd64.deb` | ~460 MB |
-| Mac chip Apple (M1, M2, M3…), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~412 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~412 MB |
+| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.2-macos-x86_64.dmg` | ~432 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -28,7 +29,7 @@ Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được n
 
 | | Tối thiểu | Khuyến nghị |
 |---|---|---|
-| Hệ điều hành | Windows 10/11 64-bit, Ubuntu/Debian 64-bit, macOS 14 (chip Apple) | như bên trái |
+| Hệ điều hành | Windows 10/11 64-bit, Ubuntu/Debian 64-bit, macOS 14 (chip Apple) hoặc macOS 13 (chip Intel) | như bên trái |
 | CPU | 4 nhân | 6 nhân trở lên |
 | RAM | 8 GB | 16 GB trở lên |
 | Ổ đĩa trống | 3 GB | 5 GB |
@@ -69,13 +70,13 @@ Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-
 
 Trên Linux, ứng dụng chạy trong một cửa sổ Terminal và mở giao diện bằng trình duyệt tại `http://127.0.0.1:8001`. Giữ Terminal mở trong lúc dùng; đóng Terminal hoặc bấm `Ctrl+C` để tắt.
 
-### macOS (Mac chip Apple)
+### macOS
 
 1. Mở file `.dmg`, kéo **CIT Voice Studio** vào thư mục **Applications**.
 2. Lần đầu mở, macOS chặn vì ứng dụng chưa được Apple chứng thực: vào **System Settings → Privacy & Security**, kéo xuống cuối, bấm **Open Anyway**.
 3. Ứng dụng có cửa sổ riêng; tắt bằng `Cmd+Q`.
 
-Chưa có bản cho Mac chip Intel.
+Chọn đúng file theo chip của máy: menu  → **About This Mac**, dòng **Chip** ghi "Apple M…" thì tải bản `arm64`, dòng **Processor** ghi "Intel" thì tải bản `x86_64`.
 
 Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi tiết.
 
