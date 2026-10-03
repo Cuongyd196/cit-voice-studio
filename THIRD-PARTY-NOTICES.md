@@ -31,6 +31,7 @@ Toàn văn LGPL-2.1 có trong thư mục cài đặt, file `_internal/_soundfile
 | Mô hình | Giấy phép | Nguồn |
 |---|---|---|
 | Zipformer ASR tiếng Việt - kiểm tra câu đồng ý khi tạo giọng nhân bản, tải lần đầu tạo giọng | Apache-2.0 | https://huggingface.co/csukuangfj/sherpa-onnx-zipformer-vi-int8-2025-04-20 (gốc: https://huggingface.co/zzasdf/viet_iter3_pseudo_label) |
+| Supertonic 3 (Supertone Inc.) - giọng nước ngoài 31 ngôn ngữ, tải khi bạn bấm Tải về trong mục Mô hình. File `LICENSE` của giấy phép tải kèm mô hình. Giấy phép có danh sách cấm dùng (mạo danh khi không được đồng ý, lừa đảo, tin giả gây hại, nội dung do máy tạo mà không ghi rõ…) áp dụng cho mọi người dùng | OpenRAIL-M | https://huggingface.co/supertone-oss-archive/supertonic-3 (mã nguồn mẫu, MIT: https://github.com/supertone-oss-archive/supertonic) |
 
 ## Các thư viện khác
 

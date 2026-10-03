@@ -18,10 +18,10 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple và chip Intel
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.2-win-x86_64.exe` | ~363 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.2-amd64.deb` | ~463 MB |
-| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.2-macos-arm64.dmg` | ~427 MB |
-| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.2-macos-x86_64.dmg` | ~447 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.3-win-x86_64.exe` | ~363 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.3-amd64.deb` | ~463 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.3-macos-arm64.dmg` | ~427 MB |
+| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.3-macos-x86_64.dmg` | ~447 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -52,7 +52,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.2-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.3-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
@@ -63,7 +63,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 Cài file `.deb` (Ubuntu, Debian, Linux Mint và các bản dựa trên Debian):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.2-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.3-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
@@ -95,6 +95,13 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 - **Thẻ cảm xúc** chèn ngay trong câu: `[cười]`, `[thở dài]`, `[hắng giọng]`.
 - **Thẻ nghỉ** tạo khoảng lặng dài đúng như ý: `[nghỉ 2s]`, `[nghỉ 500ms]` (tối đa 10 giây mỗi thẻ).
 - **Từ điển phát âm**: tự đặt cách đọc cho từ viết tắt hay tên riêng mà máy đọc sai, ví dụ `KTX` → "ký túc xá", `SGK` → "sách giáo khoa". Mở bằng nút **Từ điển** trên khung soạn thảo; từ điển được lưu lại và dùng cho mọi lần tạo giọng.
+
+### Giọng nước ngoài (mới ở 1.0.3)
+- Tải thêm mô hình **Supertonic 3** (~400 MB) trong **Cài đặt → Mô hình** để đọc **31 ngôn ngữ**: Anh, Nhật, Hàn, Pháp, Đức, Tây Ban Nha, Nga, Ả Rập… (chưa có tiếng Trung) với 10 giọng nam nữ.
+- Chọn tiếng của đoạn văn ở ô **Ngôn ngữ văn bản** (mặc định **Tiếng Anh**, hoặc **Tự nhận theo văn bản**). Nút nghe thử giọng cũng đọc câu mẫu bằng tiếng đó. Dùng được ở mọi tab: TTS Studio, hội thoại, tạo hàng loạt, lồng tiếng theo phụ đề.
+- Chạy bằng CPU, không cần cài gì thêm, có trên cả Windows, Linux và macOS. Tiếng Việt vẫn nên dùng VieNeu (chất lượng tốt hơn); mô hình này không nhân bản giọng.
+- **Thẻ cảm xúc** riêng của mô hình: `<laugh>` (cười), `<breath>` (lấy hơi), `<sigh>` (thở dài), chèn bằng thanh cảm xúc. Thẻ nghỉ `[nghỉ 2s]` dùng như bình thường.
+- **Từ điển phát âm** dùng được như với VieNeu, tiện để sửa tên riêng, viết tắt mà mô hình đọc sai, ví dụ `CIT` → `C I T`, `Nguyễn` → `Nwin`, `km` → `kilometers`. Từ điển dùng chung cho mọi mô hình.
 
 ### Nhân bản giọng nói
 - Tạo giọng mới bằng cách thu âm trực tiếp bằng micro và đọc câu đồng ý (khoảng 8 giây); chỉ nhân bản được giọng của chính bạn.
@@ -147,7 +154,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 
 ## Chọn mô hình theo máy
 
-Đổi mô hình trong **Cài đặt → Quản lý & Chọn Mô hình AI**. Mô hình nào máy không chạy được sẽ bị làm mờ, di chuột vào để xem lý do.
+Đổi mô hình trong **Cài đặt → Quản lý & Chọn Mô hình AI**. Mô hình nào máy không chạy được sẽ bị làm mờ, di chuột vào để xem lý do. Từ 1.0.3, ứng dụng nhớ mô hình bạn chọn: lần mở sau dùng lại đúng mô hình đó (nếu mô hình bị xoá hoặc lỗi thì quay về mô hình mặc định).
 
 | Máy của bạn | Nên dùng | Ghi chú |
 |---|---|---|
@@ -303,16 +310,21 @@ Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96](https://buym
 
 ## Nguồn gốc
 
-CIT Voice Studio do **Cường IT** phát triển, dựa trên **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo**.
+CIT Voice Studio do **Cường IT** phát triển. Ứng dụng dùng hai mô hình giọng nói của bên thứ ba:
 
-Mô hình giọng nói là của VieNeu-TTS. Phần Cường IT làm là ứng dụng: giao diện, bổ sung một số tính năng và bộ cài cho Windows, Linux và macOS.
+- **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo** - giọng tiếng Việt, nhân bản giọng; kèm sẵn trong bộ cài. Đây là nền tảng của CIT Voice Studio.
+- **Supertonic 3** của **Supertone Inc.** - giọng nước ngoài 31 ngôn ngữ; chỉ tải khi bạn chọn (từ 1.0.3).
 
-Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS - nền tảng của CIT Voice Studio.
+Các mô hình giọng nói là của tác giả của chúng. Phần Cường IT làm là ứng dụng: giao diện, bổ sung một số tính năng và bộ cài cho Windows, Linux và macOS.
+
+Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS, và Supertone đã công bố Supertonic.
 
 | | |
 |---|---|
-| Mô hình gốc | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
-| Mô hình trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
+| VieNeu-TTS (mã nguồn) | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
+| VieNeu-TTS trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
+| Supertonic (mã nguồn) | [supertone-oss-archive/supertonic](https://github.com/supertone-oss-archive/supertonic) |
+| Supertonic 3 trên Hugging Face | [supertone-oss-archive/supertonic-3](https://huggingface.co/supertone-oss-archive/supertonic-3) |
 | Tác giả bản này | [me.cuongit.net](https://me.cuongit.net) |
 
 ---
@@ -324,15 +336,17 @@ Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia 
 - **Tôn trọng bản quyền:** văn bản (sách, truyện, báo) phải là của bạn hoặc đã được phép sử dụng.
 - Khi đăng tải công khai nội dung mô phỏng giọng người thật, **phải ghi rõ "giọng đọc được tạo bằng AI"**.
 
-Khi cài và mở ứng dụng lần đầu, bạn cần đồng ý [Điều khoản sử dụng](DIEU-KHOAN.md). Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio và VieNeu-TTS không chịu trách nhiệm với việc sử dụng sai mục đích.
+Khi cài và mở ứng dụng lần đầu, bạn cần đồng ý [Điều khoản sử dụng](DIEU-KHOAN.md). Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio, VieNeu-TTS và Supertone không chịu trách nhiệm với việc sử dụng sai mục đích.
 
-CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm chính thức của VieNeu-TTS**.
+CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm chính thức của VieNeu-TTS hay Supertone**.
 
 ---
 
 ## Giấy phép
 
 Apache License 2.0 - © Cường IT, dựa trên VieNeu-TTS © Phạm Nguyễn Ngọc Bảo.
+
+Mô hình Supertonic 3 © Supertone Inc., giấy phép **OpenRAIL-M**: được dùng cả mục đích thương mại, nhưng cấm mạo danh người khác khi chưa được đồng ý, lừa đảo, tin giả gây hại, đăng nội dung do AI tạo mà không ghi rõ… (xem [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)). Mô hình không nằm trong bộ cài; file giấy phép tải kèm khi bạn tải mô hình.
 
 - Miễn phí, dùng được cho cả cá nhân lẫn mục đích thương mại (lồng tiếng video, làm nội dung, dạy học…).
 - Mã nguồn ứng dụng không công khai; chỉ phát hành bộ cài.

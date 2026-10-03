@@ -1,14 +1,22 @@
 # Điều khoản sử dụng - CIT Voice Studio
 
-Phiên bản điều khoản: **1.0**
+Phiên bản điều khoản: **1.1**
 
 Khi bấm **"Tôi đồng ý"** lúc cài đặt hoặc mở ứng dụng, bạn xác nhận đã đọc, hiểu và chấp
 nhận các điều khoản dưới đây. Nếu không đồng ý, vui lòng không sử dụng ứng dụng.
 
 ## 1. Ứng dụng và dữ liệu của bạn
 
-CIT Voice Studio là phần mềm miễn phí chuyển văn bản thành giọng nói, phát triển dựa trên
-VieNeu-TTS (giấy phép Apache-2.0). Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
+CIT Voice Studio là phần mềm miễn phí chuyển văn bản thành giọng nói. Ứng dụng dùng hai
+mô hình giọng nói của bên thứ ba:
+
+- **VieNeu-TTS** (tác giả Phạm Nguyễn Ngọc Bảo, giấy phép Apache-2.0) cho tiếng Việt, kèm
+  sẵn trong bộ cài;
+- **Supertonic 3** (Supertone Inc., giấy phép OpenRAIL-M) cho giọng nước ngoài, chỉ tải về
+  khi bạn chọn.
+
+Các mô hình thuộc về tác giả của chúng; CIT Voice Studio là ứng dụng độc lập, không phải sản
+phẩm chính thức của VieNeu-TTS hay Supertone. Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
 không thu thập, không gửi đi văn bản, âm thanh hay thông tin cá nhân nào. Tác giả không
 nhận, không xem và không kiểm soát nội dung bạn tạo ra.
 
@@ -35,6 +43,11 @@ Không dùng ứng dụng để mạo danh, lừa đảo, giả mạo cuộc g�
 xúc phạm, quấy rối người khác; tạo nội dung khiêu dâm, bạo lực; vượt qua hệ thống xác
 thực bằng giọng nói; hoặc cho bất kỳ mục đích nào trái pháp luật.
 
+Khi dùng mô hình giọng nước ngoài **Supertonic 3** (của Supertone, giấy phép OpenRAIL-M),
+bạn còn phải tuân theo các điều cấm của giấy phép đó: không mạo danh người khác khi chưa
+được đồng ý, không đưa lời khuyên y tế, không dùng để tự động ra quyết định ảnh hưởng tới
+quyền lợi hợp pháp của người khác, không phân biệt đối xử hay khai thác người yếu thế.
+
 ## 5. Ghi nhãn nội dung do AI tạo ra
 
 Tệp âm thanh xuất ra có ghi chú "AI-generated" trong phần thông tin của tệp; **không
@@ -47,8 +60,9 @@ bằng AI"**.
   đó (ví dụ: lồng tiếng video, podcast, sách nói), kể cả khi cho phần mềm khác gọi API
   trên máy bạn.
 - Ứng dụng được cung cấp **miễn phí và "nguyên trạng"**, không kèm bất kỳ bảo đảm nào.
-  Trong phạm vi pháp luật cho phép, tác giả không chịu trách nhiệm về nội dung bạn tạo
-  ra, về các vấn đề pháp lý hay thiệt hại phát sinh từ việc sử dụng ứng dụng.
+  Trong phạm vi pháp luật cho phép, tác giả CIT Voice Studio và tác giả các mô hình
+  (VieNeu-TTS, Supertone) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
+  pháp lý hay thiệt hại phát sinh từ việc sử dụng ứng dụng.
 
 ## 7. Điều khoản chung
 
