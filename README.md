@@ -37,7 +37,7 @@ Không cần tài khoản · Không cần Internet sau khi cài · Văn bản v�
 
 - **Giao diện mới**: bố cục studio rõ ràng, tương phản cao, có chế độ tối.
 - **Từ điển phát âm** nhập/xuất bằng file CSV (mở bằng Excel), có file mẫu.
-- **Nhân bản giọng** nhận thêm file WAV và M4A; chỉ cần đọc kỹ điều khoản và xác nhận quyền sử dụng giọng.
+- **Nhân bản giọng** mở lại nhân bản giọng từ file mẫu; cần đọc kỹ điều khoản và xác nhận quyền sử dụng giọng.
 - ⚠️ Điều khoản sử dụng lên bản **1.2**: lần đầu mở bản mới, bạn sẽ được hỏi đồng ý lại.
 
 Chi tiết từng phiên bản: [trang Releases](../../releases).
@@ -46,7 +46,7 @@ Chi tiết từng phiên bản: [trang Releases](../../releases).
 
 ## Tải về
 
-**[⬇ Trang tải về (Releases)](../../releases/latest)** hoặc **[⬇ Google Drive](https://drive.google.com/drive/folders/1vzFJcLetAI16NjlX6-kxjrHzzd4Fq2Q-?usp=sharing)** (khi GitHub tải chậm) - chọn đúng file cho máy của bạn:
+**[⬇ Trang tải về (Releases)](../../releases/latest)** - chọn đúng file cho máy của bạn:
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
