@@ -1,14 +1,46 @@
+<div align="center">
+
+<img src="assets/brand/cit-logo.png" width="104" alt="Logo CIT Voice Studio">
+
 # CIT Voice Studio
 
-Phần mềm chuyển văn bản tiếng Việt thành giọng nói, chạy hoàn toàn trên máy tính của bạn.
+**Chuyển văn bản tiếng Việt thành giọng nói tự nhiên, ngay trên máy tính của bạn.**
 
-Không cần tài khoản. Không cần Internet sau khi cài. Văn bản và giọng nói của bạn không bị gửi đi đâu cả.
+Không cần tài khoản · Không cần Internet sau khi cài · Văn bản và giọng nói không rời khỏi máy
 
-Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple và chip Intel).
+[![Phiên bản mới nhất](https://img.shields.io/github/v/release/Cuongyd196/cit-voice-studio?label=phi%C3%AAn%20b%E1%BA%A3n&color=0f766e)](../../releases/latest)
+[![Lượt tải](https://img.shields.io/github/downloads/Cuongyd196/cit-voice-studio/total?label=l%C6%B0%E1%BB%A3t%20t%E1%BA%A3i&color=0f766e)](../../releases)
+![Windows · Linux · macOS](https://img.shields.io/badge/Windows%20%C2%B7%20Linux%20%C2%B7%20macOS-334155)
+![Chạy offline](https://img.shields.io/badge/ch%E1%BA%A1y-offline-16a34a)
+![Giấy phép Apache 2.0](https://img.shields.io/badge/gi%E1%BA%A5y%20ph%C3%A9p-Apache%202.0-64748b)
 
-<p align="center">
-  <img src="assets/tts-studio-v1.0.0.png" alt="Giao diện CIT Voice Studio - chọn giọng, gắn tag cảm xúc, tạo giọng nói" width="900">
-</p>
+**[⬇ Tải về](#tải-về)** &nbsp;·&nbsp; **[Tính năng](#tính-năng)** &nbsp;·&nbsp; **[API](#kết-nối-từ-phần-mềm-khác-api)** &nbsp;·&nbsp; **[Lỗi thường gặp](#lỗi-thường-gặp)**
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/giao-dien-toi.png">
+  <img src="assets/giao-dien-sang.png" alt="Giao diện CIT Voice Studio 1.0.4: soạn văn bản, gắn thẻ cảm xúc, chọn giọng đọc và tạo giọng nói" width="920">
+</picture>
+
+</div>
+
+<br>
+
+| 🎙️ **25 giọng tiếng Việt** | 🧬 **Nhân bản giọng** | 🌍 **31 ngôn ngữ** |
+|---|---|---|
+| Nam, nữ, ba miền Bắc - Trung - Nam; tin tức, kể chuyện, đọc truyện… Âm thanh 48 kHz. | Thu micro 3–8 giây hoặc nhập file MP3/WAV/M4A để tạo giọng của riêng bạn. | Tải thêm Supertonic 3 để đọc tiếng Anh, Nhật, Hàn, Pháp, Đức… với 10 giọng. |
+| 🎧 **Podcast, hội thoại** | 🎬 **Lồng tiếng theo phụ đề** | 🔌 **API cho phần mềm khác** |
+| Mỗi nhân vật một giọng, ghép thành một file audio. | Thả file `.srt`, giọng đọc khớp đúng mốc thời gian của video. | Gọi từ script, phần mềm khác hay AI Agent qua `http://127.0.0.1:8001`. |
+
+### Có gì mới ở 1.0.4
+
+- **Giao diện mới**: bố cục studio rõ ràng, tương phản cao, có chế độ tối.
+- **Từ điển phát âm** nhập/xuất bằng file CSV (mở bằng Excel), có file mẫu.
+- **Nhân bản giọng** nhận thêm file WAV và M4A; chỉ cần đọc kỹ điều khoản và xác nhận quyền sử dụng giọng.
+- ⚠️ Điều khoản sử dụng lên bản **1.2**: lần đầu mở bản mới, bạn sẽ được hỏi đồng ý lại.
+
+Chi tiết từng phiên bản: [trang Releases](../../releases).
 
 ---
 
@@ -18,10 +50,10 @@ Chạy trên **Windows**, **Linux** và **macOS** (Mac chip Apple và chip Intel
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.3-win-x86_64.exe` | ~363 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.3-amd64.deb` | ~463 MB |
-| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.3-macos-arm64.dmg` | ~427 MB |
-| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.3-macos-x86_64.dmg` | ~447 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.4-win-x86_64.exe` | ~380 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.4-amd64.deb` | ~463 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.4-macos-arm64.dmg` | ~427 MB |
+| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.4-macos-x86_64.dmg` | ~447 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -52,7 +84,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.3-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.4-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
@@ -63,7 +95,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 Cài file `.deb` (Ubuntu, Debian, Linux Mint và các bản dựa trên Debian):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.3-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.4-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
@@ -89,23 +121,42 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 - **Nghe thử từng giọng** ngay trong danh sách trước khi chọn.
 - **Đọc tiếng Anh xen tiếng Việt**: tự nhận ra từ tiếng Anh và đọc đúng.
 - Chỉnh tốc độ đọc từ 0.75x đến 1.50x.
-- Xuất **WAV** (48 kHz) hoặc **MP3**.
+- Xuất **WAV** hoặc **MP3**; tần số theo mô hình: Turbo 48 kHz, Nano 24 kHz, Supertonic 44,1 kHz.
 
 ### Điều khiển cách đọc
 - **Thẻ cảm xúc** chèn ngay trong câu: `[cười]`, `[thở dài]`, `[hắng giọng]`.
 - **Thẻ nghỉ** tạo khoảng lặng dài đúng như ý: `[nghỉ 2s]`, `[nghỉ 500ms]` (tối đa 10 giây mỗi thẻ).
 - **Từ điển phát âm**: tự đặt cách đọc cho từ viết tắt hay tên riêng mà máy đọc sai, ví dụ `KTX` → "ký túc xá", `SGK` → "sách giáo khoa". Mở bằng nút **Từ điển** trên khung soạn thảo; từ điển được lưu lại và dùng cho mọi lần tạo giọng.
+- Từ 1.0.4: **nhập/xuất từ điển bằng file CSV** (mở được bằng Excel, có file mẫu để tải về) và chia trang khi từ điển dài.
 
 ### Giọng nước ngoài (mới ở 1.0.3)
 - Tải thêm mô hình **Supertonic 3** (~400 MB) trong **Cài đặt → Mô hình** để đọc **31 ngôn ngữ**: Anh, Nhật, Hàn, Pháp, Đức, Tây Ban Nha, Nga, Ả Rập… (chưa có tiếng Trung) với 10 giọng nam nữ.
 - Chọn tiếng của đoạn văn ở ô **Ngôn ngữ văn bản** (mặc định **Tiếng Anh**, hoặc **Tự nhận theo văn bản**). Nút nghe thử giọng cũng đọc câu mẫu bằng tiếng đó. Dùng được ở mọi tab: TTS Studio, hội thoại, tạo hàng loạt, lồng tiếng theo phụ đề.
 - Chạy bằng CPU, không cần cài gì thêm, có trên cả Windows, Linux và macOS. Tiếng Việt vẫn nên dùng VieNeu (chất lượng tốt hơn); mô hình này không nhân bản giọng.
+- **10 giọng dùng chung cho cả 31 ngôn ngữ** (5 nữ F1–F5, 5 nam M1–M5). Chất giọng theo mô tả của Supertone:
+
+| Giọng | Chất giọng | Hợp với |
+|---|---|---|
+| F1 (nữ) | Điềm tĩnh, hơi trầm | Chăm sóc khách hàng, thiền |
+| F2 (nữ) | Tươi sáng, tinh nghịch | Mạng xã hội, nội dung giới trẻ |
+| F3 (nữ) | Rõ ràng, kiểu phát thanh viên | Tin tức, thông báo |
+| F4 (nữ) | Dứt khoát, tự tin | Giới thiệu doanh nghiệp, đào tạo |
+| F5 (nữ) | Dịu dàng, êm | Sách nói, lời động viên |
+| M1 (nam) | Năng động, trong | Quảng cáo, thông báo |
+| M2 (nam) | Trầm, điềm đạm | Doanh nghiệp, phim tài liệu |
+| M3 (nam) | Chỉn chu, đáng tin | Thuyết trình, phát biểu |
+| M4 (nam) | Nhẹ nhàng, thân thiện | Giáo dục, thiếu nhi |
+| M5 (nam) | Ấm, êm dịu | Sách nói, kể chuyện |
+
+- **31 ngôn ngữ:** Anh, Việt, Nhật, Hàn, Pháp, Đức, Tây Ban Nha, Bồ Đào Nha, Ý, Nga, Indonesia, Hindi, Ả Rập, Thổ Nhĩ Kỳ, Hà Lan, Ba Lan, Ukraina, Thuỵ Điển, Đan Mạch, Phần Lan, Hy Lạp, Séc, Slovakia, Hungary, Romania, Bulgaria, Croatia, Slovenia, Estonia, Latvia, Litva.
+- **Chất lượng:** mô hình khoảng 99 triệu tham số, âm thanh 44,1 kHz. Theo Supertone, độ chính xác khi đọc (WER/CER) ngang các mô hình mở lớn hơn nhiều lần, và ít lỗi lặp/bỏ chữ hơn Supertonic 2. Đo trên laptop Core i7-8650U: tiếng Anh tạo nhanh hơn thời gian đọc; tiếng Việt không nhanh hơn VieNeu và đọc chậm hơn khoảng 2 lần, nên tiếng Việt vẫn nên dùng VieNeu. Supertone đã ngừng phát triển mô hình này (kho mã được lưu trữ), nên sẽ không có bản cập nhật.
 - **Thẻ cảm xúc** riêng của mô hình: `<laugh>` (cười), `<breath>` (lấy hơi), `<sigh>` (thở dài), chèn bằng thanh cảm xúc. Thẻ nghỉ `[nghỉ 2s]` dùng như bình thường.
 - **Từ điển phát âm** dùng được như với VieNeu, tiện để sửa tên riêng, viết tắt mà mô hình đọc sai, ví dụ `CIT` → `C I T`, `Nguyễn` → `Nwin`, `km` → `kilometers`. Từ điển dùng chung cho mọi mô hình.
 
 ### Nhân bản giọng nói
-- Tạo giọng mới bằng cách thu âm trực tiếp bằng micro và đọc câu đồng ý (khoảng 8 giây); chỉ nhân bản được giọng của chính bạn.
-- **Không nhân bản từ file ghi âm có sẵn** (WAV, MP3…). Nếu bạn cần tính năng đó, hãy tự cài từ mã nguồn của dự án gốc [VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) và tự chịu trách nhiệm về giọng mình nhân bản.
+- Chọn **Thu micro** (đọc nội dung bất kỳ bằng giọng tự nhiên khoảng 3–8 giây) hoặc **Nhập file âm thanh** (MP3, WAV hoặc M4A; WAV và M4A có từ 1.0.4) có giọng nói rõ, một người nói, không nhạc nền. Không cần đọc câu cam kết. Ứng dụng giữ tối đa 15 giây từ tiếng nói đầu tiên; Turbo dùng tối đa 8 giây có tiếng.
+- Chỉ dùng giọng của bạn hoặc giọng đã được chủ giọng cho phép nhân bản và sử dụng. Phải xác nhận quyền sử dụng trước khi lưu; đây là cam kết, không phải xác minh danh tính.
+- Giọng và cam kết lưu trên máy, xoá cùng nhau; không gửi về tác giả, không tự sao chép file âm thanh gốc. Cả micro và file âm thanh không cần bộ nhận dạng câu đồng ý.
 - Lưu giọng đã nhân bản để dùng lại, và xoá khi không cần nữa.
 
 ### Hội thoại / Podcast
@@ -129,16 +180,16 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 
 1. Mở tab **Đọc file**, thả file `.srt` (hoặc `.vtt`) vào. Ứng dụng hiện danh sách câu kèm mốc thời gian.
 2. Chọn giọng (giọng có sẵn hoặc giọng bạn đã nhân bản) và tốc độ đọc, bấm **Lồng tiếng**.
-3. Xong: nghe thử, tải **WAV/MP3**. File audio dài đúng bằng video, câu nào nằm đúng mốc câu đó. Bản lồng tiếng được lưu vào **Lịch sử**.
+3. Xong: nghe thử, tải **WAV/MP3**. File audio dài đúng bằng video, câu nào nằm đúng mốc câu đó. Bản lồng tiếng được lưu vào **Bản đã tạo**.
 
 - Câu dài hơn khoảng thời gian của nó được **đọc nhanh hơn cho vừa** (tối đa 1,5 lần). Vẫn chưa vừa thì lấn sang khoảng lặng phía sau, hoặc đẩy câu sau lùi lại một chút. **Không bao giờ cắt chữ.**
 - Khi có câu bị lùi, ứng dụng kèm **file phụ đề đã chỉnh mốc** để chữ trên video khớp với giọng đọc.
 - Tự bỏ thẻ định dạng trong phụ đề (`<i>`, `{\an8}`…) và áp dụng từ điển phát âm.
 - Mẹo: câu bị đọc nhanh hoặc bị lùi nhiều thì giảm tốc độ đọc, hoặc rút gọn câu trong file phụ đề.
 
-### Lịch sử
+### Bản đã tạo
 - Các bản đã tạo được lưu trên máy và **còn nguyên sau khi tắt ứng dụng**: nghe lại, tải lại WAV/MP3/SRT, mở thư mục chứa file.
-- Không tự xoá bản nào. Tab Lịch sử hiện số bản, dung lượng và nhắc dọn bớt khi chiếm nhiều ổ đĩa.
+- Không tự xoá bản nào. Tab Bản đã tạo hiện số bản, dung lượng và nhắc dọn bớt khi chiếm nhiều ổ đĩa.
 
 ---
 
@@ -185,6 +236,9 @@ Khi ứng dụng đang mở, nó chạy sẵn một máy chủ API ở `http://1
 
 Thẻ cảm xúc, thẻ nghỉ và từ điển phát âm đều dùng được qua API.
 
+API chỉ dùng giọng có sẵn hoặc giọng nhân bản đã lưu qua `voice_id` từ `/voices`.
+Tạo giọng trong ứng dụng bằng micro hoặc nhập file âm thanh kèm cam kết quyền sử dụng, rồi dùng giọng đã lưu qua API. Không mở lại các endpoint `/api/tts/clone` và `/api/tts/clone-to-history`. Supertonic chỉ có giọng sẵn.
+
 Ví dụ nhanh (Python):
 
 ```python
@@ -216,7 +270,7 @@ Muốn máy khác gọi vào:
 curl.exe -H "X-API-Key: <khoá>" http://192.168.1.5:8001/health
 ```
 
-Máy khác chỉ gọi được các API tạo giọng ở bảng trên; không xem được lịch sử hay cài đặt. Bấm **Khoá mới** để thu hồi khoá cũ ngay lập tức.
+Máy khác chỉ gọi được các API tạo giọng ở bảng trên; không xem được các bản đã tạo hay cài đặt. Bấm **Khoá mới** để thu hồi khoá cũ ngay lập tức.
 
 > ⚠️ Chỉ bật trong mạng tin cậy. Khoá đi qua HTTP không mã hoá. Muốn đưa ra Internet, hãy dùng đường hầm HTTPS (Cloudflare Tunnel, ngrok) thay vì mở cổng trên router.
 
@@ -236,7 +290,7 @@ Trong đó:
 
 | Thư mục / file | Nội dung |
 |---|---|
-| `history\` | Lịch sử audio và phụ đề đã tạo |
+| `history\` | Các bản audio và phụ đề đã tạo |
 | `pronunciation-dict.json` | Từ điển phát âm |
 | `remote-access.json` | Cài đặt truy cập từ máy khác và khoá API |
 | `server-settings.json` | Cổng máy chủ |
@@ -331,7 +385,7 @@ Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia 
 
 ## Sử dụng có trách nhiệm
 
-- **Chỉ nhân bản giọng của chính bạn.** Từ bản 1.0.2, muốn tạo giọng mới bạn phải tự thu âm và đọc câu đồng ý hiện trên màn hình; ứng dụng nghe kiểm tra (ngay trên máy) rồi mới lưu giọng.
+- **Chỉ nhân bản giọng của bạn hoặc giọng đã được cho phép.** Bạn phải có quyền sử dụng bản ghi và dùng giọng đúng phạm vi được đồng ý; ứng dụng không xác minh danh tính hoặc chứng nhận quyền sở hữu giọng.
 - **Không giả mạo giọng người khác** (người thân, người nổi tiếng, cán bộ, cơ quan, doanh nghiệp…) để lừa đảo, vay mượn tiền, bôi nhọ, xúc phạm hay gây hiểu lầm.
 - **Tôn trọng bản quyền:** văn bản (sách, truyện, báo) phải là của bạn hoặc đã được phép sử dụng.
 - Khi đăng tải công khai nội dung mô phỏng giọng người thật, **phải ghi rõ "giọng đọc được tạo bằng AI"**.

@@ -39,4 +39,4 @@ Toàn văn LGPL-2.1 có trong thư mục cài đặt, file `_internal/_soundfile
 ISC, PSF, MPL-2.0 và SIL Open Font License 1.1, tiêu biểu: Python, NumPy, SciPy,
 ONNX Runtime, Hugging Face Hub, FastAPI, Uvicorn, pywebview, pythonnet, OpenSSL,
 PyInstaller (bộ khởi động GPL-2.0 kèm ngoại lệ cho phép phân phối), React, Radix UI,
-Lucide, Tailwind CSS và phông chữ Inter. Bản quyền thuộc tác giả của từng thư viện.
+Lucide, Tailwind CSS, phông chữ Inter và Be Vietnam Pro. Bản quyền thuộc tác giả của từng thư viện.

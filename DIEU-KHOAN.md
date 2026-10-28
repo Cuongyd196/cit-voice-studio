@@ -1,6 +1,6 @@
 # Điều khoản sử dụng - CIT Voice Studio
 
-Phiên bản điều khoản: **1.1**
+Phiên bản điều khoản: **1.2**
 
 Khi bấm **"Tôi đồng ý"** lúc cài đặt hoặc mở ứng dụng, bạn xác nhận đã đọc, hiểu và chấp
 nhận các điều khoản dưới đây. Nếu không đồng ý, vui lòng không sử dụng ứng dụng.
@@ -22,10 +22,25 @@ nhận, không xem và không kiểm soát nội dung bạn tạo ra.
 
 ## 2. Nhân bản giọng nói
 
-- Bạn **chỉ được nhân bản giọng nói của chính mình**, bằng cách tự thu âm trực tiếp và
-  đọc văn bản mẫu hiển thị trong ứng dụng.
-- **Không được** nhân bản giọng của bất kỳ ai khác, kể cả người thân, người nổi tiếng
-  hay người mà bạn không có quyền hợp pháp đối với giọng nói của họ.
+- Bạn chỉ được nhân bản **giọng của mình hoặc giọng đã được chủ giọng cho phép nhân bản
+  và sử dụng**. Bạn phải có quyền hợp pháp sử dụng bản ghi âm, kể cả quyền liên quan
+  của các bên khác nếu có. Có file âm thanh hoặc bản ghi công khai không đồng nghĩa có quyền nhân bản giọng.
+- Ứng dụng hỗ trợ thu micro hoặc nhập file âm thanh (MP3, WAV, M4A). Trước khi lưu
+  mỗi giọng, bạn phải xác nhận cam kết quyền sử dụng bằng một checkbox ở đầu tab.
+  Khi chưa tích, các bước chọn mẫu, nghe thử và lưu giọng vẫn hiện nhưng bị làm mờ,
+  không thao tác được; tích xác nhận để tiếp tục. Phạm vi sử dụng
+  phải phù hợp với sự cho phép của chủ giọng. Nếu dùng giọng người khác, hãy giữ lại
+  tin nhắn, email hoặc văn bản cho phép nhân bản giọng và nêu rõ mục đích sử dụng.
+  Bạn tự giữ các thông tin này, không cần gửi cho tác giả ứng dụng.
+- Với micro, bạn đọc nội dung bất kỳ bằng giọng tự nhiên khoảng 3–8 giây; không cần
+  đọc câu cam kết. Thu micro và nhập file âm thanh đều dùng cùng checkbox xác nhận quyền sử dụng,
+  không cần tải bộ nhận dạng giọng nói. Cả hai cách **không xác minh danh tính hay
+  chứng minh quyền sở hữu giọng**.
+- Nội dung cam kết, thời điểm, nguồn mẫu và phiên bản điều khoản được lưu cùng dữ liệu
+  giọng trên máy, không gửi cho tác giả; xoá giọng trong ứng dụng sẽ xoá cam kết đi kèm.
+  Không tự động lưu bản sao file âm thanh gốc. Cam kết cục bộ không phải chứng nhận cấp phép của tác giả ứng dụng.
+- Khi chủ giọng rút lại sự cho phép, bạn phải ngừng các cách sử dụng không còn được
+  phép và xoá giọng/dữ liệu liên quan theo thoả thuận và quy định pháp luật áp dụng.
 
 ## 3. Bản quyền nội dung
 
@@ -63,6 +78,8 @@ bằng AI"**.
   Trong phạm vi pháp luật cho phép, tác giả CIT Voice Studio và tác giả các mô hình
   (VieNeu-TTS, Supertone) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
   pháp lý hay thiệt hại phát sinh từ việc sử dụng ứng dụng.
+- Các giới hạn trách nhiệm trên không loại trừ nghĩa vụ hoặc trách nhiệm bắt buộc
+  theo pháp luật của tác giả ứng dụng hoặc của bất kỳ bên nào có liên quan.
 
 ## 7. Điều khoản chung
 
