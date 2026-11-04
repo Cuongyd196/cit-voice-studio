@@ -33,12 +33,12 @@ Không cần tài khoản · Không cần Internet sau khi cài · Văn bản v�
 | 🎧 **Podcast, hội thoại** | 🎬 **Lồng tiếng theo phụ đề** | 🔌 **API cho phần mềm khác** |
 | Mỗi nhân vật một giọng, ghép thành một file audio. | Thả file `.srt`, giọng đọc khớp đúng mốc thời gian của video. | Gọi từ script, phần mềm khác hay AI Agent qua `http://127.0.0.1:8001`. |
 
-### Có gì mới ở 1.0.4
+### Có gì mới ở 1.0.5
 
-- **Giao diện mới**: bố cục studio rõ ràng, tương phản cao, có chế độ tối.
-- **Từ điển phát âm** nhập/xuất bằng file CSV (mở bằng Excel), có file mẫu.
-- **Nhân bản giọng** mở lại nhân bản giọng từ file mẫu; cần đọc kỹ điều khoản và xác nhận quyền sử dụng giọng.
-- ⚠️ Điều khoản sử dụng lên bản **1.2**: lần đầu mở bản mới, bạn sẽ được hỏi đồng ý lại.
+- **GPU 4 GB không còn treo máy**: tự giới hạn bộ nhớ GPU, chỉnh tay được ở **Cài đặt → Mô hình → Giới hạn VRAM**.
+- **Chọn thư mục lưu file** và **tự mở file sau khi lưu** (**Cài đặt → Lưu file**); lưu xong có nút Mở file / Mở thư mục.
+- **Hội thoại nhiều nhân vật**: thêm nhân vật bằng một nút, có mẫu tọa đàm 4 người.
+- Nhớ giao diện sáng/tối sau khi tắt mở lại; thanh cuộn theo màu ứng dụng.
 
 Chi tiết từng phiên bản: [trang Releases](../../releases).
 
@@ -50,10 +50,10 @@ Chi tiết từng phiên bản: [trang Releases](../../releases).
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.4-win-x86_64.exe` | ~380 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.4-amd64.deb` | ~463 MB |
-| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.4-macos-arm64.dmg` | ~427 MB |
-| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.4-macos-x86_64.dmg` | ~447 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.5-win-x86_64.exe` | ~357 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.5-amd64.deb` | ~460 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.5-macos-arm64.dmg` | ~428 MB |
+| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.5-macos-x86_64.dmg` | ~443 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -84,9 +84,11 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.4-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.5-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
+
+> **Nếu hiện màn hình xanh "Windows protected your PC"** thì đây là điều bình thường, không phải virus: bộ cài chưa mua chữ ký số (code signing) nên Windows chưa "quen" ứng dụng. Bấm dòng chữ **More info** (Thông tin thêm), rồi bấm nút **Run anyway** (Vẫn chạy) hiện ra ở dưới. Chỉ làm vậy với file tải từ [trang Releases](../../releases/latest) chính thức. Windows hiện thông báo khác thì xem [Lỗi thường gặp](#lỗi-thường-gặp).
 
 **Gỡ cài đặt:** Settings → Apps → CIT Voice Studio → Uninstall.
 
@@ -95,7 +97,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 Cài file `.deb` (Ubuntu, Debian, Linux Mint và các bản dựa trên Debian):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.4-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.5-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
@@ -294,6 +296,8 @@ Trong đó:
 | `pronunciation-dict.json` | Từ điển phát âm |
 | `remote-access.json` | Cài đặt truy cập từ máy khác và khoá API |
 | `server-settings.json` | Cổng máy chủ |
+| `ui-prefs.json` | Giao diện sáng/tối, tự phát sau khi tạo, tốc độ phát |
+| `save-settings.json` | Thư mục lưu file, mở file sau khi lưu |
 
 Trên Windows, mô hình và giọng nhân bản nằm trong thư mục `models` cạnh ứng dụng. Linux và macOS để chúng trong thư mục dữ liệu ở bảng trên. Cập nhật lên bản mới không làm mất dữ liệu.
 
