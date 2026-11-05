@@ -14,7 +14,7 @@ Không cần tài khoản · Không cần Internet sau khi cài · Văn bản v�
 ![Chạy offline](https://img.shields.io/badge/ch%E1%BA%A1y-offline-16a34a)
 ![Giấy phép Apache 2.0](https://img.shields.io/badge/gi%E1%BA%A5y%20ph%C3%A9p-Apache%202.0-64748b)
 
-**[⬇ Tải về](#tải-về)** &nbsp;·&nbsp; **[Tính năng](#tính-năng)** &nbsp;·&nbsp; **[API](#kết-nối-từ-phần-mềm-khác-api)** &nbsp;·&nbsp; **[Lỗi thường gặp](#lỗi-thường-gặp)**
+**[⬇ Tải về](#tải-về)** &nbsp;·&nbsp; **[Tính năng](#tính-năng)** &nbsp;·&nbsp; **[API](#kết-nối-từ-phần-mềm-khác-api)** &nbsp;·&nbsp; **[Lỗi thường gặp](#lỗi-thường-gặp)** &nbsp;·&nbsp; **[☕ Ủng hộ](#ủng-hộ)**
 
 <br>
 
@@ -397,6 +397,20 @@ Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia 
 Khi cài và mở ứng dụng lần đầu, bạn cần đồng ý [Điều khoản sử dụng](DIEU-KHOAN.md). Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo ra. Tác giả CIT Voice Studio, VieNeu-TTS và Supertone không chịu trách nhiệm với việc sử dụng sai mục đích.
 
 CIT Voice Studio là ứng dụng độc lập, **không phải sản phẩm chính thức của VieNeu-TTS hay Supertone**.
+
+---
+
+## Ủng hộ
+
+CIT Voice Studio luôn miễn phí. Nếu thấy hữu ích và muốn ủng hộ tác giả làm tiếp, bạn có thể (hoàn toàn tự nguyện):
+
+| Cách ủng hộ | Link |
+|---|---|
+| ☕ Visa / PayPal | [buymeacoffee.com/cuongit96](https://buymeacoffee.com/cuongit96) |
+| 🏦 Chuyển khoản ngân hàng Việt Nam (mã QR) | [Xem mã QR](https://buymeacoffee.com/cuongit96/gallery/5234541) |
+| 💖 GitHub Sponsors | [github.com/sponsors/Cuongyd196](https://github.com/sponsors/Cuongyd196) |
+
+Góp ý, báo lỗi hay chia sẻ ứng dụng cho người cần cũng là một cách ủng hộ rất lớn. Cảm ơn bạn!
 
 ---
 
