@@ -483,6 +483,8 @@ Add it to the **Từ điển** (Dictionary) with the reading you want, e.g. `KTX
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
 
+**Chat about making videos with AI** (Vietnamese): [Facebook group](https://www.facebook.com/groups/1010029065373486/) · [Zalo group](https://zalo.me/g/8bfeotyh5ewtkzxmp5gt)
+
 ---
 
 ## Credits

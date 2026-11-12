@@ -493,8 +493,7 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
 
-
-Muốn ủng hộ mình 1 ly cà phê: [buymeacoffee.com/cuongit96](https://buymeacoffee.com/cuongit96)
+**Trao đổi về làm video với AI:** [Nhóm Facebook](https://www.facebook.com/groups/1010029065373486/) · [Nhóm Zalo](https://zalo.me/g/8bfeotyh5ewtkzxmp5gt)
 
 ---
 
