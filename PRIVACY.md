@@ -25,6 +25,7 @@ trong các trường hợp sau, và chỉ tải xuống, không gửi nội dung
 |---|---|---|
 | Kiểm tra bản mới (bạn bật trong Cài đặt, hoặc bấm "Kiểm tra cập nhật") | GitHub, tối đa một lần mỗi ngày | **Tắt** |
 | Bạn bấm Tải về một mô hình không kèm sẵn | Hugging Face | Chỉ khi bạn bấm |
+| Bạn bấm Tải về mô hình Kokoro hoặc thêm tiếng Nhật/Trung (cài bộ tách âm) | PyPI, GitHub / releases.astral.sh | Chỉ khi bạn bấm |
 | Bạn bấm "Cài hỗ trợ GPU" | PyPI, download.pytorch.org, GitHub / releases.astral.sh | Chỉ khi bạn bấm |
 | Bạn bấm một đường link trong ứng dụng | Trang web đó, mở bằng trình duyệt | Chỉ khi bạn bấm |
 
@@ -38,7 +39,7 @@ Khi thu micro, bạn đọc nội dung bất kỳ khoảng 3–8 giây để là
 Khi nhập MP3, ứng dụng giải mã và giữ đoạn mẫu tối đa 15 giây ngay trong giao diện,
 sau đó gửi đoạn WAV này đến dịch vụ chạy trên chính máy bạn để tạo giọng. Không có
 dịch vụ nhân bản giọng trên máy chủ của tác giả. Cả micro và MP3 dùng chung cam kết
-quyền sử dụng, không cần tải bộ nhận dạng câu đồng ý và không nhận dạng lời nói trong mẫu.
+quyền sử dụng; ứng dụng không nhận dạng lời nói trong mẫu.
 
 File MP3 gốc không được tự động sao chép vào thư viện. Đoạn mẫu WAV tạm được xoá sau
 khi xử lý; dữ liệu giọng dùng lại và cam kết quyền sử dụng nằm trên máy. Xoá giọng

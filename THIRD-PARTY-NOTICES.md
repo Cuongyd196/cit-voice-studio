@@ -30,8 +30,16 @@ Toàn văn LGPL-2.1 có trong thư mục cài đặt, file `_internal/_soundfile
 
 | Mô hình | Giấy phép | Nguồn |
 |---|---|---|
-| Zipformer ASR tiếng Việt - kiểm tra câu đồng ý khi tạo giọng nhân bản, tải lần đầu tạo giọng | Apache-2.0 | https://huggingface.co/csukuangfj/sherpa-onnx-zipformer-vi-int8-2025-04-20 (gốc: https://huggingface.co/zzasdf/viet_iter3_pseudo_label) |
 | Supertonic 3 (Supertone Inc.) - giọng nước ngoài 31 ngôn ngữ, tải khi bạn bấm Tải về trong mục Mô hình. File `LICENSE` của giấy phép tải kèm mô hình. Giấy phép có danh sách cấm dùng (mạo danh khi không được đồng ý, lừa đảo, tin giả gây hại, nội dung do máy tạo mà không ghi rõ…) áp dụng cho mọi người dùng | OpenRAIL-M ([LICENSE](https://huggingface.co/supertone-oss-archive/supertonic-3/blob/main/LICENSE)) | https://huggingface.co/supertone-oss-archive/supertonic-3 (mã nguồn mẫu, MIT: https://github.com/supertone-oss-archive/supertonic, [LICENSE](https://github.com/supertone-oss-archive/supertonic/blob/main/LICENSE)) |
+| Kokoro-82M (hexgrad) - giọng nước ngoài 8 ngôn ngữ, tải khi bạn bấm Tải về trong mục Mô hình (bản CPU dùng bản ONNX, bản GPU dùng trọng số PyTorch gốc) | Apache-2.0 | https://huggingface.co/hexgrad/Kokoro-82M, https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX |
+
+## Kokoro: mã chạy mô hình và bộ tách âm
+
+Mã chạy Kokoro trên GPU (`apps/_kokoro_torch`) chép từ hexgrad/kokoro 0.9.4,
+Apache-2.0, kèm file LICENSE gốc. Bộ tách âm của Kokoro **không nằm trong bộ cài**: khi
+bạn bấm Tải về, máy bạn tự tải nó từ PyPI vào một thư mục riêng (`addons/`). Trong đó
+có `phonemizer` (GPL-3.0-or-later) và espeak-ng qua `espeakng-loader` (GPL-3.0); danh
+sách đầy đủ và giấy phép từng gói ghi trong `NOTICE`.
 
 ## Các thư viện khác
 

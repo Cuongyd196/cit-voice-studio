@@ -1,0 +1,59 @@
+name: Báo lỗi
+description: App chạy sai, treo hoặc báo lỗi
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã báo lỗi. Lỗ hổng bảo mật thì đừng báo ở đây, xem SECURITY.md.
+  - type: textarea
+    id: mo-ta
+    attributes:
+      label: Lỗi gì?
+      description: Bạn thấy gì, và lẽ ra phải thấy gì.
+    validations:
+      required: true
+  - type: textarea
+    id: cac-buoc
+    attributes:
+      label: Các bước tái hiện
+      placeholder: |
+        1. Mở tab ...
+        2. Dán văn bản ...
+        3. Bấm ...
+    validations:
+      required: true
+  - type: input
+    id: phien-ban
+    attributes:
+      label: Phiên bản app
+      description: Xem ở Cài đặt → Cập nhật & thông tin.
+      placeholder: "1.0.6"
+    validations:
+      required: true
+  - type: dropdown
+    id: he-dieu-hanh
+    attributes:
+      label: Hệ điều hành
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+  - type: dropdown
+    id: mo-hinh
+    attributes:
+      label: Mô hình đang dùng
+      options:
+        - VieNeu-TTS v3 Turbo (CPU)
+        - VieNeu-TTS v3 Turbo (GPU)
+        - VieNeu-TTS v3 Nano
+        - Supertonic 3
+        - Kokoro
+        - Không rõ
+  - type: textarea
+    id: chan-doan
+    attributes:
+      label: File chẩn đoán
+      description: Trên Windows, chạy chan-doan.bat cạnh file .exe rồi kéo file chan-doan.txt vào đây. Kèm cit-voice-studio.log nếu có.

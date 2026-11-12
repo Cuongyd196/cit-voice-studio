@@ -1,0 +1,217 @@
+{
+  "info": {
+    "name": "CIT Voice Studio API",
+    "description": "Các API công khai của CIT Voice Studio (tài liệu đầy đủ: {{baseUrl}}/docs).\n\nCÁCH DÙNG\n1. Import file này vào Postman.\n2. Bấm vào collection -> tab Variables: sửa `baseUrl` (vd. http://192.168.5.8:8001) và dán khoá vào `apiKey`.\n   Khoá lấy trên máy chạy app: Cài đặt -> Cho máy khác truy cập API (hoặc file ~/CitVoiceStudio/remote-access.json trên Linux).\n3. Chạy \"Health\" trước để kiểm tra kết nối + khoá.\n\nKhoá được gửi tự động qua header X-API-Key (tab Authorization của collection).\nGọi trên chính máy chạy app (127.0.0.1) thì không cần khoá.\n\nAPI trả âm thanh (WAV/MP3): ở ô Response chọn Save Response -> Save to a file để nghe.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-API-Key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://192.168.5.8:8001", "type": "string" },
+    { "key": "apiKey", "value": "DAN_KHOA_API_VAO_DAY", "type": "string" },
+    { "key": "voiceId", "value": "Minh Đức", "type": "string" }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (pm.response.code === 401) {",
+          "  console.warn('401: thiếu hoặc sai khoá API - kiểm tra biến apiKey của collection.');",
+          "}",
+          "if (pm.response.code === 403) {",
+          "  console.warn('403: máy chạy app chưa bật \"Cho máy khác truy cập API\", hoặc chưa khởi động lại app sau khi bật.');",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Health - kiểm tra kết nối",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] },
+        "description": "Trạng thái server và mô hình đang dùng (sample_rate, engine, device)."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('Server sẵn sàng', () => pm.expect(pm.response.json().status).to.eql('ok'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Danh sách giọng đọc",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/voices", "host": ["{{baseUrl}}"], "path": ["voices"] },
+        "description": "Trả danh sách giọng: id, name, gender, region, description. Dùng `id` làm voice_id ở các API khác."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('Có ít nhất 1 giọng', () => pm.expect(pm.response.json().length).to.be.above(0));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Tạo giọng nói (WAV)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Xin chào, đây là CIT Voice Studio chạy trên Linux. [nghỉ 1s] Chúc bạn một ngày tốt lành.\",\n  \"voice_id\": \"{{voiceId}}\",\n  \"speed\": 1.0,\n  \"temperature\": 0.8,\n  \"format\": \"wav\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/tts/generate", "host": ["{{baseUrl}}"], "path": ["api", "tts", "generate"] },
+        "description": "Trả file âm thanh. `format`: `wav` hoặc `mp3`. Header phản hồi có X-Duration-Seconds, X-Elapsed-Seconds, X-RTF, X-Sample-Rate.\n\nThẻ nghỉ: [nghỉ 2s], [nghỉ 500ms]. Thẻ cảm xúc (v3 Turbo): [cười], [thở dài]."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('Là file âm thanh', () => pm.expect(pm.response.headers.get('Content-Type')).to.match(/audio/));",
+              "console.log('Độ dài audio (s):', pm.response.headers.get('X-Duration-Seconds'), '| RTF:', pm.response.headers.get('X-RTF'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Tạo giọng nói kèm phụ đề (JSON: audio base64 + SRT)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Câu thứ nhất dùng để thử phụ đề. Câu thứ hai dài hơn một chút để xem mốc thời gian.\",\n  \"voice_id\": \"{{voiceId}}\",\n  \"speed\": 1.0,\n  \"format\": \"wav\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/tts/generate-with-subtitles",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "tts", "generate-with-subtitles"]
+        },
+        "description": "Trả JSON gồm audio (base64) và phụ đề SRT, mốc thời gian đo theo từng câu.\n\nNghe + xem phụ đề ngay trong Postman: sau khi Send, ở khung Response chọn tab **Visualize**.\n\nCác trường: audio_base64, format, sample_rate, duration_seconds, elapsed_seconds, rtf, srt, cues[{start,end,text}]."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+              "const d = pm.response.json();",
+              "pm.test('Có audio và phụ đề', () => { pm.expect(d.audio_base64).to.be.a('string').and.not.empty; pm.expect(d.srt).to.be.a('string'); });",
+              "// Tab Visualize: trình phát audio dựng thẳng từ base64 + bảng phụ đề + nút tải .srt",
+              "const mime = d.format === 'mp3' ? 'audio/mpeg' : 'audio/wav';",
+              "const template = `",
+              "<style>body{font-family:sans-serif;font-size:14px} table{border-collapse:collapse;width:100%} td,th{border:1px solid #ddd;padding:4px 8px;text-align:left} a{margin-right:12px}</style>",
+              "<p><b>{{duration}} s</b> audio · tạo mất {{elapsed}} s · RTF {{rtf}} · {{sr}} Hz</p>",
+              "<audio controls style='width:100%' src='data:{{mime}};base64,{{audio}}'></audio>",
+              "<p><a download='cit-voice.{{format}}' href='data:{{mime}};base64,{{audio}}'>Tải audio</a>",
+              "<a download='cit-voice.srt' href='data:application/x-subrip;charset=utf-8,{{srtUri}}'>Tải phụ đề .srt</a></p>",
+              "<table><tr><th>Bắt đầu</th><th>Kết thúc</th><th>Phụ đề</th></tr>",
+              "{{#each cues}}<tr><td>{{start}}</td><td>{{end}}</td><td>{{text}}</td></tr>{{/each}}</table>`;",
+              "pm.visualizer.set(template, {",
+              "  audio: d.audio_base64, mime, format: d.format, duration: d.duration_seconds,",
+              "  elapsed: d.elapsed_seconds, rtf: d.rtf, sr: d.sample_rate, cues: d.cues,",
+              "  srtUri: encodeURIComponent(d.srt)",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Stream (GET) - phát ngay khi đang tạo",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/stream?text=Đây là chế độ phát trực tiếp, âm thanh trả về theo từng đoạn.&voice_id={{voiceId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["stream"],
+          "query": [
+            { "key": "text", "value": "Đây là chế độ phát trực tiếp, âm thanh trả về theo từng đoạn." },
+            { "key": "voice_id", "value": "{{voiceId}}" }
+          ]
+        },
+        "description": "WAV dạng chunked: header WAV rồi PCM16 theo từng đoạn. Postman đợi hết mới hiện; dùng trong trình duyệt/thẻ <audio> thì phát được ngay.\n\nThẻ <audio> không gửi được header: thêm `&api_key=<khoá>` vào URL."
+      }
+    },
+    {
+      "name": "6. Stream (POST)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Văn bản dài nên gửi bằng POST thay vì đặt trên URL.\",\n  \"voice_id\": \"{{voiceId}}\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/stream", "host": ["{{baseUrl}}"], "path": ["stream"] }
+      }
+    },
+    {
+      "name": "8a. Hội thoại - theo danh sách lượt",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"turns\": [\n    { \"speaker\": \"MC\", \"text\": \"Chào mừng quý vị đến với CIT Voice Studio Podcast!\", \"voice_id\": \"Minh Đức\" },\n    { \"speaker\": \"Khách\", \"text\": \"Xin chào, rất vui được tham gia chương trình.\", \"voice_id\": \"Trúc Ly\" }\n  ],\n  \"silence_duration\": 0.4,\n  \"speed\": 1.0,\n  \"format\": \"wav\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/tts/conversation", "host": ["{{baseUrl}}"], "path": ["api", "tts", "conversation"] },
+        "description": "Ghép nhiều lượt thoại, mỗi lượt một giọng, thành một file."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.test('HTTP 200', () => pm.response.to.have.status(200));"]
+          }
+        }
+      ]
+    },
+    {
+      "name": "8b. Hội thoại - theo kịch bản chữ",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"script\": \"[MC]: Hôm nay chúng ta nói về trí tuệ nhân tạo.\\n[Khách]: Đây là chủ đề rất thú vị.\",\n  \"speaker_mapping\": { \"MC\": \"Minh Đức\", \"Khách\": \"Trúc Ly\" },\n  \"format\": \"wav\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/tts/conversation", "host": ["{{baseUrl}}"], "path": ["api", "tts", "conversation"] },
+        "description": "Mỗi dòng dạng `[Tên]: lời thoại` (hoặc `Tên: lời thoại`); speaker_mapping gán tên -> voice_id."
+      }
+    }
+  ]
+}

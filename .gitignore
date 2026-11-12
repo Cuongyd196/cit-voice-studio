@@ -1,0 +1,35 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+
+# Virtual environments
+.venv
+.xpu_venv
+gpu_venv/
+addons/
+outputs/
+.env
+
+node_modules/   
+
+# Mo hinh tai san de dong goi kem (312 MB) - khong commit
+models/
+
+# Spec file PyInstaller sinh ra moi lan build
+*.spec
+
+# File log do ung dung sinh ra luc chay
+*.log
+chan-doan.txt
+
+/work
+# Ban clone repo public (github.com/Cuongyd196/cit-voice-studio), khong thuoc repo nay
+/public/
+
+# Ghi chu noi bo cho Claude Code - giu tren may, khong dua len repo
+CLAUDE.md

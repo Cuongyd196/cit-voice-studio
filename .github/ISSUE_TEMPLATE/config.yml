@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Báo lỗ hổng bảo mật
+    url: https://github.com/Cuongyd196/cit-voice-studio/security/advisories/new
+    about: Báo riêng cho chủ dự án, không công khai.

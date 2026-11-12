@@ -1,0 +1,46 @@
+CIT Voice Studio cho macOS
+==========================
+
+YÊU CẦU
+    Mac chip Apple (M1, M2, M3...): macOS 14 Sonoma trở lên -> file CIT-Voice-Studio-v1.0.0-macos-arm64.dmg
+    Mac chip Intel:                 macOS 13 Ventura trở lên -> file CIT-Voice-Studio-v1.0.0-macos-x86_64.dmg
+    Xem chip: menu Apple -> About This Mac (Giới thiệu về máy Mac này).
+
+CÀI
+    Kéo biểu tượng "CIT Voice Studio" thả vào thư mục Applications (ngay bên cạnh).
+
+MỞ
+    Launchpad, hoặc Finder -> Applications -> CIT Voice Studio.
+    Lần đầu mở mất thêm vài giây để chuẩn bị mô hình.
+
+LẦN ĐẦU MỞ BỊ CHẶN ("không xác minh được nhà phát triển")
+    App chưa được Apple chứng thực nên macOS chặn lần đầu. Mở khoá một lần:
+      1. Bấm "Done" / "OK" để đóng thông báo.
+      2. Vào System Settings (Cài đặt hệ thống) -> Privacy & Security
+         (Quyền riêng tư & Bảo mật), kéo xuống cuối.
+      3. Bấm "Open Anyway" (Vẫn mở) cạnh dòng CIT Voice Studio, nhập mật khẩu máy.
+    Hoặc chạy trong Terminal:
+        xattr -dr com.apple.quarantine "/Applications/CIT Voice Studio.app"
+
+TẮT
+    Đóng cửa sổ app, hoặc bấm Cmd+Q.
+
+MICRO
+    Tab Nhân bản giọng dùng micro để thu giọng mẫu; lần đầu macOS hỏi quyền,
+    bấm "Allow" (Cho phép).
+
+CHO MÁY KHÁC GỌI API
+    1. Trong app: Cài đặt -> Cho máy khác truy cập API -> bật, chép khoá API.
+    2. Thoát app (Cmd+Q) rồi mở lại. Lần đầu macOS hỏi cho phép kết nối mạng
+       đến: bấm "Allow".
+    Máy khác gọi http://<IP máy Mac>:8001/... kèm header  X-API-Key: <khoá>
+    Tài liệu API: http://<IP máy Mac>:8001/docs
+
+GHI CHÚ
+    Bản macOS chạy bằng CPU (Mac không dùng card NVIDIA).
+    Dữ liệu nằm trong ~/Library/Application Support/CIT Voice Studio và
+    ~/CitVoiceStudio. Cập nhật app (kéo bản mới đè lên) không làm mất dữ liệu.
+
+GẶP LỖI
+    Gửi file ~/Library/Application Support/CIT Voice Studio/cit-voice-studio.log
+    cho bộ phận hỗ trợ.

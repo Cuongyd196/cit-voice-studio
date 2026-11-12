@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/biome/core", "ultracite/biome/react"],
+  "files": {
+    "includes": [
+      // Shadcn UI components are often not out-of-the-box compatible with Biome's rules.
+      // So it's easier to just exclude them from linting and formatting.
+      "!**/components/ui"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        // Component React đặt tên PascalCase (TtsStudio.tsx), file khác kebab-case.
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case", "PascalCase", "camelCase"]
+          }
+        },
+        // Luật thuần phong cách, không bắt lỗi: tắt để CI chỉ chặn thứ đáng chặn.
+        "useConsistentMemberAccessibility": "off",
+        "noNestedTernary": "off",
+        "noNonNullAssertion": "warn",
+        "useForOf": "warn",
+        "useAtIndex": "warn"
+      },
+      "performance": { "useTopLevelRegex": "off" },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "noVoid": "off",
+        "useOptionalChain": "warn"
+      },
+      // Lỗi tiềm ẩn còn tồn từ trước: hiện cảnh báo, sửa dần, không chặn CI.
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "useAwait": "warn",
+        "noEmptyBlockStatements": "warn",
+        "noAssignInExpressions": "warn"
+      },
+      "correctness": { "useExhaustiveDependencies": "warn" },
+      "a11y": {
+        "useMediaCaption": "warn",
+        "noSvgWithoutTitle": "warn",
+        "noStaticElementInteractions": "warn",
+        "noNoninteractiveElementInteractions": "warn"
+      }
+    }
+  }
+}

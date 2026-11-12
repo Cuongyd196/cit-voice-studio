@@ -1,22 +1,25 @@
 # Điều khoản sử dụng - CIT Voice Studio
 
-Phiên bản điều khoản: **1.2**
+Phiên bản điều khoản: **1.3**
 
 Khi bấm **"Tôi đồng ý"** lúc cài đặt hoặc mở ứng dụng, bạn xác nhận đã đọc, hiểu và chấp
 nhận các điều khoản dưới đây. Nếu không đồng ý, vui lòng không sử dụng ứng dụng.
 
 ## 1. Ứng dụng và dữ liệu của bạn
 
-CIT Voice Studio là phần mềm miễn phí chuyển văn bản thành giọng nói. Ứng dụng dùng hai
-mô hình giọng nói của bên thứ ba:
+CIT Voice Studio là phần mềm miễn phí, mã nguồn mở (Apache-2.0) chuyển văn bản thành
+giọng nói. Ứng dụng dùng các mô hình giọng nói của bên thứ ba:
 
 - **VieNeu-TTS** (tác giả Phạm Nguyễn Ngọc Bảo, giấy phép Apache-2.0) cho tiếng Việt, kèm
   sẵn trong bộ cài;
 - **Supertonic 3** (Supertone Inc., giấy phép OpenRAIL-M) cho giọng nước ngoài, chỉ tải về
-  khi bạn chọn.
+  khi bạn chọn;
+- **Kokoro-82M** (hexgrad, giấy phép Apache-2.0) cho giọng bản xứ nước ngoài, chỉ tải về
+  khi bạn chọn. Khi đó máy bạn tự tải thêm bộ tách âm từ PyPI, trong đó có thành phần
+  theo giấy phép GPL-3.0 (phonemizer, espeak-ng); các thành phần này không nằm trong bộ cài.
 
 Các mô hình thuộc về tác giả của chúng; CIT Voice Studio là ứng dụng độc lập, không phải sản
-phẩm chính thức của VieNeu-TTS hay Supertone. Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
+phẩm chính thức của VieNeu-TTS, Supertone hay Kokoro. Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
 không thu thập, không gửi đi văn bản, âm thanh hay thông tin cá nhân nào. Tác giả không
 nhận, không xem và không kiểm soát nội dung bạn tạo ra.
 
@@ -33,8 +36,8 @@ nhận, không xem và không kiểm soát nội dung bạn tạo ra.
   tin nhắn, email hoặc văn bản cho phép nhân bản giọng và nêu rõ mục đích sử dụng.
   Bạn tự giữ các thông tin này, không cần gửi cho tác giả ứng dụng.
 - Với micro, bạn đọc nội dung bất kỳ bằng giọng tự nhiên khoảng 3–8 giây; không cần
-  đọc câu cam kết. Thu micro và nhập file âm thanh đều dùng cùng checkbox xác nhận quyền sử dụng,
-  không cần tải bộ nhận dạng giọng nói. Cả hai cách **không xác minh danh tính hay
+  đọc câu cam kết. Thu micro và nhập file âm thanh đều dùng cùng checkbox xác nhận quyền sử dụng.
+  Cả hai cách **không xác minh danh tính hay
   chứng minh quyền sở hữu giọng**.
 - Nội dung cam kết, thời điểm, nguồn mẫu và phiên bản điều khoản được lưu cùng dữ liệu
   giọng trên máy, không gửi cho tác giả; xoá giọng trong ứng dụng sẽ xoá cam kết đi kèm.
@@ -76,7 +79,7 @@ bằng AI"**.
   trên máy bạn.
 - Ứng dụng được cung cấp **miễn phí và "nguyên trạng"**, không kèm bất kỳ bảo đảm nào.
   Trong phạm vi pháp luật cho phép, tác giả CIT Voice Studio và tác giả các mô hình
-  (VieNeu-TTS, Supertone) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
+  (VieNeu-TTS, Supertone, Kokoro) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
   pháp lý hay thiệt hại phát sinh từ việc sử dụng ứng dụng.
 - Các giới hạn trách nhiệm trên không loại trừ nghĩa vụ hoặc trách nhiệm bắt buộc
   theo pháp luật của tác giả ứng dụng hoặc của bất kỳ bên nào có liên quan.

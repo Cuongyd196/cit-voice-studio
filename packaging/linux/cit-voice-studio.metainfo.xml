@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AppStream metadata: Ubuntu App Center / GNOME Software doc ten, mo ta, giay phep,
+     icon tu file nay. build_linux.sh thay @VERSION@ va @DATE@. -->
+<component type="desktop-application">
+  <id>net.cuongit.CitVoiceStudio</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <name>CIT Voice Studio</name>
+  <summary>Vietnamese text-to-speech and voice cloning, offline</summary>
+  <description>
+    <p>
+      CIT Voice Studio turns Vietnamese text into natural speech and clones a voice
+      from a short sample. It is built on VieNeu-TTS and runs entirely on your
+      computer: models are included, no Internet connection is needed, and your text
+      and audio never leave the machine.
+    </p>
+    <ul>
+      <li>25 built-in Vietnamese voices, emotion and pause tags</li>
+      <li>Voice cloning from a 3-8 second sample</li>
+      <li>Optional foreign-language voices, downloaded on demand (Supertonic 3, Kokoro)</li>
+      <li>Long texts, subtitles (SRT), batch generation and podcasts</li>
+      <li>Runs on the CPU; optional NVIDIA GPU support</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">cit-voice-studio.desktop</launchable>
+  <icon type="stock">cit-voice-studio</icon>
+  <url type="homepage">https://github.com/Cuongyd196/cit-voice-studio</url>
+  <url type="bugtracker">https://github.com/Cuongyd196/cit-voice-studio/issues</url>
+  <developer id="net.cuongit">
+    <name>Cuong IT</name>
+  </developer>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Audio</category>
+  </categories>
+  <keywords>
+    <keyword>TTS</keyword>
+    <keyword>text to speech</keyword>
+    <keyword>Vietnamese</keyword>
+    <keyword>voice cloning</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="@VERSION@" date="@DATE@"/>
+  </releases>
+</component>

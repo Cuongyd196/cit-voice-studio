@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=CIT Voice Studio
+Comment=Vietnamese text-to-speech and voice cloning
+Comment[vi]=Chuyển văn bản thành giọng nói tiếng Việt
+Exec=cit-voice-studio
+Icon=cit-voice-studio
+Terminal=true
+Categories=AudioVideo;Audio;
+Keywords=TTS;tieng viet;giong noi;voice;

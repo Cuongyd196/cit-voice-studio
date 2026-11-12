@@ -1,0 +1,47 @@
+CIT Voice Studio
+Copyright 2026 Cuong IT (https://me.cuongit.net)
+
+Phan mem nay duoc phat trien dua tren VieNeu-TTS.
+
+    VieNeu-TTS
+    Copyright 2024-2026 Pham Nguyen Ngoc Bao
+    https://github.com/pnnbao97/VieNeu-TTS
+
+Ca hai deu duoc phat hanh theo giay phep Apache License 2.0.
+Xem toan van giay phep trong file LICENSE di kem.
+Ma nguon CIT Voice Studio cong khai tai https://github.com/Cuongyd196/cit-voice-studio
+Ten va bieu tuong "CIT Voice Studio" khong nam trong giay phep Apache-2.0 (muc 6).
+
+VieNeu-TTS v3 Nano integration:
+    src/vieneu/v3nano.py, src/vieneu/_nano_audio.py,
+    src/vieneu/assets/voices_v3_nano.json
+    Adapted from pnnbao97/VieNeu-TTS (Apache-2.0), revision
+    d8ca4f91b9abb6be82ad1d8b1fdf0841e4b4ed29.
+    Local changes: offline cache reuse, separate atomic custom-voice storage,
+    and audio helpers isolated for compatibility with this application.
+
+Supertonic 3 integration:
+    apps/supertonic_engine.py
+    Text normalization, chunking and the ONNX inference loop are adapted from
+    supertone-oss-archive/supertonic py/helper.py (MIT License, Copyright (c) 2025
+    Supertone Inc.). The Supertonic 3 model weights are not shipped; they are
+    downloaded on request and licensed under OpenRAIL-M (see THIRD-PARTY-NOTICES.md).
+
+Kokoro multilingual model (optional, downloaded on demand - not included in the installer):
+    Model weights and voices: hexgrad/Kokoro-82M (Apache-2.0), ONNX export
+    onnx-community/Kokoro-82M-v1.0-ONNX (Apache-2.0).
+    When the user chooses this model, the application installs on the user's
+    own machine, from PyPI, into a separate add-on environment: kokoro-onnx (MIT),
+    phonemizer (GPL-3.0-or-later), espeakng-loader / espeak-ng (GPL-3.0),
+    joblib (BSD-3-Clause), cloudpickle (BSD-3-Clause), attrs (MIT), dlinfo (MIT),
+    typing-extensions (PSF-2.0) - exact versions with SHA-256 hashes, apps/kokoro_locks.py;
+    for Japanese and Chinese: misaki (Apache-2.0), fugashi (MIT AND BSD-3-Clause),
+    unidic-lite (MIT; UniDic dictionary BSD-3-Clause), jaconv (MIT),
+    mojimoji (Apache-2.0), jieba (MIT), pypinyin (MIT), cn2an (MIT), proces (MIT),
+    addict (MIT), ordered-set (MIT). None of these packages are distributed with
+    CIT Voice Studio.
+    The GPU variant runs the original PyTorch weights hexgrad/Kokoro-82M
+    (kokoro-v1_0.pth, Apache-2.0, downloaded on demand) with model code copied
+    from hexgrad/kokoro 0.9.4 (Apache-2.0) into apps/_kokoro_torch/, which
+    carries that project's LICENSE; modifications are noted at the top of
+    each file.

@@ -1,0 +1,51 @@
+CIT Voice Studio cho Linux
+==========================
+
+Có hai dạng, chọn một:
+  - CIT-Voice-Studio-v<phiên bản>-amd64.deb     Ubuntu / Debian / Linux Mint...
+                                                 (cài như phần mềm bình thường)
+  - CIT-Voice-Studio-v<phiên bản>-linux-x86_64.tar.gz  mọi bản Linux, không cần quyền sudo
+
+CÀI BẢN .deb
+    Mở Terminal tại thư mục chứa file rồi gõ:
+        sudo apt install ./CIT-Voice-Studio-v<phiên bản>-amd64.deb
+    (bản mới cài đè lên bản cũ bằng đúng lệnh này, không mất dữ liệu)
+    Chạy: tìm "CIT Voice Studio" trong menu ứng dụng, hoặc gõ lệnh:
+        cit-voice-studio
+    Lần đầu chạy mất thêm khoảng 1 phút để chuẩn bị mô hình.
+    Gỡ:  sudo apt remove cit-voice-studio
+
+DÙNG BẢN .tar.gz
+    Giải nén, mở Terminal tại thư mục vừa giải nén rồi gõ:
+        ./CIT-Voice-Studio
+    Cập nhật: giải nén bản mới đè lên bản cũ, không mất dữ liệu.
+
+KHI ĐANG CHẠY
+    Giao diện tự mở trong trình duyệt tại http://127.0.0.1:8001
+    (không tự mở thì gõ địa chỉ đó vào trình duyệt).
+    Giữ cửa sổ Terminal mở trong suốt lúc dùng.
+
+TẮT
+    Đóng cửa sổ Terminal, hoặc bấm Ctrl+C trong đó.
+
+CARD NVIDIA (không bắt buộc)
+    Máy cần cài sẵn driver NVIDIA (kiểm tra bằng lệnh: nvidia-smi).
+    Trong app: Cài đặt -> bấm "Cài hỗ trợ GPU" ở mô hình GPU NVIDIA.
+    App tự tải PyTorch/CUDA (vài GB, cần ít nhất 12 GB trống) vào thư mục
+    gpu_venv (bản .tar.gz: cạnh app; bản .deb: ~/CitVoiceStudio/gpu_venv).
+
+CHO MÁY KHÁC GỌI API
+    1. Trong app: Cài đặt -> Cho máy khác truy cập API -> bật, chép khoá API.
+    2. Tắt app (Ctrl+C) rồi chạy lại.
+    3. Nếu bật tường lửa:  sudo ufw allow 8001/tcp
+    Máy khác gọi http://<IP máy này>:8001/... kèm header  X-API-Key: <khoá>
+    Tài liệu API: http://<IP máy này>:8001/docs
+
+DỮ LIỆU
+    Lịch sử, từ điển phát âm, giọng nhân bản, cài đặt: ~/CitVoiceStudio
+    Mô hình: bản .tar.gz ở thư mục models/ cạnh app; bản .deb ở ~/CitVoiceStudio/hf_cache.
+    Gỡ bản .deb không xoá ~/CitVoiceStudio; muốn xoá hẳn thì xoá thư mục đó.
+
+GẶP LỖI
+    Gửi file cit-voice-studio.log cho bộ phận hỗ trợ
+    (bản .tar.gz: cạnh app; bản .deb: ~/CitVoiceStudio/cit-voice-studio.log).

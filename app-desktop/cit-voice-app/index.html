@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIT Voice Studio</title>
+    <style>
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: #f3f8f8;
+    }
+    #bootstrap-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      box-sizing: border-box;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #163039;
+      background: radial-gradient(
+        circle at 50% 36%,
+        #e1f6f1 0,
+        #f3f8f8 55%,
+        #f8fbfc 100%
+      );
+    }
+    .bootstrap-content {
+      width: min(100%, 360px);
+      text-align: center;
+    }
+    .bootstrap-mark {
+      display: grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 22px;
+      color: white;
+      background: linear-gradient(135deg, #10b981, #0891b2);
+      border-radius: 19px;
+      box-shadow: 0 14px 30px rgba(5, 150, 105, 0.22);
+    }
+    .bootstrap-title {
+      margin: 0;
+      font-size: 23px;
+      font-weight: 750;
+      letter-spacing: -0.035em;
+    }
+    .bootstrap-subtitle {
+      margin: 8px 0 25px;
+      font-size: 14px;
+      color: #527079;
+    }
+    .bootstrap-track {
+      height: 4px;
+      overflow: hidden;
+      background: #d9e9e7;
+      border-radius: 99px;
+    }
+    .bootstrap-progress {
+      width: 36%;
+      height: 100%;
+      background: #0aa889;
+      border-radius: inherit;
+      animation: bootstrap-move 1.5s ease-in-out infinite alternate;
+    }
+    .bootstrap-status {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: #607b82;
+    }
+    .bootstrap-retry {
+      padding: 9px 16px;
+      margin-top: 16px;
+      font: inherit;
+      font-size: 13px;
+      color: white;
+      cursor: pointer;
+      background: #0d9e81;
+      border: 0;
+      border-radius: 10px;
+    }
+    @keyframes bootstrap-move {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(178%);
+      }
+    }
+    @media (prefers-color-scheme: dark) {
+      html,
+      body {
+        background: #101c23;
+      }
+      #bootstrap-screen {
+        color: #e7f5f2;
+        background: radial-gradient(circle at 50% 36%, #173a3a 0, #101c23 60%);
+      }
+      .bootstrap-subtitle,
+      .bootstrap-status {
+        color: #abc1c3;
+      }
+      .bootstrap-track {
+        background: #2a4447;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bootstrap-progress {
+        width: 100%;
+        animation: none;
+      }
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="bootstrap-screen" role="status" aria-live="polite">
+      <div class="bootstrap-content">
+        <div class="bootstrap-mark" aria-hidden="true">
+          <svg
+            width="35"
+            height="35"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+            <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+            <path d="M19 5a10 10 0 0 1 0 14" />
+          </svg>
+        </div>
+        <h1 class="bootstrap-title">CIT Voice Studio</h1>
+        <p class="bootstrap-subtitle">Chuẩn bị không gian sáng tạo giọng nói</p>
+        <div class="bootstrap-track">
+          <div class="bootstrap-progress"></div>
+        </div>
+        <p class="bootstrap-status">Đang mở giao diện...</p>
+        <button
+          class="bootstrap-retry"
+          id="bootstrap-retry"
+          type="button"
+          hidden
+          onclick="location.reload()"
+        >
+          Tải lại giao diện
+        </button>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script>
+    "use strict";
+    setTimeout(() => {
+      if (document.getElementById("bootstrap-screen")) {
+        document.querySelector(".bootstrap-status").textContent =
+          "Giao diện khởi động lâu hơn dự kiến. Bạn có thể thử tải lại.";
+        document.getElementById("bootstrap-retry").hidden = false;
+      }
+    }, 15_000);
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

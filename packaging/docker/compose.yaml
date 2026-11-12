@@ -1,0 +1,25 @@
+# CIT Voice Studio làm máy chủ giọng nói. Chạy từ gốc repo:
+#   docker compose -f packaging/docker/compose.yaml up -d --build
+# Có card NVIDIA: thêm  -f packaging/docker/compose.gpu.yaml  (xem README, mục Docker).
+name: cit-voice-studio
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: packaging/docker/Dockerfile
+    image: cit-voice-studio:latest
+    restart: unless-stopped
+    # Dùng mạng của máy chủ, không NAT, để app thấy đúng IP người gọi: chính máy chủ
+    # (và đường hầm SSH) mở được giao diện, máy khác chỉ gọi API bằng khoá. Với port
+    # mapping, mọi request đến từ IP cầu nối của Docker nên đều bị coi là "máy khác"
+    # và giao diện bị chặn. Chỉ chạy đúng trên Docker Engine của Linux.
+    network_mode: host
+    volumes:
+      - cit-data:/data
+    # environment:
+    #   PORT: "9000"   # đổi cổng (mặc định 8001)
+
+volumes:
+  # Mô hình, lịch sử, cài đặt, khoá API, giọng nhân bản.
+  cit-data:

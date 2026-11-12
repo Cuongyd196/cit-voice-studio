@@ -1,0 +1,19 @@
+name: Đề xuất tính năng
+description: Ý tưởng để app tốt hơn
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: van-de
+    attributes:
+      label: Bạn đang gặp khó khăn gì?
+      description: Mô tả việc bạn muốn làm mà app chưa hỗ trợ.
+    validations:
+      required: true
+  - type: textarea
+    id: giai-phap
+    attributes:
+      label: Bạn muốn app làm thế nào?
+  - type: textarea
+    id: cach-khac
+    attributes:
+      label: Hiện bạn đang xoay xở ra sao?

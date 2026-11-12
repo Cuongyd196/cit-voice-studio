@@ -1,0 +1,101 @@
+# Build file cài macOS (.dmg) bằng scripts/build_macos.sh — cho cả chip Apple và chip Intel.
+# Độc lập với build-linux.yml. Không có máy Mac thì đây là cách duy nhất: PyInstaller
+# không build chéo. Máy Mac của GitHub tính gấp 10 lần phút Actions với repo private.
+#
+# Tự chạy khi push lên feat/unix (chủ app chọn, 2026-09-28), trừ khi chỉ sửa tài
+# liệu - máy Mac tính gấp 10 lần phút Actions nên không build vì đổi README.
+# Nút Run workflow chỉ hiện khi file này có trên nhánh mặc định (main).
+# Kết quả tải ở mục Artifacts của lần chạy.
+name: Build macOS
+
+on:
+  push:
+    branches: [feat/unix]
+    paths-ignore: ["**.md", "docs/**", "assets/**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14         # Apple Silicon (M1/M2/M3...)
+            arch: arm64
+          - os: macos-15-intel   # Mac chip Intel (macos-13 đã bị GitHub ngừng)
+            arch: x86_64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Tên artifact mang số phiên bản giống tên file trong README
+      # (vd. CIT-Voice-Studio-v1.0.1-macos-arm64.dmg) để tải về không lẫn bản cũ.
+      - name: Phiên bản
+        shell: bash
+        run: echo "VERSION=$(sed -n 's/^#define AppVersion *"\(.*\)".*/\1/p' scripts/installer.iss)" >> "$GITHUB_ENV"
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: app-desktop/cit-voice-app/package-lock.json
+
+      - name: Build
+        run: ./scripts/build_macos.sh
+
+      # Chạy file bên trong .app: server phải lên, phục vụ được giao diện và đọc được
+      # giọng. Cửa sổ WebKit mở trong phiên đồ hoạ của máy CI.
+      - name: Smoke test
+        shell: bash
+        run: |
+          "dist/CIT Voice Studio.app/Contents/MacOS/CIT Voice Studio" > smoke.log 2>&1 &
+          for i in $(seq 1 150); do
+            curl -sf http://127.0.0.1:8001/health | grep -q '"status":"ok"' && break
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:8001/health
+          curl -sf http://127.0.0.1:8001/ | grep -q 'assets/index-'
+          curl -sf -o voice.wav "http://127.0.0.1:8001/api/voices/preview?voice_id=Minh%20%C4%90%E1%BB%A9c"
+          test "$(head -c 4 voice.wav)" = "RIFF"
+          # Khai báo quyền micro phải nằm trong Info.plist của bản đóng gói.
+          plutil -extract NSMicrophoneUsageDescription raw "dist/CIT Voice Studio.app/Contents/Info.plist"
+          echo "Smoke test OK"
+
+      - name: Log khi hỏng
+        if: failure()
+        shell: bash
+        run: |
+          cat smoke.log || true
+          cat "$HOME/Library/Application Support/CIT Voice Studio/cit-voice-studio.log" 2>/dev/null || true
+
+      # Tải thẳng lên Release {VERSION} của repo public (file đính kèm Release không
+      # tính vào hạn mức artifact 500 MB của repo private). Cần secret
+      # PUBLIC_RELEASE_TOKEN: fine-grained token, chỉ repo Cuongyd196/cit-voice-studio,
+      # quyền Contents: Read and write. Chưa có Release thì tạo bản nháp (draft), chủ
+      # app tự bấm Publish; đã có thì thay file cùng tên (--clobber).
+      - name: Tải lên Release của repo public
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
+          REPO: Cuongyd196/cit-voice-studio
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Chưa có secret PUBLIC_RELEASE_TOKEN, bỏ qua bước tải lên Release."
+            exit 0
+          fi
+          if ! gh release view "$VERSION" --repo "$REPO" >/dev/null 2>&1; then
+            # Job song song (arm64 / x86_64) có thể vừa tạo xong: tạo lỗi thì kiểm tra lại là đủ.
+            gh release create "$VERSION" --repo "$REPO" --draft --title "CIT Voice Studio $VERSION" --notes "Đang cập nhật." || gh release view "$VERSION" --repo "$REPO" >/dev/null
+          fi
+          gh release upload "$VERSION" dist/CIT-Voice-Studio-v*-macos-*.dmg --repo "$REPO" --clobber
+
+      - uses: actions/upload-artifact@v4
+        continue-on-error: true  # hết hạn mức artifact thì vẫn còn bản trên Release
+        with:
+          name: CIT-Voice-Studio-v${{ env.VERSION }}-macos-${{ matrix.arch }}.dmg
+          path: dist/CIT-Voice-Studio-v*-macos-*.dmg
+          if-no-files-found: error
+          retention-days: 3  # hạn mức kho artifact của repo private, xem build-linux.yml

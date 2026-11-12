@@ -1,0 +1,52 @@
+# Kiểm tra mỗi pull request và mỗi lần push lên main: test Python, lint + typecheck +
+# test + build giao diện. Không tải mô hình (test đều mock), nên chạy nhanh.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore: ["**.md", "assets/**"]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    # Bộ test mới được kiểm chứng trên Windows. Thêm ubuntu vào đây sau khi đã chạy
+    # thử cả bộ trên Linux.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Cài thư viện
+        run: uv sync --frozen --group dev --group desktop
+
+      - name: Test
+        run: uv run --frozen pytest -q
+
+  frontend:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: app-desktop/cit-voice-app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: app-desktop/cit-voice-app/package-lock.json
+
+      - run: npm ci
+      # Biome (ultracite): lỗi thì chặn, cảnh báo chỉ hiện ra để sửa dần.
+      - run: npm run check
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build

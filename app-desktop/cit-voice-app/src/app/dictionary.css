@@ -1,0 +1,390 @@
+/* Từ điển: danh sách và thử cách đọc có vùng cuộn riêng trên máy tính. */
+.dictionary-dialog {
+  width: min(100%, 1140px);
+}
+.dictionary-body {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  min-height: 0;
+}
+.dictionary-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  min-height: 0;
+  padding: 24px;
+  background: var(--background);
+}
+.dictionary-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.dictionary-toolbar h3,
+.dictionary-aside h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.dictionary-toolbar p,
+.dictionary-help,
+.dictionary-list-hint {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.dictionary-count {
+  padding: 2px 8px;
+  margin-left: 4px;
+  font-size: 12px;
+  color: var(--accent-foreground);
+  background: var(--accent);
+  border-radius: 6px;
+}
+.dictionary-add {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+.dictionary-toolbar {
+  flex-wrap: wrap;
+}
+.dictionary-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dictionary-io {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dictionary-io button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+.dictionary-io button:not(:disabled):hover {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+}
+.dictionary-io button:disabled {
+  opacity: 0.45;
+}
+.dictionary-io svg {
+  color: var(--primary);
+}
+.dictionary-search {
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--muted-foreground);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.dictionary-search:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.dictionary-search input {
+  width: 100%;
+  min-width: 0;
+  outline: none;
+  background: transparent;
+}
+.dictionary-list-hint {
+  margin-top: -4px;
+}
+.dictionary-list {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.dictionary-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.7fr) 16px minmax(140px, 1.3fr) auto;
+  gap: 8px 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.dictionary-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.dictionary-row label span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+.dictionary-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  color: var(--foreground);
+  outline: none;
+  background: var(--background);
+  border-width: 1px;
+  border-radius: 8px;
+}
+.dictionary-row input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.dictionary-arrow {
+  align-self: end;
+  margin-bottom: 11px;
+  color: var(--muted-foreground);
+}
+.dictionary-row-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  align-self: end;
+}
+.dictionary-row-actions button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+}
+.dictionary-row-actions button:first-child {
+  padding: 4px 8px;
+  margin-right: auto;
+}
+.dictionary-case-label {
+  display: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+.dictionary-empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+.dictionary-aside {
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+}
+.dictionary-aside-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--foreground);
+}
+.dictionary-aside-title svg {
+  color: var(--primary);
+}
+.dictionary-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  margin-top: 16px;
+  font-size: 14px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.dictionary-preview-card textarea {
+  min-height: 100px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--card);
+}
+.dictionary-preview-result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.dictionary-preview-result p {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.dictionary-preview-result button {
+  padding: 6px 10px;
+}
+.dictionary-guide {
+  margin-top: 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.dictionary-guide h4 {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.dictionary-guide p + p {
+  margin-top: 12px;
+}
+.dictionary-guide strong {
+  font-weight: 500;
+  color: var(--foreground);
+}
+.dictionary-file {
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.dictionary-file summary {
+  cursor: pointer;
+}
+.dictionary-file p {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.dictionary-footer-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  font-size: 12px;
+}
+.dictionary-footer-status button {
+  min-height: 24px;
+  font-size: 13px;
+}
+.dictionary-unsaved {
+  color: var(--color-amber-700);
+}
+.dark .dictionary-unsaved {
+  color: var(--color-amber-400);
+}
+@media (width < 900px) {
+  .dictionary-row {
+    grid-template-columns: minmax(100px, 0.7fr) 16px minmax(140px, 1.3fr);
+  }
+  .dictionary-row-actions {
+    grid-column: 1 / -1;
+  }
+  .dictionary-case-label {
+    display: inline;
+  }
+  .dictionary-body {
+    display: block;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .dictionary-editor {
+    padding: 16px;
+  }
+  .dictionary-list {
+    flex: none;
+    max-height: 400px;
+  }
+  .dictionary-aside {
+    padding: 20px 16px;
+    overflow: visible;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+}
+@media (width < 480px) {
+  .dictionary-toolbar {
+    flex-wrap: wrap;
+  }
+  .dictionary-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dictionary-arrow {
+    display: none;
+  }
+  .dictionary-footer {
+    gap: 8px;
+  }
+  .dictionary-footer > .dictionary-footer-status {
+    flex: 1 0 100%;
+  }
+}
+
+/* Phân trang dưới danh sách từ. */
+.dictionary-pager {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+.dictionary-pager-item {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.dictionary-pager button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.dictionary-pager button:not(:disabled):hover {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--border));
+}
+.dictionary-pager button[aria-current="page"] {
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.dictionary-pager button:disabled {
+  opacity: 0.4;
+}
+.dictionary-pager-gap {
+  padding: 0 2px;
+  color: var(--muted-foreground);
+}

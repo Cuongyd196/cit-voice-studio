@@ -1,0 +1,16 @@
+# Thêm vào compose.yaml để chạy trên card NVIDIA:
+#   docker compose -f packaging/docker/compose.yaml -f packaging/docker/compose.gpu.yaml up -d --build
+# Cần driver NVIDIA >= 570 và NVIDIA Container Toolkit trên máy chủ.
+services:
+  app:
+    build:
+      args:
+        GPU: "1"
+    image: cit-voice-studio:gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

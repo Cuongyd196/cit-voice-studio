@@ -1,0 +1,111 @@
+# Build bản Linux (.tar.gz + .deb) bằng scripts/build_linux.sh. Độc lập với build-macos.yml.
+# Tự chạy khi push lên feat/unix (chủ app chọn, 2026-09-28), trừ khi chỉ sửa tài
+# liệu. Nút Run workflow chỉ hiện khi file này có trên nhánh mặc định (main).
+# Kết quả tải ở mục Artifacts của lần chạy.
+name: Build Linux
+
+on:
+  push:
+    branches: [feat/unix]
+    paths-ignore: ["**.md", "docs/**", "assets/**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # glibc của 22.04 để chạy được trên cả distro cũ lẫn mới.
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      # Tên artifact mang số phiên bản giống tên file trong README
+      # (vd. CIT-Voice-Studio-v1.0.1-amd64.deb) để tải về không lẫn bản cũ.
+      - name: Phiên bản
+        shell: bash
+        run: echo "VERSION=$(sed -n 's/^#define AppVersion *"\(.*\)".*/\1/p' scripts/installer.iss)" >> "$GITHUB_ENV"
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: app-desktop/cit-voice-app/package-lock.json
+
+      - name: Build
+        run: ./scripts/build_linux.sh
+
+      - name: Smoke test
+        shell: bash
+        run: |
+          dir="$(ls -d dist/CIT-Voice-Studio-v*-linux-*/ | head -1)"
+          "${dir}CIT-Voice-Studio" > smoke.log 2>&1 &
+          APP_PID=$!
+          for i in $(seq 1 150); do
+            curl -sf http://127.0.0.1:8001/health | grep -q '"status":"ok"' && break
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:8001/health
+          curl -sf http://127.0.0.1:8001/ | grep -q 'assets/index-'
+          curl -sf -o voice.wav "http://127.0.0.1:8001/api/voices/preview?voice_id=Minh%20%C4%90%E1%BB%A9c"
+          test "$(head -c 4 voice.wav)" = "RIFF"
+          echo "Smoke test OK"
+          # Giải phóng cổng 8001 cho bước thử .deb (tiến trình nền sống qua các bước).
+          kill $APP_PID
+
+      # Gói .deb cài vào /opt (chỉ đọc): app phải tự chuyển dữ liệu sang ~/CitVoiceStudio
+      # và chép mô hình đi kèm ra đó thay vì tải lại.
+      - name: Smoke test .deb
+        shell: bash
+        run: |
+          sleep 3
+          sudo apt-get install -y ./dist/CIT-Voice-Studio-v*.deb
+          cit-voice-studio > deb.log 2>&1 &
+          for i in $(seq 1 150); do
+            curl -sf http://127.0.0.1:8001/health | grep -q '"status":"ok"' && break
+            sleep 2
+          done
+          curl -sf http://127.0.0.1:8001/health
+          curl -sf -o voice.wav "http://127.0.0.1:8001/api/voices/preview?voice_id=Minh%20%C4%90%E1%BB%A9c"
+          test "$(head -c 4 voice.wav)" = "RIFF"
+          test -d "$HOME/CitVoiceStudio/hf_cache/hub"
+          echo "Smoke test .deb OK"
+
+      - name: Log khi hỏng
+        if: failure()
+        shell: bash
+        run: |
+          cat smoke.log deb.log || true
+          cat "$HOME/CitVoiceStudio/cit-voice-studio.log" 2>/dev/null || true
+
+      # Tải thẳng lên Release {VERSION} của repo public: file đính kèm Release không
+      # tính vào hạn mức artifact của repo private (500 MB với gói Free; upload artifact
+      # báo "Artifact storage quota has been hit"). Cần secret PUBLIC_RELEASE_TOKEN:
+      # fine-grained token, chỉ repo Cuongyd196/cit-voice-studio, quyền Contents: Read
+      # and write. Chưa có Release thì tạo bản nháp (draft), chủ app tự bấm Publish;
+      # đã có thì thay file cùng tên (--clobber).
+      - name: Tải lên Release của repo public
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
+          REPO: Cuongyd196/cit-voice-studio
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "Chưa có secret PUBLIC_RELEASE_TOKEN, bỏ qua bước tải lên Release."
+            exit 0
+          fi
+          if ! gh release view "$VERSION" --repo "$REPO" >/dev/null 2>&1; then
+            # Job song song có thể vừa tạo xong: tạo lỗi thì kiểm tra lại là đủ.
+            gh release create "$VERSION" --repo "$REPO" --draft --title "CIT Voice Studio $VERSION" --notes "Đang cập nhật." || gh release view "$VERSION" --repo "$REPO" >/dev/null
+          fi
+          gh release upload "$VERSION" dist/CIT-Voice-Studio-v*.deb --repo "$REPO" --clobber
+
+      # Bản dự phòng khi chưa có token. Chỉ .deb (từ 1.0.2 không phát hành tar.gz), giữ
+      # 3 ngày; hết hạn mức thì không làm hỏng job vì bản trên Release vẫn có.
+      - uses: actions/upload-artifact@v4
+        continue-on-error: true
+        with:
+          name: CIT-Voice-Studio-v${{ env.VERSION }}-amd64.deb
+          path: dist/CIT-Voice-Studio-v*.deb
+          if-no-files-found: error
+          retention-days: 3

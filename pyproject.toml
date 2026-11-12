@@ -1,0 +1,148 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+override-dependencies = [
+    "nvidia-nccl-cu12; sys_platform == 'linux'",
+]
+# uv mặc định cài nhóm `dev`; đặt rỗng để `uv sync` chỉ cài core torch-free.
+# Muốn dev/test: `uv sync --group dev`. GPU NVIDIA: `uv sync --group gpu-app`.
+default-groups = []
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+
+[project]
+name = "vieneu"
+version = "3.3.0"
+description = "Advanced on-device Vietnamese TTS with instant voice cloning"
+readme = "README.md"
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Operating System :: OS Independent",
+]
+keywords = [
+    "text-to-speech",
+    "tts",
+    "vietnamese",
+    "voice-cloning",
+    "speech-synthesis",
+    "real-time",
+    "on-device"
+]
+authors = [
+    { name = "Phạm Nguyễn Ngọc Bảo", email = "pnnbao@gmail.com" }
+]
+requires-python = ">=3.10"
+# Lõi KHÔNG cần torch: v3 Turbo / Nano chạy trên CPU qua ONNX Runtime.
+# GPU NVIDIA cài thêm nhóm `gpu-app` (torch + transformers).
+dependencies = [
+    "sea-g2p>=0.9.0", # phonemizer (Rust, torch-free) — cần hàm punc_norm() (>=0.7.11)
+    "onnxruntime>=1.20.0", # runs the v3 transformers + MOSS codec
+    "numpy",
+    "soundfile", # audio I/O
+    "soxr", # lightweight resampling for voice cloning
+    "kaldi-native-fbank>=1.20", # speaker-encoder fbank front-end (torch-free voice cloning)
+    "tokenizers>=0.20", # phoneme tokenizer (torch-free)
+    "huggingface_hub", # fetch ONNX / config / tokenizer / voices
+    "librosa>=0.11.0",
+    "pypdf>=6.16.2",
+    # Máy chủ cho giao diện desktop (trước đây đi kèm gián tiếp theo gradio).
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "python-multipart>=0.0.9", # Form/File upload
+    "certifi", # gốc chứng chỉ cho kiểm tra cập nhật (runtime_paths.ssl_context)
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pnnbao97/VieNeu-TTS"
+"Repository" = "https://github.com/pnnbao97/VieNeu-TTS"
+"Bug Tracker" = "https://github.com/pnnbao97/VieNeu-TTS/issues"
+"Documentation" = "https://github.com/pnnbao97/VieNeu-TTS/blob/main/README.md"
+"Source Code" = "https://github.com/pnnbao97/VieNeu-TTS"
+"Changelog" = "https://github.com/pnnbao97/VieNeu-TTS/releases"
+
+[project.optional-dependencies]
+# PDF text extraction. Separate from core to keep the minimal install torch-free.
+# Install with: pip install vieneu[pdf]
+pdf = [
+    "PyMuPDF>=1.25.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "httpx", # FastAPI TestClient
+]
+# Nhóm gọn CHỈ để chạy v3 Turbo trên GPU NVIDIA (run_gpu.bat).
+gpu-app = [
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
+    "transformers",
+    "safetensors",
+]
+
+# Vỏ ứng dụng Desktop (cửa sổ riêng). KHÔNG nằm trong core vì `pip install vieneu`
+# là SDK torch-free, đa nền tảng — không nên kéo theo pythonnet chỉ có ích trên
+# Windows. Nhưng cũng KHÔNG được để trống: trước đây pywebview chỉ được cài lén
+# bởi build_desktop_exe.bat, nên máy dev thì chạy còn bản source tải về luôn
+# rơi xuống trình duyệt kèm dòng "No module named 'webview'".
+desktop = [
+    "pywebview>=5.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src", "scripts"]
+# Chỉ tìm test trong tests/: nút "Cài hỗ trợ GPU" chạy từ mã nguồn tạo gpu_venv/
+# (~7 GB, gồm cả bộ test của torch) ngay trong repo, `pytest` trơn sẽ gom nhầm.
+testpaths = ["tests"]
+
+[project.scripts]
+vieneu-stream = "apps.web_stream:main"
+
+[tool.setuptools]
+package-dir = {"" = "src", "apps" = "apps"}
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["vieneu*", "vieneu_utils*", "apps*"]
+
+[tool.setuptools.package-data]
+vieneu = ["assets/*.json"]
+
+[tool.uv.sources]
+
+torch = [
+    { index = "pytorch", marker = "sys_platform != 'darwin'" },
+    { index = "pypi", marker = "sys_platform == 'darwin'" }
+]
+
+torchaudio = [
+    { index = "pytorch", marker = "sys_platform != 'darwin'" },
+    { index = "pypi", marker = "sys_platform == 'darwin'" }
+]

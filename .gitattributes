@@ -1,0 +1,10 @@
+# Script chạy trên Linux/macOS: luôn LF, kể cả khi checkout trên Windows (core.autocrlf=true).
+# CRLF làm hỏng dòng shebang: "/usr/bin/env: 'bash\r': No such file or directory".
+*.sh text eol=lf
+
+# File cai tren Linux: CRLF lam hong .desktop / metainfo.
+packaging/linux/* text eol=lf
+
+# Giao dien React: Biome doi LF; de Git doi sang CRLF thi `npm run check` tren Windows bao loi dinh dang.
+app-desktop/cit-voice-app/** text=auto eol=lf
+packaging/docker/* text eol=lf
