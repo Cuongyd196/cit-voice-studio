@@ -489,6 +489,7 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
 - Tạo video so sánh 2 khái niệm: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
 - Tạo video từ một đường link / bài viết: 🔗 [github.com/Cuongyd196/auto-video-gen](https://github.com/Cuongyd196/auto-video-gen)
 - Tạo video từ một chủ đề bằng Remotion: 🔗 [github.com/Cuongyd196/remotion-cuongit-template](https://github.com/Cuongyd196/remotion-cuongit-template)
+- Tạo video vẽ tay bảng trắng từ chủ đề, kịch bản hoặc file SRT: 🔗 [github.com/Cuongyd196/whiteboard-video](https://github.com/Cuongyd196/whiteboard-video)
 - Các video mẫu mình đã làm, xem trong Reels hoặc TikTok:
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)

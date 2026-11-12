@@ -479,6 +479,7 @@ Add it to the **Từ điển** (Dictionary) with the reading you want, e.g. `KTX
 - Create videos comparing two concepts: 🔗 [github.com/Cuongyd196/auto-compare-video](https://github.com/Cuongyd196/auto-compare-video)
 - Create a video from a link or article: 🔗 [github.com/Cuongyd196/auto-video-gen](https://github.com/Cuongyd196/auto-video-gen)
 - Create a video from a topic with Remotion: 🔗 [github.com/Cuongyd196/remotion-cuongit-template](https://github.com/Cuongyd196/remotion-cuongit-template)
+- Create hand-drawn whiteboard videos from a topic, script or SRT file: 🔗 [github.com/Cuongyd196/whiteboard-video](https://github.com/Cuongyd196/whiteboard-video)
 - Sample videos made with these tools:
   - 📹 Facebook: [www.facebook.com/cuongit96/reels/](https://www.facebook.com/cuongit96/reels/)
   - 📹 TikTok: [www.tiktok.com/@cuongit96](https://www.tiktok.com/@cuongit96)
