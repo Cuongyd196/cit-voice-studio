@@ -4,7 +4,7 @@
 
 # CIT Voice Studio
 
-**Chuyển văn bản tiếng Việt thành giọng nói tự nhiên, ngay trên máy tính của bạn.**
+**Chuyển văn bản thành giọng nói tự nhiên ngay trên máy tính của bạn: tiếng Việt và hơn 30 ngôn ngữ khác.**
 
 Không cần tài khoản · Không cần Internet sau khi cài · Văn bản và giọng nói không rời khỏi máy
 

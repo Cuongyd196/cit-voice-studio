@@ -4,7 +4,7 @@
 
 # CIT Voice Studio
 
-**Natural-sounding Vietnamese text-to-speech that runs entirely on your own computer.**
+**Natural-sounding text-to-speech that runs entirely on your own computer: Vietnamese and 30+ other languages.**
 
 No account · No Internet needed after install · Your text and voices never leave your machine
 
