@@ -14,6 +14,8 @@ Không cần tài khoản · Không cần Internet sau khi cài · Văn bản v�
 ![Chạy offline](https://img.shields.io/badge/ch%E1%BA%A1y-offline-16a34a)
 ![Giấy phép Apache 2.0](https://img.shields.io/badge/gi%E1%BA%A5y%20ph%C3%A9p-Apache%202.0-64748b)
 
+**Tiếng Việt** · [English](README.en.md)
+
 **[⬇ Tải về](#tải-về)** &nbsp;·&nbsp; **[Tính năng](#tính-năng)** &nbsp;·&nbsp; **[API](#kết-nối-từ-phần-mềm-khác-api)** &nbsp;·&nbsp; **[Lỗi thường gặp](#lỗi-thường-gặp)** &nbsp;·&nbsp; **[☕ Ủng hộ](#ủng-hộ)**
 
 💖 Muốn ủng hộ để Cường phát triển thêm, xem thông tin tại **[cuongit.net/donate](https://cuongit.net/donate)**.
