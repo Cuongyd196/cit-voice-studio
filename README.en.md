@@ -39,13 +39,11 @@ No account · No Internet needed after install · Your text and voices never lea
 | 🎧 **Podcasts, dialogues** | 🎬 **Dubbing from subtitles** | 🔌 **API for other apps** |
 | One voice per character, merged into a single audio file. | Drop in an `.srt` file and the speech lands exactly on the video's timestamps. | Call it from scripts, other software or AI agents at `http://127.0.0.1:8001`. |
 
-### What's new in 1.0.6
+### What's new in 1.0.7
 
-- **Open source** under the Apache-2.0 license. Anyone can read the code, give feedback and contribute: see [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Native voices with Kokoro**: 41 voices in English, Spanish, French, Italian, Portuguese and Hindi, plus Japanese and Chinese. Download it from **Cài đặt → Mô hình** (Settings → Models).
-- **Startup voice**: choose the voice that is selected when the app opens (**Cài đặt → Giọng đọc**, Settings → Voices).
-- **Run as a server** on Linux, including with Docker: see [Running on a server](#running-on-a-headless-server).
-- Fixes: installing over an older version no longer fails with "Không mở được server nội bộ" (cannot start the internal server); the "Ổn định" (stability) option is hidden for models that don't use it.
+- **Update inside the app** (Windows): when a new version is out, click **Tải về & cài đặt** (download & install); the app downloads it, verifies the file, installs over the old version and reopens. No more hunting for the file on the Releases page. Works from 1.0.7 on; 1.0.6 and older need to download this version by hand once.
+- **VieNeu-TTS d3 model by Blaze AI** (optional download in **Cài đặt → Mô hình**, Settings → Models): fewer misread words, no extra babble on very short sentences. CPU and NVIDIA GPU builds.
+- **Easier voice cloning**: pick the exact sample on a waveform (long files no longer use only the first seconds), listen right after creating; if you don't like it, click **Bỏ giọng này** (discard) and pick again, without going to the voice list.
 
 Full history: [Releases](../../releases).
 
@@ -57,10 +55,10 @@ Full history: [Releases](../../releases).
 
 | Your machine | File | Size |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.6-win-x86_64.exe` | ~367 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.6-amd64.deb` | ~460 MB |
-| Mac with Apple chip (M1, M2, M3…, arm64), macOS 14 or later | `CIT-Voice-Studio-v1.0.6-macos-arm64.dmg` | ~428 MB |
-| Mac with Intel chip (x86_64), macOS 13 or later | `CIT-Voice-Studio-v1.0.6-macos-x86_64.dmg` | ~443 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~367 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~460 MB |
+| Mac with Apple chip (M1, M2, M3…, arm64), macOS 14 or later | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~428 MB |
+| Mac with Intel chip (x86_64), macOS 13 or later | `CIT-Voice-Studio-v1.0.7-macos-x86_64.dmg` | ~443 MB |
 
 Every package ships with the voice model: it works right after install, with no Internet, and all data stays on your machine.
 
@@ -80,7 +78,7 @@ Measured speed: on an 8th-gen Intel Core i7 (4 cores), 10 minutes of audio takes
 
 ### Windows
 
-1. Download `CIT-Voice-Studio-v1.0.6-win-x86_64.exe`.
+1. Download `CIT-Voice-Studio-v1.0.7-win-x86_64.exe`.
 2. Double-click it and follow the steps. The installer does not need administrator rights.
 3. Open the app from the Desktop shortcut or the Start Menu.
 
@@ -93,7 +91,7 @@ Measured speed: on an 8th-gen Intel Core i7 (4 cores), 10 minutes of audio takes
 Install the `.deb` package (Ubuntu, Debian, Linux Mint and other Debian-based distributions):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.6-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.7-amd64.deb
 ```
 
 Open **CIT Voice Studio** from the application menu, or run `cit-voice-studio` in a terminal. Uninstall: `sudo apt remove cit-voice-studio`.

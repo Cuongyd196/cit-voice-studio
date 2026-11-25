@@ -28,7 +28,7 @@ body:
     attributes:
       label: Phiên bản app
       description: Xem ở Cài đặt → Cập nhật & thông tin.
-      placeholder: "1.0.6"
+      placeholder: "1.0.7"
     validations:
       required: true
   - type: dropdown

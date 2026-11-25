@@ -11,7 +11,7 @@
 ; Add/Remove Programs va phai khop voi so tren GitHub Release.
 ; KHAC voi `version` trong pyproject.toml: cai do la phien ban goi Python
 ; `vieneu`, bam theo engine VieNeu-TTS cua tac gia goc (dang 3.3.0).
-#define AppVersion     "1.0.6"
+#define AppVersion     "1.0.7"
 #define AppPublisher   "Cuong IT"
 #define AppURL         "https://me.cuongit.net"
 #define AppExeName     "CIT-Voice-Studio.exe"

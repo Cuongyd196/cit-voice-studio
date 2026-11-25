@@ -1,6 +1,6 @@
 # CIT Voice Studio - Hướng Dẫn Kết Nối API & Tích Hợp AI Agent
 
-> **Phiên bản ứng dụng**: `1.0.6` (OpenAPI dùng cùng phiên bản ứng dụng)
+> **Phiên bản ứng dụng**: `1.0.7` (OpenAPI dùng cùng phiên bản ứng dụng)
 > **Địa chỉ mặc định**: `http://127.0.0.1:8001` (hoặc `http://localhost:8001`)  
 > **Mục đích tài liệu**: Cung cấp đặc tả API đầy đủ, chính xác, kèm mã nguồn mẫu để **AI Agent** (Cursor, Claude, ChatGPT, LangChain, AutoGen, CrewAI, Open WebUI, Dify...) hoặc lập trình viên có thể đọc hiểu và tích hợp ngay lập tức mà không cần tài liệu bổ sung.
 
@@ -523,4 +523,4 @@ export class CitVoiceStudioClient {
 
 ---
 
-*Tài liệu dành cho CIT Voice Studio 1.0.6. Kiểm tra `/openapi.json` của ứng dụng đang chạy để đối chiếu phiên bản và các tham số.*
+*Tài liệu dành cho CIT Voice Studio 1.0.7. Kiểm tra `/openapi.json` của ứng dụng đang chạy để đối chiếu phiên bản và các tham số.*

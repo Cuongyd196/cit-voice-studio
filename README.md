@@ -37,13 +37,11 @@ Không cần tài khoản · Không cần Internet sau khi cài · Văn bản v�
 | 🎧 **Podcast, hội thoại** | 🎬 **Lồng tiếng theo phụ đề** | 🔌 **API cho phần mềm khác** |
 | Mỗi nhân vật một giọng, ghép thành một file audio. | Thả file `.srt`, giọng đọc khớp đúng mốc thời gian của video. | Gọi từ script, phần mềm khác hay AI Agent qua `http://127.0.0.1:8001`. |
 
-### Có gì mới ở 1.0.6
+### Có gì mới ở 1.0.7
 
-- **Mã nguồn mở** theo giấy phép Apache-2.0. Ai cũng xem, góp ý và đóng góp được: xem [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Giọng bản xứ với Kokoro**: 41 giọng tiếng Anh, Tây Ban Nha, Pháp, Ý, Bồ Đào Nha, Hindi, thêm tiếng Nhật và tiếng Trung. Tải trong **Cài đặt → Mô hình**.
-- **Chọn giọng mở sẵn** khi mở ứng dụng (**Cài đặt → Giọng đọc**).
-- **Chạy làm máy chủ** trên Linux, kể cả bằng Docker: xem [Chạy trên máy chủ](#chạy-trên-máy-chủ-không-màn-hình).
-- Sửa lỗi: cài đè lên bản cũ không còn làm ứng dụng báo "Không mở được server nội bộ"; tuỳ chọn "Ổn định" ẩn với mô hình không dùng đến.
+- **Cập nhật ngay trong ứng dụng** (Windows): có bản mới thì bấm **Tải về & cài đặt**, ứng dụng tự tải, kiểm tra file, cài đè và mở lại. Không phải vào trang Releases tìm file nữa. Áp dụng từ bản 1.0.7 trở đi; bản 1.0.6 trở về trước cần tải bản này bằng tay một lần.
+- **Mô hình VieNeu-TTS d3 của Blaze AI** (tải thêm trong **Cài đặt → Mô hình**): đọc sai ít hơn, câu rất ngắn không còn bị nói thêm. Có bản CPU và GPU NVIDIA.
+- **Nhân bản giọng dễ hơn**: chọn đúng đoạn giọng mẫu trên dạng sóng (file dài không còn bị lấy vài giây đầu), tạo xong nghe thử ngay; không ưng thì bấm **Bỏ giọng này** và chọn lại, không phải sang danh sách giọng để xoá.
 
 Chi tiết từng phiên bản: [trang Releases](../../releases).
 
@@ -55,10 +53,10 @@ Chi tiết từng phiên bản: [trang Releases](../../releases).
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.6-win-x86_64.exe` | ~367 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.6-amd64.deb` | ~460 MB |
-| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.6-macos-arm64.dmg` | ~428 MB |
-| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.6-macos-x86_64.dmg` | ~443 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~367 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~460 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~428 MB |
+| Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.7-macos-x86_64.dmg` | ~443 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
 
@@ -89,7 +87,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 
 ### Windows
 
-1. Tải file `CIT-Voice-Studio-v1.0.6-win-x86_64.exe`.
+1. Tải file `CIT-Voice-Studio-v1.0.7-win-x86_64.exe`.
 2. Bấm đúp và làm theo hướng dẫn. Bộ cài không đòi quyền quản trị (Administrator).
 3. Mở ứng dụng từ biểu tượng ngoài Desktop hoặc trong Start Menu.
 
@@ -102,7 +100,7 @@ Tốc độ thử nghiệm: máy Intel Core i7 thế hệ 8 (4 nhân) - 10 phút
 Cài file `.deb` (Ubuntu, Debian, Linux Mint và các bản dựa trên Debian):
 
 ```bash
-sudo apt install ./CIT-Voice-Studio-v1.0.6-amd64.deb
+sudo apt install ./CIT-Voice-Studio-v1.0.7-amd64.deb
 ```
 
 Mở bằng mục **CIT Voice Studio** trong menu ứng dụng, hoặc gõ `cit-voice-studio` trong Terminal. Gỡ: `sudo apt remove cit-voice-studio`.
