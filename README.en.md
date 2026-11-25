@@ -159,7 +159,9 @@ The Linux and macOS packages include a detailed `HUONG-DAN.txt` guide (in Vietna
 - Kokoro's phonemizer (partly GPL-licensed) is **not part of the installer**: your machine downloads it from PyPI when you click Download, into a separate `addons/` folder. Not available on macOS yet.
 
 ### Voice cloning
-- Choose **Thu micro** (record about 3–8 seconds of natural speech, any content) or **Nhập file âm thanh** (import an MP3, WAV or M4A file) with one clear speaker and no background music. The app keeps at most 15 seconds from the first speech; Turbo uses at most 8 seconds of voiced audio.
+- Choose **Thu micro** (record about 3–8 seconds of natural speech, any content) or **Nhập file âm thanh** (import an MP3, WAV or M4A file) with one clear speaker and no background music.
+- **Pick the sample** on the waveform: by default 8 seconds from the first speech; for long files (the first 2 minutes are shown) click the waveform or drag the sliders to pick the clearest 3–15 seconds, and listen before creating. Turbo only uses the first 8 seconds of the selection.
+- **Create & preview**: listen right away in the tab; if you don't like it, click **Bỏ giọng này** (discard) to delete it (with its declaration) and pick another sample, without going to the voice list.
 - Only clone your own voice, or a voice whose owner allowed you to clone and use it. You must confirm your right to use it before saving; this is a declaration, not an identity check.
 - Voices and declarations are stored on your machine and deleted together; nothing is sent to the author, and the original audio file is not copied.
 - Save cloned voices to reuse them, and delete them when no longer needed.

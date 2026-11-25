@@ -972,6 +972,7 @@ export const TtsStudio: React.FC = () => {
                   isActive={activeTab === "clone"}
                   onAddCustomVoice={handleAddCustomVoice}
                   onAddHistory={handleAddHistory}
+                  onDeleteCustomVoice={handleDeleteCustomVoice}
                 />
               </div>
 

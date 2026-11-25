@@ -10,7 +10,7 @@
     "check": "ultracite check",
     "fix": "ultracite fix",
     "prepare": "husky",
-    "test": "node --test tests/model-operation-status.test.mjs tests/playback.test.mjs tests/startup.test.cjs",
+    "test": "node --test tests/model-operation-status.test.mjs tests/playback.test.mjs tests/ref-audio.test.mjs tests/startup.test.cjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
