@@ -12,6 +12,8 @@ giọng nói. Ứng dụng dùng các mô hình giọng nói của bên thứ ba
 
 - **VieNeu-TTS** (tác giả Phạm Nguyễn Ngọc Bảo, giấy phép Apache-2.0) cho tiếng Việt, kèm
   sẵn trong bộ cài;
+- **VieNeu-TTS d3** (Blaze AI, giấy phép Apache-2.0), bản cải tiến của VieNeu-TTS cho tiếng
+  Việt, chỉ tải về khi bạn chọn;
 - **Supertonic 3** (Supertone Inc., giấy phép OpenRAIL-M) cho giọng nước ngoài, chỉ tải về
   khi bạn chọn;
 - **Kokoro-82M** (hexgrad, giấy phép Apache-2.0) cho giọng bản xứ nước ngoài, chỉ tải về
@@ -19,7 +21,7 @@ giọng nói. Ứng dụng dùng các mô hình giọng nói của bên thứ ba
   theo giấy phép GPL-3.0 (phonemizer, espeak-ng); các thành phần này không nằm trong bộ cài.
 
 Các mô hình thuộc về tác giả của chúng; CIT Voice Studio là ứng dụng độc lập, không phải sản
-phẩm chính thức của VieNeu-TTS, Supertone hay Kokoro. Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
+phẩm chính thức của VieNeu-TTS, Blaze AI, Supertone hay Kokoro. Ứng dụng chạy **hoàn toàn trên máy tính của bạn**:
 không thu thập, không gửi đi văn bản, âm thanh hay thông tin cá nhân nào. Tác giả không
 nhận, không xem và không kiểm soát nội dung bạn tạo ra.
 
@@ -79,7 +81,7 @@ bằng AI"**.
   trên máy bạn.
 - Ứng dụng được cung cấp **miễn phí và "nguyên trạng"**, không kèm bất kỳ bảo đảm nào.
   Trong phạm vi pháp luật cho phép, tác giả CIT Voice Studio và tác giả các mô hình
-  (VieNeu-TTS, Supertone, Kokoro) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
+  (VieNeu-TTS, Blaze AI, Supertone, Kokoro) không chịu trách nhiệm về nội dung bạn tạo ra, về các vấn đề
   pháp lý hay thiệt hại phát sinh từ việc sử dụng ứng dụng.
 - Các giới hạn trách nhiệm trên không loại trừ nghĩa vụ hoặc trách nhiệm bắt buộc
   theo pháp luật của tác giả ứng dụng hoặc của bất kỳ bên nào có liên quan.
