@@ -136,6 +136,8 @@ from apps import remote_access
 app.include_router(remote_access.router, include_in_schema=False)
 from apps import app_update
 app.include_router(app_update.router, include_in_schema=False)
+from apps import app_updater
+app.include_router(app_updater.router, include_in_schema=False)
 from apps import terms
 app.include_router(terms.router, include_in_schema=False)
 from apps import ui_prefs

@@ -192,6 +192,9 @@ Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExeName}"; Tasks: deskto
 
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "{cm:LaunchApp}"; Flags: nowait postinstall skipifsilent
+; Tu cap nhat trong app (apps/app_updater.py) chay bo cai /SILENT /RELAUNCH=1 roi
+; thoat app: cai xong thi mo lai app. Chay tay (khong co tham so) thi khong anh huong.
+Filename: "{app}\{#AppExeName}"; Flags: nowait; Check: ShouldRelaunch
 
 [InstallDelete]
 ; Cap nhat de len ban cu: xoa _internal cu truoc khi chep. Inno chi ghi de, khong xoa
@@ -212,3 +215,9 @@ Type: files;      Name: "{app}\gpu-selftest.txt"
 Type: files;      Name: "{app}\kokoro-selftest.txt"
 Type: dirifempty; Name: "{app}\models"
 Type: dirifempty; Name: "{app}"
+
+[Code]
+function ShouldRelaunch: Boolean;
+begin
+  Result := WizardSilent and (ExpandConstant('{param:RELAUNCH|0}') = '1');
+end;

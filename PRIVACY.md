@@ -24,6 +24,7 @@ trong các trường hợp sau, và chỉ tải xuống, không gửi nội dung
 | Trường hợp | Kết nối tới | Mặc định |
 |---|---|---|
 | Kiểm tra bản mới (bạn bật trong Cài đặt, hoặc bấm "Kiểm tra cập nhật") | GitHub, tối đa một lần mỗi ngày | **Tắt** |
+| Bạn bấm "Tải về & cài đặt" bản mới (Windows) | GitHub (bộ cài trên trang Releases) | Chỉ khi bạn bấm |
 | Bạn bấm Tải về một mô hình không kèm sẵn | Hugging Face | Chỉ khi bạn bấm |
 | Bạn bấm Tải về mô hình Kokoro hoặc thêm tiếng Nhật/Trung (cài bộ tách âm) | PyPI, GitHub / releases.astral.sh | Chỉ khi bạn bấm |
 | Bạn bấm "Cài hỗ trợ GPU" | PyPI, download.pytorch.org, GitHub / releases.astral.sh | Chỉ khi bạn bấm |

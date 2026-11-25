@@ -1033,6 +1033,8 @@ export interface AppUpdateInfo {
   error: string | null;
   /** Tên các nhóm thay đổi (tiêu đề ### của ghi chú phát hành). */
   highlights?: string[];
+  /** Tải và cài ngay trong app được (Windows, bản cài bằng bộ cài). */
+  installable?: boolean;
   latest: string | null;
   newer: boolean;
   published_at: string | null;
@@ -1087,6 +1089,43 @@ export async function skipAppUpdate(
     throw new Error(await detailOf(response, "Không lưu được."));
   }
 }
+
+// ---- Tu cap nhat (Windows): tai bo cai ban moi roi cai de ----
+
+export interface UpdateDownloadState {
+  downloaded?: number;
+  error?: string;
+  state: "idle" | "downloading" | "ready" | "error" | "installing";
+  total?: number;
+  version?: string;
+}
+
+async function updateRequest(
+  apiUrl: string,
+  method: "GET" | "POST" | "DELETE",
+  path: string,
+  fallback: string
+): Promise<UpdateDownloadState> {
+  const response = await fetch(`${clean(apiUrl)}/api/app/update/${path}`, {
+    method,
+  });
+  if (!response.ok) {
+    throw new Error(await detailOf(response, fallback));
+  }
+  return response.json();
+}
+
+export const getUpdateDownload = (apiUrl: string) =>
+  updateRequest(apiUrl, "GET", "download", "Không đọc được tiến độ tải.");
+
+export const startUpdateDownload = (apiUrl: string) =>
+  updateRequest(apiUrl, "POST", "download", "Không tải được bản mới.");
+
+export const cancelUpdateDownload = (apiUrl: string) =>
+  updateRequest(apiUrl, "DELETE", "download", "Không huỷ được.");
+
+export const installUpdate = (apiUrl: string) =>
+  updateRequest(apiUrl, "POST", "install", "Không cài được bản mới.");
 
 // ---- Khoi dong lai ung dung (cai dat chi ap dung luc mo app) ----
 
