@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-14         # Apple Silicon (M1/M2/M3...)
+          - os: macos-15         # Apple Silicon (M1/M2/M3...); macos-14 không còn được cấp máy (2026-11)
             arch: arm64
           - os: macos-15-intel   # Mac chip Intel (macos-13 đã bị GitHub ngừng)
             arch: x86_64
