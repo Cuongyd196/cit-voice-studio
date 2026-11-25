@@ -4,6 +4,7 @@ import {
   Download,
   FileUp,
   Mic,
+  RotateCcw,
   Save,
   ShieldCheck,
   Sparkles,
@@ -18,13 +19,24 @@ import {
   fetchConsentInfo,
   generateToHistory,
 } from "../api";
-import { convertAudioToWav, ReferenceTooLongError } from "../audio-engine";
+import {
+  type DecodedReference,
+  decodeReferenceAudio,
+  ReferenceTooLongError,
+} from "../audio-engine";
 import { downloadHistoryAudio, fromServer } from "../history";
 import { useModelCaps } from "../model-caps";
-import { REF_MAX_SECONDS } from "../ref-audio";
+import {
+  defaultSelection,
+  encodeWav,
+  REF_EDIT_MAX_SECONDS,
+  REF_MIN_SECONDS,
+  type RefSelection,
+} from "../ref-audio";
 import type { HistoryEntry } from "../types";
 import { useCaretInsert } from "../use-caret-insert";
 import { EmotionBar } from "./EmotionBar";
+import { ReferenceTrimmer } from "./ReferenceTrimmer";
 
 const errorText = (err: unknown, fallback: string) =>
   err instanceof Error && err.message ? err.message : fallback;
@@ -34,6 +46,7 @@ interface VoiceCloningTabProps {
   isActive: boolean;
   onAddCustomVoice: (voiceId: string) => Promise<void>;
   onAddHistory: (entry: HistoryEntry) => void;
+  onDeleteCustomVoice: (voiceId: string) => Promise<void>;
 }
 
 // Micro và file âm thanh dùng chung cam kết quyền sử dụng, không cần ASR.
@@ -48,6 +61,7 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
   apiUrl,
   isActive,
   onAddCustomVoice,
+  onDeleteCustomVoice,
   onAddHistory,
 }) => {
   const { supportsCloning } = useModelCaps();
@@ -62,7 +76,9 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
   const [consent, setConsent] = useState<ConsentInfo | null>(null);
   const [consentError, setConsentError] = useState<string | null>(null);
 
-  // Bước 2: thu âm
+  // Bước 2: thu âm / chọn file, rồi chọn đoạn mẫu trên dạng sóng
+  const [reference, setReference] = useState<DecodedReference | null>(null);
+  const [selection, setSelection] = useState<RefSelection | null>(null);
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
   const [audioPreviewUrl, setAudioPreviewUrl] = useState<string | null>(null);
   const [audioDuration, setAudioDuration] = useState<number | null>(null);
@@ -78,6 +94,7 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedVoice, setSavedVoice] = useState<string | null>(null);
+  const [isDiscarding, setIsDiscarding] = useState(false);
 
   // Nghe thử giọng vừa tạo
   const [targetText, setTargetText] = useState(
@@ -136,28 +153,37 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
     };
   }, [audioPreviewUrl]);
 
+  const clearReference = () => {
+    setReference(null);
+    setSelection(null);
+    setAudioFile(null);
+    setAudioPreviewUrl(null);
+    setAudioDuration(null);
+  };
+
   const handleRecorded = async (raw: Blob) => {
     setIsPreparing(true);
     setErrorMessage(null);
     try {
-      const { wavBlob, duration } = await convertAudioToWav(
-        raw,
-        REF_MAX_SECONDS
-      );
-      setAudioFile(wavBlob);
-      setAudioPreviewUrl(URL.createObjectURL(wavBlob));
-      setAudioDuration(duration);
+      const decoded = await decodeReferenceAudio(raw, REF_EDIT_MAX_SECONDS);
+      if (decoded.samples.length < REF_MIN_SECONDS * decoded.sampleRate) {
+        clearReference();
+        setErrorMessage(
+          `Đoạn mẫu quá ngắn. Cần ít nhất ${REF_MIN_SECONDS} giây giọng nói rõ.`
+        );
+        return;
+      }
+      setReference(decoded);
+      setSelection(defaultSelection(decoded.samples, decoded.sampleRate));
       setSavedVoice(null);
       setOutputUrl(null);
       setOutputEntryId(null);
       setSaveError(null);
     } catch (err) {
-      setAudioFile(null);
-      setAudioPreviewUrl(null);
-      setAudioDuration(null);
+      clearReference();
       setErrorMessage(
         err instanceof ReferenceTooLongError
-          ? "File quá dài để xử lý. Hãy cắt đoạn giọng rõ 5–15 giây rồi thử lại."
+          ? "File quá dài để mở. Hãy cắt bớt file (dưới khoảng 10 phút) rồi thử lại."
           : `Không đọc được âm thanh. Hãy chọn file ${SOURCE_FORMATS} hợp lệ hoặc thu âm lại.`
       );
     } finally {
@@ -165,14 +191,33 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
     }
   };
 
+  // Đoạn chọn đổi thì đóng gói lại WAV gửi lên máy chủ và nghe thử. Chờ người dùng
+  // kéo xong một chút: đóng gói 15 giây 48 kHz mỗi lần nhích thanh trượt là thừa.
+  useEffect(() => {
+    if (!(reference && selection)) {
+      return;
+    }
+    const timer = setTimeout(() => {
+      const sr = reference.sampleRate;
+      const wav = encodeWav(
+        reference.samples,
+        sr,
+        selection.start * sr,
+        (selection.start + selection.length) * sr
+      );
+      setAudioFile(wav);
+      setAudioPreviewUrl(URL.createObjectURL(wav));
+      setAudioDuration(selection.length);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [reference, selection]);
+
   const changeSource = (source: "recording" | "file") => {
     if (source === inputSource) {
       return;
     }
     setInputSource(source);
-    setAudioFile(null);
-    setAudioPreviewUrl(null);
-    setAudioDuration(null);
+    clearReference();
     setSourceFileName("");
     setSavedVoice(null);
     setSaveError(null);
@@ -186,9 +231,7 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
       return;
     }
     setSavedVoice(null);
-    setAudioFile(null);
-    setAudioPreviewUrl(null);
-    setAudioDuration(null);
+    clearReference();
     setSaveError(null);
     setSourceFileName(file.name);
     const lowerName = file.name.toLowerCase();
@@ -262,6 +305,27 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
     }
   };
 
+  // Nghe thử xong mà không ưng: xoá giọng (kèm cam kết) ngay tại đây rồi chỉnh lại
+  // đoạn mẫu, thay vì phải sang danh sách giọng để xoá (issue #2). Giọng chỉ tạo
+  // được qua bước lưu có cam kết - API không nhận file mẫu để nhân bản tạm.
+  const handleDiscard = async () => {
+    if (!savedVoice) {
+      return;
+    }
+    setIsDiscarding(true);
+    setSaveError(null);
+    try {
+      await onDeleteCustomVoice(savedVoice);
+      setSavedVoice(null);
+      setOutputUrl(null);
+      setOutputEntryId(null);
+    } catch (err) {
+      setSaveError(errorText(err, "Không bỏ được giọng vừa tạo."));
+    } finally {
+      setIsDiscarding(false);
+    }
+  };
+
   const handleGenerate = async () => {
     if (!(savedVoice && targetText.trim())) {
       return;
@@ -309,11 +373,11 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
     </span>
   );
 
-  let saveLabel = "Lưu giọng trên máy";
+  let saveLabel = "Tạo giọng & nghe thử";
   if (isSaving) {
-    saveLabel = "Đang tạo & lưu giọng…";
+    saveLabel = "Đang tạo giọng…";
   } else if (savedVoice) {
-    saveLabel = "Đã lưu vào thư viện giọng";
+    saveLabel = "Đã tạo và lưu giọng";
   }
 
   // Mô hình giọng nước ngoài (Supertonic) chỉ có giọng sẵn; máy chủ cũng trả 400.
@@ -459,7 +523,8 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
                   </p>
                 )}
                 <p className="text-[12px] text-muted-foreground">
-                  Một người nói rõ, không nhạc nền; giữ tối đa 15 giây.
+                  Một người nói rõ, không nhạc nền. File dài thì chọn đoạn ở
+                  dạng sóng bên dưới.
                 </p>
               </div>
             ) : (
@@ -471,6 +536,30 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
                 <p className="text-[12px] text-muted-foreground">
                   Đọc tự nhiên 3–8 giây ở nơi yên tĩnh.
                 </p>
+              </>
+            )}
+            {reference && selection && (
+              <>
+                <ReferenceTrimmer
+                  disabled={isSaving || isPreparing || savedVoice !== null}
+                  onChange={setSelection}
+                  sampleRate={reference.sampleRate}
+                  samples={reference.samples}
+                  selection={selection}
+                />
+                {reference.sourceDuration !== null &&
+                  reference.sourceDuration >
+                    reference.samples.length / reference.sampleRate + 1 && (
+                    <p className="text-[12px] text-muted-foreground">
+                      File dài, chỉ hiện {REF_EDIT_MAX_SECONDS / 60} phút đầu để
+                      chọn đoạn.
+                    </p>
+                  )}
+                {savedVoice && (
+                  <p className="text-[12px] text-muted-foreground">
+                    Muốn chọn đoạn khác: bấm “Bỏ giọng này” ở bước 3.
+                  </p>
+                )}
               </>
             )}
             {audioPreviewUrl && (
@@ -518,7 +607,8 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
               </label>
             </div>
             <p className="text-[12px] text-muted-foreground">
-              Giọng và cam kết chỉ lưu trên máy của bạn.
+              Giọng và cam kết chỉ lưu trên máy của bạn. Tạo xong nghe thử ở
+              khung bên phải; không ưng thì bỏ và chọn lại đoạn mẫu.
             </p>
             <button
               className="studio-primary flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2 font-semibold text-white text-xs disabled:cursor-not-allowed disabled:opacity-50"
@@ -532,6 +622,7 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
                 isSaving ||
                 isPreparing ||
                 isRecording ||
+                isDiscarding ||
                 savedVoice !== null
               }
               onClick={handleSave}
@@ -545,10 +636,23 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
               {saveLabel}
             </button>
             {savedVoice && (
-              <p className="text-[12px] text-muted-foreground" role="status">
-                Đã lưu “{savedVoice}”. Chọn giọng này ở TTS Studio, Hội thoại
-                hoặc gọi API với voice_id = “{savedVoice}”.
-              </p>
+              <>
+                <p className="text-[12px] text-muted-foreground" role="status">
+                  Đã lưu “{savedVoice}”. Chọn giọng này ở TTS Studio, Hội thoại
+                  hoặc gọi API với voice_id = “{savedVoice}”.
+                </p>
+                <button
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-secondary px-4 py-1.5 font-semibold text-foreground text-xs hover:bg-secondary/70 disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={isDiscarding || isGenerating}
+                  onClick={handleDiscard}
+                  type="button"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  {isDiscarding
+                    ? "Đang bỏ giọng…"
+                    : "Không ưng? Bỏ giọng này, chọn lại đoạn mẫu"}
+                </button>
+              </>
             )}
             {saveError && (
               <p className="text-rose-600 text-xs" role="alert">
@@ -587,6 +691,12 @@ export const VoiceCloningTab: React.FC<VoiceCloningTabProps> = ({
           disabled={isGenerating || !savedVoice}
           onInsertTag={caret.insertTag}
         />
+        {!savedVoice && (
+          <p className="text-[12px] text-muted-foreground">
+            Chọn đoạn mẫu rồi bấm “Tạo giọng &amp; nghe thử” ở bước 3 để đọc thử
+            câu bên dưới.
+          </p>
+        )}
         <textarea
           className="w-full resize-none rounded-xl border border-border/80 bg-secondary/20 p-3 text-[14px] text-foreground leading-relaxed outline-none focus:border-brand-500"
           disabled={isGenerating || !savedVoice}

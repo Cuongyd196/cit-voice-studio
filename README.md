@@ -168,7 +168,9 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 - Bộ tách âm của Kokoro (có phần giấy phép GPL) **không nằm trong bộ cài**: máy bạn tự tải từ PyPI khi bấm Tải về, vào thư mục `addons/` riêng. Trên macOS chưa dùng được.
 
 ### Nhân bản giọng nói
-- Chọn **Thu micro** (đọc nội dung bất kỳ bằng giọng tự nhiên khoảng 3–8 giây) hoặc **Nhập file âm thanh** (MP3, WAV hoặc M4A; WAV và M4A có từ 1.0.4) có giọng nói rõ, một người nói, không nhạc nền. Không cần đọc câu cam kết. Ứng dụng giữ tối đa 15 giây từ tiếng nói đầu tiên; Turbo dùng tối đa 8 giây có tiếng.
+- Chọn **Thu micro** (đọc nội dung bất kỳ bằng giọng tự nhiên khoảng 3–8 giây) hoặc **Nhập file âm thanh** (MP3, WAV hoặc M4A; WAV và M4A có từ 1.0.4) có giọng nói rõ, một người nói, không nhạc nền. Không cần đọc câu cam kết.
+- **Chọn đoạn mẫu** trên dạng sóng: mặc định là 8 giây từ tiếng nói đầu tiên; file dài (hiện 2 phút đầu) thì bấm vào dạng sóng hoặc kéo thanh trượt để chọn đoạn nói rõ nhất, dài 3–15 giây, nghe lại trước khi tạo. Turbo chỉ dùng 8 giây đầu của đoạn chọn.
+- **Tạo giọng & nghe thử**: tạo xong đọc thử ngay trong tab; không ưng thì bấm **Bỏ giọng này** để xoá (cùng cam kết) rồi chọn lại đoạn mẫu, không phải sang danh sách giọng để xoá.
 - Chỉ dùng giọng của bạn hoặc giọng đã được chủ giọng cho phép nhân bản và sử dụng. Phải xác nhận quyền sử dụng trước khi lưu; đây là cam kết, không phải xác minh danh tính.
 - Giọng và cam kết lưu trên máy, xoá cùng nhau; không gửi về tác giả, không tự sao chép file âm thanh gốc. Cả micro và file âm thanh không cần bộ nhận dạng câu đồng ý.
 - Lưu giọng đã nhân bản để dùng lại, và xoá khi không cần nữa.

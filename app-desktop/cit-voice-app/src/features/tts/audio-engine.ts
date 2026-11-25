@@ -7,7 +7,6 @@
  */
 
 import { notifySaved } from "./desktop-files";
-import { voicedWindow } from "./ref-audio";
 
 export class StreamingAudioEngine {
   private audioCtx: AudioContext | null = null;
@@ -376,8 +375,12 @@ export async function downloadBlobAsFile(
   }
 }
 
-// 4 MB đầu: ~4 phút MP3 128 kbps, ~24 giây WAV 44,1 kHz stereo - dư cho 15 giây mẫu.
+// Chỉ giải mã phần đầu file lớn: giải mã trọn file ghi âm 30 phút làm trang không
+// nạp được audio nào nữa cho đến khi tải lại (đo trên Edge, 2026-09). File nén
+// (MP3/M4A/OGG): 4 MB ~ 4 phút MP3 128 kbps. WAV không nén nên cần nhiều byte hơn
+// cho cùng thời lượng: 24 MB ~ 2 phút 48 kHz stereo 16-bit, đủ REF_EDIT_MAX_SECONDS.
 const PARTIAL_DECODE_BYTES = 4 * 1024 * 1024;
+const PARTIAL_DECODE_WAV_BYTES = 24 * 1024 * 1024;
 // M4A ~96 kbps: 8 MB ~ 11 phút. File 5 phút giải mã trọn vẫn ổn, 30 phút thì không.
 const FULL_DECODE_MAX_BYTES = 8 * 1024 * 1024;
 
@@ -409,28 +412,30 @@ function mediaDuration(file: Blob): Promise<number | null> {
   });
 }
 
-/**
- * Chuyển đổi bất kỳ file âm thanh nào (WebM từ Mic, MP3, M4A, OGG, FLAC...)
- * thành định dạng WAV 16-bit PCM Mono chuẩn qua Web Audio API của trình duyệt.
- *
- * ``maxSeconds``: chỉ giữ chừng ấy giây, bắt đầu từ chỗ có tiếng đầu tiên (xem
- * ``voicedWindow``). ``duration`` là độ dài phần giữ lại, ``sourceDuration`` là
- * độ dài file gốc (``null`` khi chỉ giải mã phần đầu và không đo được).
- *
- * File lớn chỉ giải mã ``PARTIAL_DECODE_BYTES`` đầu (MP3/WAV/OGG/FLAC/M4A có
- * metadata ở đầu đều được). Giải mã trọn file ghi âm 30 phút làm trang không nạp
- * được audio nào nữa cho đến khi tải lại (đo trên Edge, 2026-09), nên file không
- * giải mã từng phần được mà lớn hơn ``FULL_DECODE_MAX_BYTES`` thì báo
- * ``ReferenceTooLongError`` thay vì giải mã trọn.
- */
-export async function convertAudioToWav(
-  audioInput: Blob | File,
-  maxSeconds?: number
-): Promise<{
-  wavBlob: Blob;
-  duration: number;
+async function isRiffWav(file: Blob): Promise<boolean> {
+  const head = new Uint8Array(await file.slice(0, 4).arrayBuffer());
+  return String.fromCharCode(...head) === "RIFF";
+}
+
+export interface DecodedReference {
+  sampleRate: number;
+  /** Mono float32, tối đa ``maxSeconds`` giây đầu file. */
+  samples: Float32Array;
+  /** Độ dài file gốc (giây); null khi chỉ giải mã phần đầu và không đo được. */
   sourceDuration: number | null;
-}> {
+}
+
+/**
+ * Giải mã file âm thanh bất kỳ trình duyệt đọc được (WebM từ micro, MP3, M4A, WAV,
+ * OGG, FLAC...) thành mono float32, giữ tối đa ``maxSeconds`` giây đầu để người
+ * dùng chọn đoạn mẫu. File lớn chỉ giải mã phần đầu (định dạng có metadata ở đầu
+ * đều được); file không giải mã từng phần được mà lớn hơn ``FULL_DECODE_MAX_BYTES``
+ * thì báo ``ReferenceTooLongError`` thay vì giải mã trọn.
+ */
+export async function decodeReferenceAudio(
+  audioInput: Blob | File,
+  maxSeconds: number
+): Promise<DecodedReference> {
   const AudioCtxClass =
     window.AudioContext ||
     (window as unknown as { webkitAudioContext: typeof AudioContext })
@@ -440,17 +445,15 @@ export async function convertAudioToWav(
   try {
     let audioBuffer: AudioBuffer | null = null;
     let sourceDuration: number | null = null;
-    if (maxSeconds !== undefined && audioInput.size > PARTIAL_DECODE_BYTES) {
+    const headBytes = (await isRiffWav(audioInput))
+      ? PARTIAL_DECODE_WAV_BYTES
+      : PARTIAL_DECODE_BYTES;
+    if (audioInput.size > headBytes) {
       try {
-        const head = await audioInput
-          .slice(0, PARTIAL_DECODE_BYTES)
-          .arrayBuffer();
-        const decoded = await audioCtx.decodeAudioData(head);
-        // Đủ maxSeconds thì dùng luôn (im lặng đầu dài thì phần giữ ngắn hơn).
-        if (decoded.duration >= maxSeconds) {
-          audioBuffer = decoded;
-          sourceDuration = await mediaDuration(audioInput);
-        }
+        audioBuffer = await audioCtx.decodeAudioData(
+          await audioInput.slice(0, headBytes).arrayBuffer()
+        );
+        sourceDuration = await mediaDuration(audioInput);
       } catch {
         // Định dạng cần cả file (M4A có metadata ở cuối...): xét tiếp bên dưới.
       }
@@ -465,62 +468,20 @@ export async function convertAudioToWav(
       sourceDuration = audioBuffer.duration;
     }
     const sampleRate = audioBuffer.sampleRate || 48_000;
-    const [start, end] =
-      maxSeconds === undefined
-        ? [0, audioBuffer.length]
-        : voicedWindow(audioBuffer.getChannelData(0), sampleRate, maxSeconds);
-    const length = end - start;
-    const duration = length / sampleRate;
-
-    // Downmix về mono float32 - chỉ phần giữ lại, không phải cả file.
-    const monoPCM = new Float32Array(length);
+    const length = Math.min(
+      audioBuffer.length,
+      Math.round(maxSeconds * sampleRate)
+    );
+    // Downmix về mono - chỉ phần giữ lại, không phải cả file.
+    const samples = new Float32Array(length);
     const numChannels = audioBuffer.numberOfChannels;
     for (let c = 0; c < numChannels; c++) {
       const channelData = audioBuffer.getChannelData(c);
       for (let i = 0; i < length; i++) {
-        monoPCM[i] += channelData[start + i] / numChannels;
+        samples[i] += channelData[i] / numChannels;
       }
     }
-
-    // Chuyển đổi sang PCM 16-bit
-    const int16Samples = new Int16Array(length);
-    for (let i = 0; i < length; i++) {
-      const s = Math.max(-1, Math.min(1, monoPCM[i]));
-      int16Samples[i] = s < 0 ? s * 0x80_00 : s * 0x7f_ff;
-    }
-
-    // Đóng gói WAV Header chuẩn
-    const buffer = new ArrayBuffer(44 + int16Samples.length * 2);
-    const view = new DataView(buffer);
-
-    const writeString = (offset: number, str: string) => {
-      for (let i = 0; i < str.length; i++) {
-        view.setUint8(offset + i, str.charCodeAt(i));
-      }
-    };
-
-    writeString(0, "RIFF");
-    view.setUint32(4, 36 + int16Samples.length * 2, true);
-    writeString(8, "WAVE");
-    writeString(12, "fmt ");
-    view.setUint32(16, 16, true);
-    view.setUint16(20, 1, true); // PCM format
-    view.setUint16(22, 1, true); // 1 Channel (Mono)
-    view.setUint32(24, sampleRate, true);
-    view.setUint32(28, sampleRate * 2, true); // Byte rate (sr * numChannels * 2)
-    view.setUint16(32, 2, true); // Block align
-    view.setUint16(34, 16, true); // 16 bits per sample
-    writeString(36, "data");
-    view.setUint32(40, int16Samples.length * 2, true);
-
-    let index = 44;
-    for (let i = 0; i < int16Samples.length; i++) {
-      view.setInt16(index, int16Samples[i], true);
-      index += 2;
-    }
-
-    const wavBlob = new Blob([buffer], { type: "audio/wav" });
-    return { wavBlob, duration, sourceDuration };
+    return { samples, sampleRate, sourceDuration };
   } finally {
     try {
       await audioCtx.close();
