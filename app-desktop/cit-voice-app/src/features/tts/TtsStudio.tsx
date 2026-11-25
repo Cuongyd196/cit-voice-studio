@@ -770,6 +770,7 @@ export const TtsStudio: React.FC = () => {
           <UpdateBanner
             info={appUpdate}
             onDismiss={() => setUpdateDismissed(true)}
+            onOpen={() => setUpdateDialogOpen(true)}
           />
         )}
 

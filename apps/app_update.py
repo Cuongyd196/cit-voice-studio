@@ -1,4 +1,7 @@
-"""Kiểm tra bản mới trên GitHub Releases. Chỉ BÁO, không tự tải hay tự cài.
+"""Kiểm tra bản mới trên GitHub Releases.
+
+Module này chỉ hỏi và báo. Bản Windows cài bằng bộ cài còn tải và cài đè được khi
+người dùng bấm nút (apps/app_updater.py); các bản khác mở trang tải.
 
 - Có bản mới: giao diện bật hộp thoại (tên các nhóm thay đổi lấy từ tiêu đề `###`
   của ghi chú phát hành). "Để sau" ghi `skipped` = bản đó, hộp thoại không bật lại
@@ -75,6 +78,12 @@ def _write(state: dict) -> None:
         pass  # Không ghi được: lần mở sau hỏi lại GitHub, không sao.
 
 
+def cached_latest() -> dict | None:
+    """Kết quả lần hỏi GitHub gần nhất (tự động hoặc bấm tay), không gọi mạng."""
+    latest = _read().get("latest")
+    return latest if isinstance(latest, dict) else None
+
+
 def is_enabled() -> bool:
     return _read().get("enabled") is True
 
@@ -93,8 +102,37 @@ def highlights(body: str) -> list[str]:
     return out
 
 
+_DOWNLOAD_PREFIX = f"https://github.com/{RELEASES_REPO}/releases/download/"
+_SHA256 = re.compile(r"sha256:([0-9a-f]{64})")
+
+
+def windows_asset_name(version: str) -> str:
+    """Tên bộ cài Windows trên trang Releases (OutputBaseFilename trong installer.iss)."""
+    return f"CIT-Voice-Studio-v{version.lstrip('vV')}-win-x86_64.exe"
+
+
+def pick_installer(assets, version: str) -> dict | None:
+    """Bộ cài Windows của bản ``version`` để tự cập nhật, hoặc None.
+
+    Chỉ nhận đúng tên file mong đợi, link tải thuộc đúng kho phát hành, và có mã
+    sha256 do GitHub tính (trường ``digest``): app kiểm tra file tải về theo mã này
+    trước khi chạy. Thiếu bất cứ thứ gì thì không tự cập nhật, chỉ mở trang tải.
+    """
+    want = windows_asset_name(version)
+    for asset in assets if isinstance(assets, list) else []:
+        if not isinstance(asset, dict) or asset.get("name") != want:
+            continue
+        url = str(asset.get("browser_download_url") or "")
+        digest = _SHA256.fullmatch(str(asset.get("digest") or ""))
+        size = asset.get("size")
+        if url.startswith(_DOWNLOAD_PREFIX) and digest and isinstance(size, int) and size > 0:
+            return {"name": want, "url": url, "size": size, "sha256": digest.group(1)}
+    return None
+
+
 def fetch_latest() -> dict:
-    """{"version", "url", "published_at"} của bản phát hành mới nhất (bỏ qua bản nháp/thử)."""
+    """{"version", "url", "published_at", "highlights", "installer"} của bản phát hành
+    mới nhất (bỏ qua bản nháp/thử)."""
     request = urllib.request.Request(LATEST_API, headers={
         "Accept": "application/vnd.github+json",
         "User-Agent": f"CIT-Voice-Studio/{APP_VERSION}",
@@ -106,9 +144,11 @@ def fetch_latest() -> dict:
     # Chỉ mở trang của đúng kho phát hành, không tin link lạ trong phản hồi.
     if not url.startswith(f"https://github.com/{RELEASES_REPO}/"):
         url = RELEASES_PAGE
-    return {"version": str(body.get("tag_name") or ""), "url": url,
+    version = str(body.get("tag_name") or "")
+    return {"version": version, "url": url,
             "published_at": body.get("published_at"),
-            "highlights": highlights(str(body.get("body") or ""))}
+            "highlights": highlights(str(body.get("body") or "")),
+            "installer": pick_installer(body.get("assets"), version) if version else None}
 
 
 def _result(latest: dict | None, *, checked_at: float | None, error: str | None = None) -> dict:
@@ -127,7 +167,16 @@ def _result(latest: dict | None, *, checked_at: float | None, error: str | None 
         # Người dùng bấm "Để sau" ở hộp thoại của đúng bản này: không bật hộp thoại
         # nữa (thanh báo nhỏ vẫn hiện) cho tới khi có bản mới hơn.
         "skipped": bool(version) and _read().get("skipped") == version,
+        # Bấm một nút là tải và cài luôn (Windows, bản cài bằng bộ cài). Không được
+        # thì giao diện mở trang tải như cũ.
+        "installable": bool(version) and is_newer(version)
+        and isinstance((latest or {}).get("installer"), dict) and _self_update_supported(),
     }
+
+
+def _self_update_supported() -> bool:
+    from apps import app_updater  # import muộn: app_updater import ngược module này
+    return app_updater.supported()
 
 
 def check(force: bool = False) -> dict:

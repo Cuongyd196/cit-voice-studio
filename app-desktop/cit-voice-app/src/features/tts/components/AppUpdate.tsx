@@ -3,21 +3,31 @@ import type React from "react";
 import { useEffect, useId, useRef, useState } from "react";
 import {
   type AppUpdateInfo,
+  cancelUpdateDownload,
   checkAppUpdate,
+  getUpdateDownload,
+  installUpdate,
   saveUpdateCheck,
   skipAppUpdate,
+  startUpdateDownload,
+  type UpdateDownloadState,
 } from "../api";
 
-// Kiem tra ban moi: chi BAO va dan toi trang tai, khong tu tai/tu cai (bo cai ~365 MB,
-// chua ky so nen SmartScreen van hoi; cai hong giua chung thi nguoi dung mat app).
+// Kiem tra ban moi. Ban Windows cai bang bo cai: bam mot nut la tai + cai de ngay
+// trong app (apps/app_updater.py kiem tra sha256 truoc khi chay bo cai). Ban khac
+// (chay tu ma nguon, Linux .deb, macOS .dmg) van mo trang tai nhu cu.
 
 const errorText = (e: unknown) => (e instanceof Error ? e.message : String(e));
+
+const mb = (bytes = 0) => `${Math.round(bytes / (1024 * 1024))} MB`;
 
 /** Thanh bao "Da co ban moi" duoi thanh tab. Chi hien khi co ban moi hon. */
 export const UpdateBanner: React.FC<{
   info: AppUpdateInfo | null;
   onDismiss: () => void;
-}> = ({ info, onDismiss }) => {
+  /** Mở hộp thoại cập nhật (để tải + cài ngay trong app). */
+  onOpen?: () => void;
+}> = ({ info, onDismiss, onOpen }) => {
   if (!info?.newer) {
     return null;
   }
@@ -29,14 +39,24 @@ export const UpdateBanner: React.FC<{
           Đã có <strong>bản {info.latest}</strong> (bạn đang dùng bản{" "}
           {info.current}).
         </span>
-        <a
-          className="font-bold underline underline-offset-2 hover:text-brand-500"
-          href={info.url}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Xem thay đổi &amp; tải về
-        </a>
+        {info.installable && onOpen ? (
+          <button
+            className="font-bold underline underline-offset-2 hover:text-brand-500"
+            onClick={onOpen}
+            type="button"
+          >
+            Cập nhật ngay
+          </button>
+        ) : (
+          <a
+            className="font-bold underline underline-offset-2 hover:text-brand-500"
+            href={info.url}
+            rel="noreferrer"
+            target="_blank"
+          >
+            Xem thay đổi &amp; tải về
+          </a>
+        )}
       </div>
       <button
         className="shrink-0 rounded-lg p-1 transition-colors hover:bg-brand-500/20"
@@ -50,16 +70,67 @@ export const UpdateBanner: React.FC<{
   );
 };
 
+/** Tiến độ tải/cài bản mới ở máy chủ. Tải chạy nền ở máy chủ: đóng hộp thoại rồi
+ *  mở lại vẫn thấy đúng tiến độ. */
+function useSelfUpdate(apiUrl: string, enabled: boolean) {
+  const [state, setState] = useState<UpdateDownloadState>({ state: "idle" });
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+    let stop = false;
+    const poll = async () => {
+      try {
+        const next = await getUpdateDownload(apiUrl);
+        if (!stop) {
+          setState(next);
+        }
+      } catch {
+        // Máy chủ đã thoát để cài (state "installing"): không còn gì để hỏi.
+      }
+    };
+    poll();
+    const timer = setInterval(poll, 500);
+    return () => {
+      stop = true;
+      clearInterval(timer);
+    };
+  }, [apiUrl, enabled]);
+
+  const run = async (action: () => Promise<UpdateDownloadState>) => {
+    setError("");
+    try {
+      setState(await action());
+    } catch (e) {
+      setError(errorText(e));
+    }
+  };
+
+  return {
+    state,
+    error: error || (state.state === "error" ? state.error || "" : ""),
+    download: () => run(() => startUpdateDownload(apiUrl)),
+    cancel: () => run(() => cancelUpdateDownload(apiUrl)),
+    install: () => run(() => installUpdate(apiUrl)),
+  };
+}
+
 /** Hộp thoại "Có bản mới" giữa màn hình, hiện một lần cho mỗi bản. "Để sau" ghi
  *  nhớ bản đó ở máy chủ nên lần mở sau không bật lại (thanh báo nhỏ vẫn còn);
- *  nút X chỉ đóng trong phiên này. Chỉ mở trang tải, không tự tải/tự cài. */
+ *  nút X chỉ đóng trong phiên này. Bản Windows tải + cài ngay trong app. */
 export const UpdateDialog: React.FC<{
   apiUrl: string;
   info: AppUpdateInfo;
   onClose: () => void;
 }> = ({ apiUrl, info, onClose }) => {
   const titleId = useId();
-  const primaryRef = useRef<HTMLAnchorElement>(null);
+  const primaryRef = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
+  const installable = Boolean(info.installable);
+  const self = useSelfUpdate(apiUrl, installable);
+  const phase = self.state.state;
+  const busy = phase === "downloading" || phase === "installing";
 
   useEffect(() => {
     primaryRef.current?.focus();
@@ -78,6 +149,65 @@ export const UpdateDialog: React.FC<{
     }
     onClose();
   };
+
+  const total = self.state.total || 0;
+  const done = self.state.downloaded || 0;
+  const percent = total ? Math.min(100, Math.round((done / total) * 100)) : 0;
+
+  let primary: React.ReactNode;
+  if (!installable) {
+    primary = (
+      <a
+        className="studio-primary inline-flex items-center gap-1.5 rounded-lg px-4 py-2 font-semibold text-xs"
+        href={info.url}
+        onClick={onClose}
+        ref={primaryRef}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <Download className="h-3.5 w-3.5" />
+        Tải bản mới
+      </a>
+    );
+  } else if (phase === "downloading") {
+    primary = (
+      <button
+        className="rounded-lg border border-border px-4 py-2 font-semibold text-foreground text-xs transition-colors hover:bg-secondary"
+        onClick={self.cancel}
+        ref={primaryRef}
+        type="button"
+      >
+        Huỷ tải
+      </button>
+    );
+  } else if (phase === "ready" || phase === "installing") {
+    primary = (
+      <button
+        className="studio-primary inline-flex items-center gap-1.5 rounded-lg px-4 py-2 font-semibold text-xs disabled:opacity-60"
+        disabled={phase === "installing"}
+        onClick={self.install}
+        ref={primaryRef}
+        type="button"
+      >
+        <RefreshCw
+          className={`h-3.5 w-3.5 ${phase === "installing" ? "animate-spin" : ""}`}
+        />
+        {phase === "installing" ? "Đang cài đặt…" : "Cài đặt & mở lại"}
+      </button>
+    );
+  } else {
+    primary = (
+      <button
+        className="studio-primary inline-flex items-center gap-1.5 rounded-lg px-4 py-2 font-semibold text-xs"
+        onClick={self.download}
+        ref={primaryRef}
+        type="button"
+      >
+        <Download className="h-3.5 w-3.5" />
+        {phase === "error" ? "Thử tải lại" : "Tải về & cài đặt"}
+      </button>
+    );
+  }
 
   return (
     <div
@@ -104,7 +234,8 @@ export const UpdateDialog: React.FC<{
           </div>
           <button
             aria-label="Đóng"
-            className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground disabled:opacity-40"
+            disabled={phase === "installing"}
             onClick={onClose}
             type="button"
           >
@@ -125,6 +256,52 @@ export const UpdateDialog: React.FC<{
           </ul>
         )}
 
+        {installable && phase === "downloading" && (
+          <div aria-live="polite" className="mt-4 space-y-1.5">
+            <div
+              aria-label="Tiến độ tải bản mới"
+              aria-valuemax={100}
+              aria-valuemin={0}
+              aria-valuenow={percent}
+              className="h-2 overflow-hidden rounded-full bg-secondary"
+              role="progressbar"
+            >
+              <div
+                className="h-full rounded-full bg-brand-500 transition-[width] duration-300"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+            <p className="font-mono text-muted-foreground text-xs">
+              Đang tải {mb(done)} / {mb(total)} ({percent}%). Đóng hộp thoại vẫn
+              tải tiếp.
+            </p>
+          </div>
+        )}
+        {installable && phase === "ready" && (
+          <p className="mt-4 text-foreground/80 text-xs" role="status">
+            Đã tải xong và kiểm tra file. Bấm cài đặt: ứng dụng sẽ đóng, cài
+            xong tự mở lại (khoảng 1–2 phút).
+          </p>
+        )}
+        {installable && phase === "installing" && (
+          <p className="mt-4 text-foreground/80 text-xs" role="status">
+            Đang cài bản mới. Ứng dụng sẽ đóng và tự mở lại khi cài xong.
+          </p>
+        )}
+        {installable && self.error && (
+          <p className="mt-4 text-rose-600 text-xs" role="alert">
+            {self.error}{" "}
+            <a
+              className="underline underline-offset-2"
+              href={info.url}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Tải thủ công
+            </a>
+          </p>
+        )}
+
         <div className="update-dialog-footer">
           <a
             className="font-medium text-foreground text-sm underline underline-offset-4 hover:text-brand-600"
@@ -135,24 +312,16 @@ export const UpdateDialog: React.FC<{
             Có gì mới
           </a>
           <div className="flex gap-2">
-            <button
-              className="rounded-lg border border-border px-4 py-2 font-semibold text-foreground text-xs transition-colors hover:bg-secondary"
-              onClick={handleLater}
-              type="button"
-            >
-              Để sau
-            </button>
-            <a
-              className="studio-primary inline-flex items-center gap-1.5 rounded-lg px-4 py-2 font-semibold text-xs"
-              href={info.url}
-              onClick={onClose}
-              ref={primaryRef}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <Download className="h-3.5 w-3.5" />
-              Tải bản mới
-            </a>
+            {!busy && phase !== "ready" && (
+              <button
+                className="rounded-lg border border-border px-4 py-2 font-semibold text-foreground text-xs transition-colors hover:bg-secondary"
+                onClick={handleLater}
+                type="button"
+              >
+                Để sau
+              </button>
+            )}
+            {primary}
           </div>
         </div>
       </div>

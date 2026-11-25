@@ -683,6 +683,11 @@ def main():
     _wait_for_previous_instance()
     from apps import server_settings
     server_settings.restart_handler = _restart_app
+    # Tự cập nhật (Windows): bộ cài chạy rồi app thoát để bộ cài ghi đè; bộ cài mở
+    # lại app khi xong. Dọn bộ cài đã dùng của lần cập nhật trước.
+    from apps import app_updater
+    app_updater.quit_handler = lambda: os._exit(0)
+    threading.Thread(target=app_updater.cleanup_after_update, daemon=True).start()
 
     # A daemon backend belongs to its window; borrowing it breaks on owner exit.
     _BACKEND_ERROR = None
