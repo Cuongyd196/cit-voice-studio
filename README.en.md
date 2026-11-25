@@ -216,6 +216,7 @@ Change the model in **Cài đặt → Quản lý & Chọn Mô hình AI** (Settin
 |---|---|---|
 | Regular PC, office laptop, **low-end machine** | **v3 Turbo INT8** (default) | Included in the installer. Fastest on CPU, 48 kHz audio |
 | Machine with an **NVIDIA card** (Windows, Linux) | **v3 Turbo GPU NVIDIA** | Click **Cài hỗ trợ GPU** (Install GPU support) on that model |
+| Need **more accurate reading** (fewer misread words, no extra babble on very short sentences) | **v3 Turbo d3 - by Blaze AI** | Improved version by Blaze AI. ~520 MB download (CPU) or ~625 MB (NVIDIA GPU). As slow as FP32; slightly darker voice |
 | Want to try a small model | v3 Nano (experimental) | ~400 MB download, 24 kHz audio, weaker English |
 | **Foreign-language** text with native voices | **Kokoro** | ~350 MB download; English, Spanish, French, Italian, Portuguese, Hindi, plus Japanese/Chinese. No Vietnamese; not on macOS yet |
 | A language Kokoro doesn't have (Korean, German, Russian…) | **Supertonic 3** | ~400 MB download, 31 languages, 10 shared voices |
@@ -490,20 +491,22 @@ Add it to the **Từ điển** (Dictionary) with the reading you want, e.g. `KTX
 
 ## Credits
 
-CIT Voice Studio is developed by **Cường IT**. It uses three third-party speech models:
+CIT Voice Studio is developed by **Cường IT**. It uses these third-party speech models:
 
 - **VieNeu-TTS** by **Phạm Nguyễn Ngọc Bảo** - Vietnamese voices and voice cloning; included in the installer. This is the foundation of CIT Voice Studio.
+- **VieNeu-TTS d3** by **Blaze AI** (Apache-2.0) - an improved fine-tune of VieNeu-TTS v3 Turbo with more accurate reading; downloaded only if you choose it. The app downloads it from a Hugging Face mirror, redistributed with Blaze AI's permission.
 - **Supertonic 3** by **Supertone Inc.** - foreign voices in 31 languages; downloaded only if you choose it.
 - **Kokoro-82M** by **hexgrad** - native voices in 8 languages; downloaded only if you choose it.
 
 The speech models belong to their authors. Cường IT's part is the application: the interface, additional features and the installers for Windows, Linux and macOS.
 
-Many thanks to Phạm Nguyễn Ngọc Bảo for building and sharing VieNeu-TTS, to Supertone for releasing Supertonic, and to hexgrad for releasing Kokoro.
+Many thanks to Phạm Nguyễn Ngọc Bảo for building and sharing VieNeu-TTS, to Blaze AI for sharing the d3 fine-tune, to Supertone for releasing Supertonic, and to hexgrad for releasing Kokoro.
 
 | | |
 |---|---|
 | VieNeu-TTS (source) | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
 | VieNeu-TTS on Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
+| VieNeu-TTS d3 (Blaze AI) on Hugging Face | [blaze-voice-ai/vienue-v3-turbo-enhanced](https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced) (mirror the app downloads from: [cuongyd196/VieNeu-TTS-v3-Turbo-d3](https://huggingface.co/cuongyd196/VieNeu-TTS-v3-Turbo-d3)) |
 | Supertonic (source) | [supertone-oss-archive/supertonic](https://github.com/supertone-oss-archive/supertonic) |
 | Supertonic 3 on Hugging Face | [supertone-oss-archive/supertonic-3](https://huggingface.co/supertone-oss-archive/supertonic-3) |
 | Kokoro (source) | [hexgrad/kokoro](https://github.com/hexgrad/kokoro) |
@@ -548,6 +551,8 @@ The Supertonic 3 model © Supertone Inc. is licensed under **OpenRAIL-M**: comme
 
 - Model: [OpenRAIL-M](https://huggingface.co/supertone-oss-archive/supertonic-3/blob/main/LICENSE)
 - Sample code (partly reused to run the model): [MIT](https://github.com/supertone-oss-archive/supertonic/blob/main/LICENSE)
+
+The VieNeu-TTS d3 model © Blaze AI is licensed under [Apache-2.0](https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced) and is based on VieNeu-TTS v3 Turbo © Phạm Nguyễn Ngọc Bảo. It is not in the installer; it is downloaded only if you choose it.
 
 The Kokoro-82M model © hexgrad is licensed under [Apache-2.0](https://huggingface.co/hexgrad/Kokoro-82M); the GPU runner code is copied from hexgrad/kokoro (Apache-2.0). Kokoro's phonemizer is partly **GPL-3.0** (phonemizer, espeak-ng): it is not in the installer; your machine downloads it from PyPI when you click Download.
 

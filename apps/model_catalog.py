@@ -20,6 +20,16 @@ NANO_FILES: Tuple[str, ...] = (
     "codec_decoder.onnx", "config.json", "constants.npz",
     "speaker_encoder.onnx", "codec_encoder.onnx", "reference_encoder.onnx", "denoiser.onnx",
 )
+# Bản fine-tune "d3" của Blaze AI (blaze-voice-ai/vienue-v3-turbo-enhanced, Apache-2.0).
+# Repo gốc gated (phải có tài khoản HF + token), nên app tải từ bản mirror không
+# gated - tác giả đã cho phép phân phối lại. Cùng kiến trúc, cùng bố cục thư mục
+# với V3_REPO (update/, onnx_update/, file ONNX ở gốc); chỉ khác trọng số. Không có
+# bản int8. Đo trên 160 cặp clip (CPU fp32, Whisper chấm): CER 12,9% → 9,4%, tiếng
+# hơi tối hơn (~5 dB dải >8 kHz).
+D3_REPO = "cuongyd196/VieNeu-TTS-v3-Turbo-d3"
+D3_CPU_ID = "VieNeu-TTS-v3-Turbo d3 (fp32)"
+D3_GPU_ID = "VieNeu-TTS-v3-Turbo d3 (GPU)"
+D3_IDS = (D3_CPU_ID, D3_GPU_ID)
 CODEC_REPO = "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX"
 CODEC_REPO_TORCH = "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano"
 # Supertonic 3 (Supertone, OpenRAIL-M): giọng nước ngoài, apps/supertonic_engine.py. Repo
@@ -220,6 +230,49 @@ MODELS: Tuple[ModelSpec, ...] = (
         precision="fp32",
         device="cpu",
         note="Cần tải thêm ở lần đầu.",
+    ),
+    ModelSpec(
+        id=D3_CPU_ID,
+        name="VieNeu-TTS v3 Turbo d3 (FP32 CPU - by Blaze AI)",
+        description=(
+            "Bản cải tiến của Blaze AI: đọc sai ít hơn, hết lỗi nói thêm ở câu rất ngắn, "
+            "giọng hơi trầm/tối hơn. Cùng 25 giọng có sẵn, hỗ trợ nhân bản giọng."
+        ),
+        sources=(
+            RepoFiles(repo=D3_REPO, subfolder="onnx_update", files=GRAPH_FILES),
+            RepoFiles(repo=D3_REPO, files=ROOT_FILES),
+            _ONNX_CODEC,
+        ),
+        requires=(),
+        approx_bytes=521 * 1024 * 1024,   # onnx_update 453 MiB + ONNX gốc 68 MiB; codec dùng chung
+        precision="fp32",
+        device="cpu",
+        note="Cần tải thêm ở lần đầu. Trọng số: Blaze AI (Apache-2.0).",
+    ),
+    ModelSpec(
+        id=D3_GPU_ID,
+        name="VieNeu-TTS v3 Turbo d3 (GPU NVIDIA - by Blaze AI)",
+        description=(
+            "Bản cải tiến d3 của Blaze AI chạy PyTorch/CUDA ở fp32 (giữ trọn phần cải "
+            "tiến), nên tốn VRAM và chậm hơn bản GPU thường một chút."
+        ),
+        sources=(
+            RepoFiles(
+                repo=D3_REPO,
+                patterns=("update/*", "*.onnx", "config.json"),
+                markers=("update/model.safetensors", "speaker_encoder.onnx"),
+            ),
+            RepoFiles(
+                repo=CODEC_REPO_TORCH,
+                patterns=("*.json", "*.py", "*.safetensors"),
+                markers=("config.json",),
+            ),
+        ),
+        requires=("torch", "cuda"),
+        approx_bytes=625 * 1024 * 1024,   # update/ 473 MiB + ONNX gốc 68 MiB + codec torch 84 MiB
+        precision="fp32",
+        device="cuda",
+        note="Trọng số: Blaze AI (Apache-2.0).",
     ),
     ModelSpec(
         id=SUPERTONIC_ID,

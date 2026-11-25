@@ -172,8 +172,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({
         </ul>
         <p className="mt-3 border-amber-500/30 border-t pt-2 text-muted-foreground text-xs leading-relaxed">
           Người dùng tự chịu trách nhiệm trước pháp luật về nội dung mình tạo
-          ra. Tác giả CIT Voice Studio, VieNeu-TTS, Supertone và Kokoro không
-          chịu trách nhiệm với việc sử dụng sai mục đích.
+          ra. Tác giả CIT Voice Studio, VieNeu-TTS, Blaze AI, Supertone và
+          Kokoro không chịu trách nhiệm với việc sử dụng sai mục đích.
         </p>
       </div>
 
@@ -182,11 +182,13 @@ export const AboutTab: React.FC<AboutTabProps> = ({
         <p className="text-foreground/90 text-sm leading-relaxed">
           <strong>CIT Voice Studio</strong> do <strong>Cường IT</strong> phát
           triển, dựa trên <strong>VieNeu-TTS</strong> của tác giả{" "}
-          <strong>Phạm Nguyễn Ngọc Bảo</strong> (giọng tiếng Việt). Giọng nước
-          ngoài dùng <strong>Supertonic 3</strong> của{" "}
-          <strong>Supertone Inc.</strong> và <strong>Kokoro-82M</strong> của{" "}
-          <strong>hexgrad</strong>, tải riêng khi bạn chọn. Ứng dụng độc lập,
-          không phải sản phẩm chính thức của VieNeu-TTS, Supertone hay Kokoro.
+          <strong>Phạm Nguyễn Ngọc Bảo</strong> (giọng tiếng Việt). Bản cải tiến{" "}
+          <strong>VieNeu-TTS d3</strong> của <strong>Blaze AI</strong> là mô
+          hình tải thêm tuỳ chọn. Giọng nước ngoài dùng{" "}
+          <strong>Supertonic 3</strong> của <strong>Supertone Inc.</strong> và{" "}
+          <strong>Kokoro-82M</strong> của <strong>hexgrad</strong>, tải riêng
+          khi bạn chọn. Ứng dụng độc lập, không phải sản phẩm chính thức của
+          VieNeu-TTS, Blaze AI, Supertone hay Kokoro.
         </p>
 
         {/* Hai kho ma nguon phai ghi RO cua ai. Truoc day chi co mot lien ket ten
@@ -245,6 +247,21 @@ export const AboutTab: React.FC<AboutTabProps> = ({
 
           <div className="flex flex-wrap items-baseline gap-2 text-xs">
             <span className="w-28 shrink-0 text-muted-foreground">
+              VieNeu d3
+            </span>
+            <a
+              className="inline-flex items-center gap-1 font-bold text-amber-600 hover:underline dark:text-amber-400"
+              href="https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <span>Blaze AI · Hugging Face</span>
+              <ExternalLink className="h-3 w-3 opacity-70" />
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-baseline gap-2 text-xs">
+            <span className="w-28 shrink-0 text-muted-foreground">
               Supertonic 3
             </span>
             <a
@@ -297,7 +314,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({
         {/* Apache 2.0 buoc giu thong bao ban quyen TRONG BAN PHAT HANH (file LICENSE
             + NOTICE di kem bo cai), khong buoc hien thi day du trong giao dien. */}
         <p className="border-border/50 border-t pt-1 text-[12px] text-muted-foreground">
-          Ứng dụng: mã nguồn mở, Apache 2.0 · VieNeu-TTS: Apache 2.0 ·
+          Ứng dụng: mã nguồn mở, Apache 2.0 · VieNeu-TTS: Apache 2.0 · VieNeu d3
+          (Blaze AI): Apache 2.0, phân phối lại với sự cho phép của tác giả ·
           Supertonic 3: OpenRAIL-M (cấm mạo danh, lừa đảo, đăng nội dung AI
           không ghi rõ) · Kokoro-82M: Apache 2.0 (bộ tách âm tải thêm có phần
           GPL-3.0, không nằm trong bộ cài).

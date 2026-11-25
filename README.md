@@ -225,6 +225,7 @@ Bản Linux và macOS có file `HUONG-DAN.txt` đi kèm, hướng dẫn chi ti�
 |---|---|---|
 | Máy thường, laptop văn phòng, **máy yếu** | **v3 Turbo INT8** (mặc định) | Có sẵn trong bộ cài. Nhanh nhất khi chạy bằng CPU, âm thanh 48 kHz |
 | Máy có **card NVIDIA** (Windows, Linux) | **v3 Turbo GPU NVIDIA** | Bấm **Cài hỗ trợ GPU** ngay tại mô hình đó |
+| Cần **đọc chuẩn hơn** (ít đọc sai, câu rất ngắn không bị nói thêm) | **v3 Turbo d3 - by Blaze AI** | Bản cải tiến của Blaze AI. Tải thêm ~520 MB (CPU) hoặc ~625 MB (GPU NVIDIA). Chậm như FP32, giọng hơi trầm/tối hơn |
 | Muốn thử mô hình nhỏ | v3 Nano (thử nghiệm) | Tải thêm ~400 MB, âm thanh 24 kHz, đọc tiếng Anh kém hơn |
 | Đọc văn bản **tiếng nước ngoài** bằng giọng bản xứ | **Kokoro** | Tải thêm ~350 MB; Anh, Tây Ban Nha, Pháp, Ý, Bồ Đào Nha, Hindi, thêm Nhật/Trung. Không đọc tiếng Việt; chưa có trên macOS |
 | Cần ngôn ngữ Kokoro không có (Hàn, Đức, Nga…) | **Supertonic 3** | Tải thêm ~400 MB, 31 ngôn ngữ, 10 giọng dùng chung |
@@ -500,20 +501,22 @@ Thêm từ đó vào **Từ điển** với cách đọc mong muốn, ví dụ `
 
 ## Nguồn gốc
 
-CIT Voice Studio do **Cường IT** phát triển. Ứng dụng dùng ba mô hình giọng nói của bên thứ ba:
+CIT Voice Studio do **Cường IT** phát triển. Ứng dụng dùng các mô hình giọng nói của bên thứ ba:
 
 - **VieNeu-TTS** của tác giả **Phạm Nguyễn Ngọc Bảo** - giọng tiếng Việt, nhân bản giọng; kèm sẵn trong bộ cài. Đây là nền tảng của CIT Voice Studio.
+- **VieNeu-TTS d3** của **Blaze AI** (Apache-2.0) - bản cải tiến từ VieNeu-TTS v3 Turbo, đọc chuẩn hơn; chỉ tải khi bạn chọn. Ứng dụng tải từ bản sao trên Hugging Face, được Blaze AI cho phép phân phối lại.
 - **Supertonic 3** của **Supertone Inc.** - giọng nước ngoài 31 ngôn ngữ; chỉ tải khi bạn chọn (từ 1.0.3).
 - **Kokoro-82M** của **hexgrad** (Apache-2.0) - giọng bản xứ 8 ngôn ngữ; chỉ tải khi bạn chọn.
 
 Các mô hình giọng nói là của tác giả của chúng. Phần Cường IT làm là ứng dụng: giao diện, bổ sung một số tính năng và bộ cài cho Windows, Linux và macOS.
 
-Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS, Supertone đã công bố Supertonic, và hexgrad đã công bố Kokoro.
+Xin cảm ơn tác giả Phạm Nguyễn Ngọc Bảo đã xây dựng và chia sẻ VieNeu-TTS, Blaze AI đã chia sẻ bản cải tiến d3, Supertone đã công bố Supertonic, và hexgrad đã công bố Kokoro.
 
 | | |
 |---|---|
 | VieNeu-TTS (mã nguồn) | [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) |
 | VieNeu-TTS trên Hugging Face | [pnnbao-ump/VieNeu-TTS](https://huggingface.co/pnnbao-ump/VieNeu-TTS) |
+| VieNeu-TTS d3 (Blaze AI) trên Hugging Face | [blaze-voice-ai/vienue-v3-turbo-enhanced](https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced) (bản sao ứng dụng tải: [cuongyd196/VieNeu-TTS-v3-Turbo-d3](https://huggingface.co/cuongyd196/VieNeu-TTS-v3-Turbo-d3)) |
 | Supertonic (mã nguồn) | [supertone-oss-archive/supertonic](https://github.com/supertone-oss-archive/supertonic) |
 | Supertonic 3 trên Hugging Face | [supertone-oss-archive/supertonic-3](https://huggingface.co/supertone-oss-archive/supertonic-3) |
 | Kokoro (mã nguồn) | [hexgrad/kokoro](https://github.com/hexgrad/kokoro) |
@@ -558,6 +561,8 @@ Mô hình Supertonic 3 © Supertone Inc., giấy phép **OpenRAIL-M**: được 
 
 - Mô hình: [OpenRAIL-M](https://huggingface.co/supertone-oss-archive/supertonic-3/blob/main/LICENSE)
 - Mã mẫu (ứng dụng dùng lại một phần để chạy mô hình): [MIT](https://github.com/supertone-oss-archive/supertonic/blob/main/LICENSE)
+
+Mô hình VieNeu-TTS d3 © Blaze AI, giấy phép [Apache-2.0](https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced), dựa trên VieNeu-TTS v3 Turbo © Phạm Nguyễn Ngọc Bảo. Mô hình không nằm trong bộ cài, chỉ tải khi bạn chọn.
 
 Mô hình Kokoro-82M © hexgrad, giấy phép [Apache-2.0](https://huggingface.co/hexgrad/Kokoro-82M); mã chạy bản GPU chép từ hexgrad/kokoro (Apache-2.0). Bộ tách âm của Kokoro có phần theo giấy phép **GPL-3.0** (phonemizer, espeak-ng): phần này không nằm trong bộ cài, máy bạn tự tải từ PyPI khi bấm Tải về.
 

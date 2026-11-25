@@ -30,6 +30,7 @@ Toàn văn LGPL-2.1 có trong thư mục cài đặt, file `_internal/_soundfile
 
 | Mô hình | Giấy phép | Nguồn |
 |---|---|---|
+| VieNeu-TTS v3 Turbo "d3" (Blaze AI) - bản fine-tune của VieNeu-TTS v3 Turbo (Phạm Nguyễn Ngọc Bảo, https://github.com/pnnbao97/VieNeu-TTS), tải khi bạn bấm Tải về trong mục Mô hình. Ứng dụng tải từ bản sao không gated, được Blaze AI cho phép phân phối lại; file giữ nguyên, không sửa | Apache-2.0 | https://huggingface.co/blaze-voice-ai/vienue-v3-turbo-enhanced (bản sao: https://huggingface.co/cuongyd196/VieNeu-TTS-v3-Turbo-d3) |
 | Supertonic 3 (Supertone Inc.) - giọng nước ngoài 31 ngôn ngữ, tải khi bạn bấm Tải về trong mục Mô hình. File `LICENSE` của giấy phép tải kèm mô hình. Giấy phép có danh sách cấm dùng (mạo danh khi không được đồng ý, lừa đảo, tin giả gây hại, nội dung do máy tạo mà không ghi rõ…) áp dụng cho mọi người dùng | OpenRAIL-M ([LICENSE](https://huggingface.co/supertone-oss-archive/supertonic-3/blob/main/LICENSE)) | https://huggingface.co/supertone-oss-archive/supertonic-3 (mã nguồn mẫu, MIT: https://github.com/supertone-oss-archive/supertonic, [LICENSE](https://github.com/supertone-oss-archive/supertonic/blob/main/LICENSE)) |
 | Kokoro-82M (hexgrad) - giọng nước ngoài 8 ngôn ngữ, tải khi bạn bấm Tải về trong mục Mô hình (bản CPU dùng bản ONNX, bản GPU dùng trọng số PyTorch gốc) | Apache-2.0 | https://huggingface.co/hexgrad/Kokoro-82M, https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX |
 

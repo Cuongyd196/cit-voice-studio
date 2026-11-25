@@ -349,6 +349,33 @@ def load_model_instance(model_name: str = "VieNeu-TTS-v3-Turbo (int8)", device: 
                 "name": model_name, "backend": "onnx", "precision": "fp32",
                 "device": "cpu", "sample_rate": 24_000,
             }
+        elif model_name in model_catalog.D3_IDS:
+            # Phải đứng TRƯỚC các nhánh so chuỗi "gpu"/"fp32" bên dưới: tên d3 cũng chứa
+            # mấy chữ đó, rơi xuống dưới là âm thầm nạp trọng số VieNeu gốc.
+            gpu = model_name == model_catalog.D3_GPU_ID
+            if gpu and not cuda_is_available():
+                raise RuntimeError(
+                    "Không tìm thấy GPU NVIDIA dùng được. Hãy chọn bản d3 CPU, hoặc mở "
+                    "Cài đặt và cài hỗ trợ GPU."
+                )
+            if gpu:
+                # fp32, không để "auto" (bf16): làm tròn bf16 mất phần lớn chỗ khác
+                # biệt của d3 so với bản gốc (ghi chú của tác giả).
+                vieneu = Vieneu(mode="v3turbo", backbone_repo=model_catalog.D3_REPO,
+                                backend="pytorch", device="cuda", dtype="float32")
+                gpu_memory.apply(vieneu)
+            else:
+                vieneu = Vieneu(mode="v3turbo", backbone_repo=model_catalog.D3_REPO,
+                                backend="onnx", precision="fp32")
+            current_model_info = {
+                "name": model_name,
+                "backend": "pytorch" if gpu else "onnx",
+                "precision": "fp32",
+                "device": "cuda" if gpu else "cpu",
+                "sample_rate": 48_000,
+            }
+            if gpu:
+                current_model_info["gpu_name"] = gpu_name()
         elif "gpu" in model_name.lower():
             # v3 Turbo chạy PyTorch/CUDA. Đây là đường DUY NHẤT dùng được GPU cho v3:
             # engine ONNX hardcode CPUExecutionProvider. Nó cũng mở khoá static
