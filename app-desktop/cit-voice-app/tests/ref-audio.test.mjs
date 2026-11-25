@@ -41,17 +41,35 @@ test("file ngắn hơn đoạn mặc định thì chọn cả file", () => {
 });
 
 test("giới hạn đoạn chọn trong file và trong 3–15 giây", () => {
-  assert.deepEqual(ref.clampSelection({ start: 50, length: 10 }, 55), { start: 45, length: 10 });
-  assert.deepEqual(ref.clampSelection({ start: -4, length: 10 }, 55), { start: 0, length: 10 });
-  assert.equal(ref.clampSelection({ start: 0, length: 60 }, 120).length, ref.REF_MAX_SECONDS);
-  assert.equal(ref.clampSelection({ start: 0, length: 1 }, 120).length, ref.REF_MIN_SECONDS);
+  assert.deepEqual(ref.clampSelection({ start: 50, length: 10 }, 55), {
+    start: 45,
+    length: 10,
+  });
+  assert.deepEqual(ref.clampSelection({ start: -4, length: 10 }, 55), {
+    start: 0,
+    length: 10,
+  });
+  assert.equal(
+    ref.clampSelection({ start: 0, length: 60 }, 120).length,
+    ref.REF_MAX_SECONDS
+  );
+  assert.equal(
+    ref.clampSelection({ start: 0, length: 1 }, 120).length,
+    ref.REF_MIN_SECONDS
+  );
   // File ngắn hơn mức tối thiểu: lấy cả file, không âm.
-  assert.deepEqual(ref.clampSelection({ start: 1, length: 3 }, 2), { start: 0, length: 2 });
+  assert.deepEqual(ref.clampSelection({ start: 1, length: 3 }, 2), {
+    start: 0,
+    length: 2,
+  });
 });
 
 test("dạng sóng lấy biên độ đỉnh từng khoảng", () => {
   const s = new Float32Array([0, 0.2, -0.9, 0.1, 0.3, 0]);
-  assert.deepEqual(Array.from(ref.computePeaks(s, 3)).map((v) => +v.toFixed(2)), [0.2, 0.9, 0.3]);
+  assert.deepEqual(
+    Array.from(ref.computePeaks(s, 3)).map((v) => +v.toFixed(2)),
+    [0.2, 0.9, 0.3]
+  );
   assert.equal(ref.computePeaks(new Float32Array(0), 10).length, 10);
 });
 
