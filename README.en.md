@@ -55,9 +55,9 @@ Full history: [Releases](../../releases).
 
 | Your machine | File | Size |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~367 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~460 MB |
-| Mac with Apple chip (M1, M2, M3…, arm64), macOS 14 or later | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~428 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~361 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~457 MB |
+| Mac with Apple chip (M1, M2, M3…, arm64), macOS 14 or later | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~425 MB |
 | Mac with Intel chip (x86_64), macOS 13 or later | `CIT-Voice-Studio-v1.0.7-macos-x86_64.dmg` | ~443 MB |
 
 Every package ships with the voice model: it works right after install, with no Internet, and all data stays on your machine.

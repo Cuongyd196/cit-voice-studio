@@ -53,9 +53,9 @@ Chi tiết từng phiên bản: [trang Releases](../../releases).
 
 | Máy của bạn | File tải | Dung lượng |
 |---|---|---|
-| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~367 MB |
-| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~460 MB |
-| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~428 MB |
+| Windows 10/11 64-bit | `CIT-Voice-Studio-v1.0.7-win-x86_64.exe` | ~361 MB |
+| Linux 64-bit: Ubuntu, Debian, Linux Mint… | `CIT-Voice-Studio-v1.0.7-amd64.deb` | ~457 MB |
+| Mac chip Apple (M1, M2, M3…, arm64), macOS 14 trở lên | `CIT-Voice-Studio-v1.0.7-macos-arm64.dmg` | ~425 MB |
 | Mac chip Intel (x86_64), macOS 13 trở lên | `CIT-Voice-Studio-v1.0.7-macos-x86_64.dmg` | ~443 MB |
 
 Mọi bản đều kèm sẵn mô hình giọng nói: cài xong dùng được ngay, không cần Internet, dữ liệu lưu trực tiếp trên máy bạn.
